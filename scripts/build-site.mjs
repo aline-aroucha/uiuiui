@@ -398,7 +398,7 @@ for (const c of components) {
   <div class="vx-code uiuiui-card"><div class="vx-code-bar"><span>Code</span><button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-from="vx-code-${s}">Copy</button></div><div class="uiuiui-separator uiuiui-separator--horizontal" role="none"></div><pre tabindex="0"><code id="vx-code-${s}">${esc(code)}</code></pre></div>
 </div>`,
   }
-  const gallery = `<div class="example-frame uiuiui-card"><div id="preview" class="uiuiui-stage"></div></div>
+  const gallery = `<div class="example-frame"><div id="preview" class="uiuiui-stage"></div></div>
 <details class="code"><summary>Example source</summary><pre><code>${esc(read(`preview/examples/${c}.js`))}</code></pre></details>`
   const tables = Object.entries(info.parts).map(([part, props]) => ({ part, ...propTable(part, props) }))
   const apiMd = `Install:\n\n\`\`\`bash\n${install}\n\`\`\`\n\n\`\`\`tsx\n${info.anatomy}\n\`\`\`\n\n` + tables.map((t) => `### ${t.part}\n\n${t.md}`).join("\n\n")

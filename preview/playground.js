@@ -215,14 +215,16 @@
       ],
       render: function (p) {
         var rows = [["#4821", "Maya Chen", "$1,280.00"], ["#4822", "Leo Park", "$349.90"]]
-        return h("div", { style: { width: "100%" } }, h(P.Table, { label: p.caption },
+        // Tables are content: they sit on a Card, never straight on color, imagery or glass
+        return h(P.Card, { style: { width: "100%" } }, h(P.CardContent, null, h(P.Table, { label: p.label },
           h(P.TableCaption, null, p.caption),
           h(P.TableHeader, null, h(P.TableRow, null, h(P.TableHead, null, "Order"), h(P.TableHead, null, "Customer"), h(P.TableHead, { className: "num" }, "Amount"))),
-          h(P.TableBody, null, rows.map(function (r) { return h(P.TableRow, { key: r[0] }, h(P.TableCell, null, r[0]), h(P.TableCell, null, r[1]), h(P.TableCell, { className: "num" }, r[2])) }))))
+          h(P.TableBody, null, rows.map(function (r) { return h(P.TableRow, { key: r[0] }, h(P.TableCell, null, r[0]), h(P.TableCell, null, r[1]), h(P.TableCell, { className: "num" }, r[2])) })))))
       },
       code: function (p) {
-        return imports("table", ["Table", "TableBody", "TableCaption", "TableCell", "TableHead", "TableHeader", "TableRow"]) +
-          tag("Table", { label: p.label }, "  <TableCaption>" + p.caption + "</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Order</TableHead>\n      <TableHead>Customer</TableHead>\n      <TableHead className=\"text-right\">Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    {orders.map((order) => (\n      <TableRow key={order.id}>\n        <TableCell>{order.id}</TableCell>\n        <TableCell>{order.customer}</TableCell>\n        <TableCell className=\"text-right font-mono tabular-nums\">{order.amount}</TableCell>\n      </TableRow>\n    ))}\n  </TableBody>")
+        var table = tag("Table", { label: p.label }, "  <TableCaption>" + p.caption + "</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Order</TableHead>\n      <TableHead>Customer</TableHead>\n      <TableHead className=\"text-right\">Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    {orders.map((order) => (\n      <TableRow key={order.id}>\n        <TableCell>{order.id}</TableCell>\n        <TableCell>{order.customer}</TableCell>\n        <TableCell className=\"text-right font-mono tabular-nums\">{order.amount}</TableCell>\n      </TableRow>\n    ))}\n  </TableBody>").replace(/^/gm, "    ")
+        return imports("card", ["Card", "CardContent"]) + imports("table", ["Table", "TableBody", "TableCaption", "TableCell", "TableHead", "TableHeader", "TableRow"]) +
+          "<Card>\n  <CardContent>\n" + table + "\n  </CardContent>\n</Card>"
       }
     },
     Tabs: {

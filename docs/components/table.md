@@ -3,10 +3,11 @@
 Tabular data. Parts: `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`. For sorting, filters and pagination, drive it with TanStack Table.
 
 ```bash
-npx @aline-aroucha/uiuiui add table badge
+npx @aline-aroucha/uiuiui add table card badge
 ```
 
 ## What you provide
+- The Table inside a `Card` (`CardContent`), with the title in `CardHeader`. Tables are content: they stay on a solid surface, never straight on color, imagery or glass.
 - `TableHeader` with short `TableHead` labels; `TableBody` with rows; optional `TableCaption`.
 - Numbers and amounts: right-aligned, `font-mono tabular-nums`, en-US format (`$1,280.00`, `Oct 21, 2026`).
 - Status as a `Badge`.

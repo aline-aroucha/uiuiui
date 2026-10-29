@@ -41,6 +41,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Cancel / low emphasis | `<Button variant="ghost">` |
 | Irreversible action | `<Button variant="destructive">` inside an `AlertDialog` |
 | Status ok / pending / error | `<Badge variant="success" \| "warning" \| "destructive">` |
+| Tabular data | `<Table>` inside a `Card` |
 | Persistent message | `<Alert>` |
 | Feedback after an action | `toast()` (Sonner) |
 | Setting with immediate effect | `<Switch>` |
