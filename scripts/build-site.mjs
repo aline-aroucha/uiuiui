@@ -52,11 +52,13 @@ const tokensCss = [
   ...Object.entries(tokens.type.families).map(([k, v]) => `  --font-${k}: ${v};`),
   ...tokens.spacing.tokens.map((t) => `  --${t.name}: ${t.value};`),
   ...tokens.radius.tokens.map((t) => `  --${t.name}: ${t.value};`),
-  ...tokens.shadow.tokens.map((t) => `  --${t.name}: ${t.value};`),
+  ...tokens.shadow.tokens.map((t) => `  --${t.name}: ${typeof t.value === "string" ? t.value : t.value.light};`),
+  ...(tokens.blur?.tokens || []).map((t) => `  --${t.name}: ${t.value};`),
   "}",
   ".light-scope { color-scheme: light; }",
   ".dark {",
   ...colors.map((t) => `  --${t.name}: ${cssValue(t.value.dark)};`),
+  ...tokens.shadow.tokens.filter((t) => typeof t.value !== "string").map((t) => `  --${t.name}: ${t.value.dark};`),
   "  color-scheme: dark;",
   "}",
   "",
@@ -319,7 +321,7 @@ emit({
 
 // ------------------------------------------------------------ spacing, radius, shadow
 {
-  const tableMd = (list) => "| Token | Value | Usage |\n| --- | --- | --- |\n" + list.map((t) => `| \`${t.name}\` | \`${t.value}\` | ${t.usage} |`).join("\n")
+  const tableMd = (list) => "| Token | Value | Usage |\n| --- | --- | --- |\n" + list.map((t) => `| \`${t.name}\` | \`${typeof t.value === "string" ? t.value : `light: ${t.value.light}; dark: ${t.value.dark}`}\` | ${t.usage} |`).join("\n")
   emit({
     path: "spacing.html",
     title: "Spacing, radius and shadow",

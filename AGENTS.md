@@ -13,7 +13,8 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
   `fill-chart-1`…`fill-chart-5`.
 - Every colored background uses its `*-foreground` pair for text.
 - Spacing on the 4px scale: `gap-1 gap-2 gap-3 gap-4 gap-6 gap-8`, `p-4 p-6`, `py-12`.
-- Radii: `rounded-md` (controls), `rounded-lg` (alert, popover, dialog), `rounded-xl` (card), `rounded-full` (avatar, switch).
+- Material: Liquid Glass. New surfaces use `glass` (or `glass-strong` for menus, popovers and selected states) + `shadow-glass` + `border-glass-border`. Primary and destructive actions stay solid with `shadow-glass`.
+- Radii: `rounded-full` (buttons, badges, tab tracks, switch, avatar), `rounded-lg` (fields), `rounded-xl` (alert, menus, popover, dialog), `rounded-2xl` (card).
 - UI text: `text-sm`. Headings: `text-4xl/3xl/2xl/xl font-semibold tracking-tight` (h1 is `font-extrabold`).
 - Numbers in tables: `text-right font-mono tabular-nums`. en-US format: `$1,280.00`, `Oct 21, 2026`.
 - Icons: Heroicons (`@heroicons/react`). Micro `16/solid` with `size-4` in buttons and fields, Mini `20/solid` in menus and lists, Outline `24/outline` in navigation. Never `lucide-react`; swap the icons of any added shadcn component (see the table in `docs/guidelines.md`).
@@ -26,7 +27,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 - `dark:` to switch colors: the tokens already change with the `.dark` class.
 - Arbitrary spacing or radius values (`p-[13px]`, `rounded-[10px]`).
 - More than one `Button` with `variant="default"` in the same area.
-- A Card inside a Card; a colored side border to highlight a card; emoji in the UI; gradients.
+- A Card inside a Card; glass on glass; glass with text straight over photos or video; raw `backdrop-blur` or `bg-white/60` instead of the `glass` utilities; a colored side border to highlight a card; emoji in the UI; gradients.
 
 ## Variants by intent
 

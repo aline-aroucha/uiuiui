@@ -12,6 +12,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --shadow-glass: var(--glass-shadow);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -35,6 +36,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-border: var(--glass-border);
+  --color-glass-solid: var(--glass-solid);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -75,6 +80,10 @@
   --border: #dce4e2;
   --input: #82928e;
   --ring: var(--primary);
+  --glass: #ffffffe3;
+  --glass-strong: #fffffff0;
+  --glass-border: #ffffffb3;
+  --glass-solid: #f7f9f9;
   --chart-1: #0b6b60;
   --chart-2: #2f74b5;
   --chart-3: #c9821f;
@@ -88,6 +97,8 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+  --glass-shadow: inset 0 1px 0 0 #ffffffe6, 0 1px 2px 0 #0d16150f, 0 8px 24px -8px #0d161529;
+  --glass-blur: 16px;
 }
 
 .dark {
@@ -114,6 +125,10 @@
   --border: #24332f;
   --input: #56706b;
   --ring: var(--primary);
+  --glass: #16211fe6;
+  --glass-strong: #101918f2;
+  --glass-border: #ffffff24;
+  --glass-solid: #16211f;
   --chart-1: #45c4b0;
   --chart-2: #6aa9e6;
   --chart-3: #f0b257;
@@ -127,6 +142,31 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+  --glass-shadow: inset 0 1px 0 0 #ffffff1f, 0 1px 2px 0 #00000066, 0 8px 24px -8px #00000099;
+}
+
+/* Liquid Glass: translucent surface with a blurred, saturated backdrop. Pair with shadow-glass.
+   Turns solid when the person asks for reduced transparency. */
+@utility glass {
+  background-color: var(--glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@utility glass-strong {
+  background-color: var(--glass-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 @layer base {

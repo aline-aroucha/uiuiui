@@ -106,3 +106,28 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .pui-avatar { position: relative; display: inline-flex; width: 32px; height: 32px; overflow: hidden; border-radius: var(--radius-full); flex-shrink: 0; }
 .pui-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .pui-avatar__fallback { display: grid; place-items: center; width: 100%; height: 100%; background: var(--muted); color: var(--foreground); font-size: 12px; font-weight: 500; }
+
+/* Liquid Glass material (mirrors the `glass`, `glass-strong` and `shadow-glass` utilities in globals.css) */
+.pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-badge--secondary, .pui-badge--outline, .pui-input, .pui-select select,
+.pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-skeleton, .pui-btn--ghost:hover {
+  background-color: var(--glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+}
+.pui-tabs__trigger[data-state="active"], .pui-btn--secondary:hover { background-color: var(--glass-strong); }
+.pui-btn, .pui-input, .pui-select select, .pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-tabs__trigger[data-state="active"], .pui-switch, .pui-switch__thumb { box-shadow: var(--glass-shadow); }
+.pui-btn--ghost:not(:hover), .pui-btn--link { box-shadow: none; }
+.pui-btn, .pui-badge, .pui-tabs__list, .pui-tabs__trigger { border-radius: var(--radius-full); }
+.pui-btn--secondary, .pui-card, .pui-alert, .pui-tabs__list, .pui-badge--secondary { border: 1px solid var(--glass-border); }
+.pui-input, .pui-select select, .pui-skeleton { border-radius: var(--radius-lg); }
+.pui-card { border-radius: var(--radius-2xl); }
+.pui-alert { border-radius: var(--radius-xl); }
+.pui-tabs__list { padding: 3px; }
+.pui-tabs__trigger { padding: 4px 12px; }
+.pui-checkbox[data-state="checked"], .pui-checkbox[data-state="indeterminate"] { background-color: var(--primary); }
+@media (prefers-reduced-transparency: reduce) {
+  .pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-badge--secondary, .pui-badge--outline, .pui-input, .pui-select select,
+  .pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-skeleton, .pui-btn--ghost:hover, .pui-tabs__trigger[data-state="active"] {
+    background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+}

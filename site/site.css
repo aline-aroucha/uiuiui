@@ -102,7 +102,15 @@ svg { flex-shrink: 0; }
   grid-template-columns: minmax(0, 1fr) 220px; grid-template-areas: "example controls" "code controls"; gap: 24px; font-size: 14px; line-height: 20px; }
 .vx-mount { display: contents; }
 .vx-preview { grid-area: example; min-height: 200px; display: flex; align-items: center; justify-content: center; padding: 32px 24px;
-  background: var(--panel); border-radius: var(--radius-lg); min-width: 0; }
+  border-radius: var(--radius-lg); min-width: 0; }
+/* Documentation backdrop: color behind the previews so the Liquid Glass material is visible (not a product pattern) */
+.vx-preview, .example-frame {
+  background-color: var(--panel);
+  background-image:
+    radial-gradient(circle at 18% 28%, color-mix(in oklab, var(--primary) 55%, transparent) 0 70px, transparent 140px),
+    radial-gradient(circle at 82% 70%, color-mix(in oklab, var(--chart-2) 50%, transparent) 0 60px, transparent 130px),
+    radial-gradient(circle at 60% 15%, color-mix(in oklab, var(--chart-3) 45%, transparent) 0 40px, transparent 100px);
+}
 .vx-controls { grid-area: controls; display: grid; grid-auto-rows: min-content; gap: 16px; }
 .vx-control { display: grid; gap: 6px; }
 .vx-control--inline { display: flex; align-items: center; gap: 8px; }
@@ -112,7 +120,7 @@ svg { flex-shrink: 0; }
 .vx-code-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 6px 16px; border-bottom: 1px solid var(--border);
   color: var(--muted-foreground); font-size: 13px; }
 .article .vx-code pre { margin: 0; border-radius: 0; background: transparent; }
-.example-frame { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--panel); font-size: 14px; line-height: 20px; overflow-x: auto; }
+.example-frame { border: 1px solid var(--border); border-radius: var(--radius-xl); font-size: 14px; line-height: 20px; overflow-x: auto; }
 .example-frame .pui-stage { padding: 32px 24px; }
 .example-frame p, .vx-preview p { margin: 0; }
 details.code { margin-top: 12px; }

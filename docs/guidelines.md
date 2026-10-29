@@ -11,7 +11,8 @@ Read this section before generating any PUI interface.
 3. **Every background has its text pair.** `bg-primary` → `text-primary-foreground`; `bg-accent` → `text-accent-foreground`. Don't put `text-white` on a color: in the dark theme the pair is dark text.
 4. **Dark mode is automatic** through the `.dark` class on `<html>`. Don't write `dark:` color overrides; the tokens already switch.
 5. **Spacing on the 4px scale:** `gap-2` (8), `gap-4` (16), `gap-6` (24), `gap-8` (32), `py-12` (48). No arbitrary values (`p-[13px]`).
-6. **Radii:** `rounded-md` on controls, `rounded-lg` on alerts and popovers, `rounded-xl` on cards, `rounded-full` on avatars and switches.
+6. **Radii:** `rounded-full` on buttons, badges, tab tracks, switches and avatars; `rounded-lg` on fields; `rounded-xl` on alerts, menus and popovers; `rounded-2xl` on cards.
+12. **Material is Liquid Glass.** Surfaces use the `glass` utility (or `glass-strong` for floating layers and selected states) with `shadow-glass` and a `border-glass-border` edge. PUI components already do this; build new surfaces the same way, never with raw `backdrop-blur` or `bg-white/60`.
 7. **One primary action per area.** The others are `secondary`, `outline` or `ghost`.
 8. **UI copy in US English**, sentence case, en-US formats (`$1,280.00`, `Oct 21, 2026`, `9:42 AM`).
 9. **Accessibility:** every control has a `Label`; icon-only buttons have an `aria-label`; status is never conveyed by color alone (add an icon or a word).
@@ -71,11 +72,11 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 | `border` | `#dce4e2` | `#24332f` | Dividers and card borders. Decorative: carries no meaning on its own. |
 | `input` | `#82928e` | `#56706b` | Field borders (Input, Select, Checkbox, Switch off). Strong enough to reach 3:1. |
 | `ring` | `{primary}` | `{primary}` | Focus ring: 2px solid + 2px offset on background. ≥6:1 in both themes. |
+| `glass` | `#ffffffe3` | `#16211fe6` | Liquid Glass surface (89% / 90% opaque, blurred backdrop): cards, alerts, fields, secondary buttons, tab tracks. Utility: `glass`. Opaque enough that every text token keeps ≥4.5:1 over the page, brand and chart colors. |
+| `glass-strong` | `#fffffff0` | `#101918f2` | Denser glass for floating layers and selected states: menus, popovers, the active tab, hover on glass buttons. Utility: `glass-strong`. |
+| `glass-border` | `#ffffffb3` | `#ffffff24` | Hairline edge that catches light on glass. Decorative: field and control borders keep `input`. |
+| `glass-solid` | `#f7f9f9` | `#16211f` | What glass becomes when the person turns on Reduce transparency (`prefers-reduced-transparency`). |
 | `chart-1` | `#0b6b60` | `#45c4b0` | Chart series 1 (the brand). |
-| `chart-2` | `#2f74b5` | `#6aa9e6` | Chart series 2. |
-| `chart-3` | `#c9821f` | `#f0b257` | Chart series 3. |
-| `chart-4` | `#7a52b3` | `#b08ae0` | Chart series 4. |
-| `chart-5` | `#5b6b68` | `#a3b3af` | Chart series 5 ("other"). |
 
 - Checked text pairs: every text color is ≥ 4.5:1 on the backgrounds its usage names, in both themes; field borders (`input`) and the focus ring (`ring`) are ≥ 3:1.
 - `success`, `warning`, `destructive-foreground` and the matching Badge variants are **PUI additions** to shadcn, for record status.
@@ -93,8 +94,26 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 ## Spacing, radius and shadow
 
 - 4px scale (`space-1` to `space-12`). Lay out with `flex`/`grid` and `gap`, not with margins on each child.
-- `--radius` = 0.5rem; `radius-sm` 4px, `radius-md` 6px, `radius-lg` 8px, `radius-xl` 12px, as shadcn derives them.
-- Subtle shadows: `shadow-xs` on controls, `shadow-sm` on cards, `shadow-md` on popovers, `shadow-lg` on dialogs. Surfaces separate through `border` first, then shadow.
+- `--radius` = 0.5rem; `radius-sm` 4px, `radius-md` 6px, `radius-lg` 8px, `radius-xl` 12px, `radius-2xl` 16px, `radius-full` for capsules.
+- Depth comes from the glass material: `shadow-glass` (top highlight + soft drop shadow) on every surface and button. `shadow-lg` is reserved for dialogs and sheets above glass.
+
+## Material: Liquid Glass
+
+Every PUI component is made of glass: a translucent surface that blurs and saturates what is behind it, a hairline edge that catches light and a soft shadow that lifts it. It gives depth without heavy borders and lets the page's color show through.
+
+| Utility | Made of | Use |
+| --- | --- | --- |
+| `glass` | `--glass` (89% / 90% opaque) + `blur(var(--glass-blur)) saturate(180%)` | Cards, alerts, fields, secondary and outline buttons, tab tracks, checkboxes |
+| `glass-strong` | `--glass-strong` (94% / 95%) + the same blur | Menus, popovers, the active tab, hover on glass buttons |
+| `shadow-glass` | `--glass-shadow`: top highlight + soft drop shadow | Every glass surface and every solid button |
+| `border-glass-border` | `--glass-border` hairline | Edges of cards, alerts, tab tracks and secondary buttons |
+
+- **Prominent actions stay solid.** Primary and destructive buttons and status badges keep their solid color and only get `shadow-glass`, so their text contrast never depends on the backdrop.
+- **Shapes are soft:** capsules (`rounded-full`) for buttons, badges and tab tracks; `rounded-lg` fields; `rounded-2xl` cards.
+- **Contrast is built in.** The glass is opaque enough that `foreground`, `muted-foreground`, `secondary-foreground` and `destructive` keep at least 4.5:1 when the glass sits over the page background, `muted`, `card`, `accent`, `primary` or the chart colors, in both themes. The build checks these pairs.
+- **Don't stack glass on glass** (a glass card inside a glass panel) and don't place glass with text directly over photos or video; put a solid surface or a scrim between them.
+- **Reduce transparency is respected.** When the person turns it on (`prefers-reduced-transparency: reduce`), every glass surface becomes the solid `glass-solid` color with no blur.
+- Glass shows best when there is color behind it, such as a branded header, charts or imagery. On a plain background it reads as a clean, lifted surface.
 
 ## States
 
