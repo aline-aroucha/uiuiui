@@ -100,7 +100,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   const nav = NAV.map(
     ([group, items]) => `<div class="nav-section">
       <p class="nav-heading" id="nav-${anchor(group)}">${group}</p>
-      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a class="uiuiui-btn uiuiui-btn--secondary nav-link${href === path ? " uiuiui-glass-strong" : ""}" href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
+      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a class="uiuiui-btn ${href === path ? "uiuiui-btn--secondary" : "uiuiui-btn--ghost"} nav-link" href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
     </div>`
   ).join("")
 
