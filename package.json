@@ -1,11 +1,11 @@
 {
-  "name": "@aline-aroucha/pui",
+  "name": "@aline-aroucha/uiuiui",
   "version": "0.1.0",
-  "description": "PUI design system: tokens, components and AI agent rules",
+  "description": "UIUIUI design system: tokens, components and AI agent rules",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "pui": "cli/pui.mjs"
+    "uiuiui": "cli/uiuiui.mjs"
   },
   "files": [
     "cli",
@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aline-aroucha/pui.git"
+    "url": "git+https://github.com/aline-aroucha/uiuiui.git"
   },
-  "homepage": "https://aline-aroucha.github.io/pui",
+  "homepage": "https://aline-aroucha.github.io/uiuiui",
   "publishConfig": {
     "access": "public"
   },

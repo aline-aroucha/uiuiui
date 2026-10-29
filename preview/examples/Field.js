@@ -1,8 +1,8 @@
-var P = window.PUI, h = React.createElement;
+var P = window.UIUIUI, h = React.createElement;
   function Demo() {
     var s = React.useState('maya@'), v = s[0];
     var invalid = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
-    return h('div', { className: 'pui-stage', style: { padding: 0, maxWidth: 360 } },
+    return h('div', { className: 'uiuiui-stage', style: { padding: 0, maxWidth: 360 } },
       h(P.Field, { required: true, invalid: invalid },
         h(P.FieldLabel, null, 'Email'),
         h(P.FieldControl, null, h(P.Input, { type: 'email', value: v, onChange: function (e) { s[1](e.target.value); } })),

@@ -1,7 +1,7 @@
-// PUI docs: theme, mobile menu, search, "Copy for LLM" menu and copy buttons.
+// UIUIUI docs: theme, mobile menu, search, "Copy for LLM" menu and copy buttons.
 (function () {
   var html = document.documentElement
-  var base = window.PUI_BASE || "./"
+  var base = window.UIUIUI_BASE || "./"
 
   // Theme: the button names the theme it switches to
   var themeBtn = document.getElementById("theme-toggle")
@@ -9,7 +9,7 @@
   themeLabel()
   themeBtn.addEventListener("click", function () {
     var dark = html.classList.toggle("dark")
-    try { localStorage.setItem("pui-theme", dark ? "dark" : "light") } catch (e) {}
+    try { localStorage.setItem("uiuiui-theme", dark ? "dark" : "light") } catch (e) {}
     themeLabel()
   })
 

@@ -3,7 +3,7 @@
 Groups related content on a raised surface. Parts: `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent` and `CardFooter`.
 
 ```bash
-npx @aline-aroucha/pui add card
+npx @aline-aroucha/uiuiui add card
 ```
 
 ## What you provide

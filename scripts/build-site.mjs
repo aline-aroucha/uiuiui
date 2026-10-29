@@ -1,6 +1,6 @@
-// Builds the PUI documentation site into _site/ from tokens/, docs/ and preview/.
+// Builds the UIUIUI documentation site into _site/ from tokens/, docs/ and preview/.
 // Every page is a list of sections; each section renders to HTML, to the "On this page" list and to the page's Markdown twin.
-// Usage: SITE_URL=https://user.github.io/pui node scripts/build-site.mjs
+// Usage: SITE_URL=https://user.github.io/uiuiui node scripts/build-site.mjs
 import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync, existsSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
@@ -10,7 +10,7 @@ import { marked } from "marked"
 const root = join(dirname(fileURLToPath(import.meta.url)), "..")
 const out = join(root, "_site")
 const SITE_URL = (process.env.SITE_URL || "").replace(/\/$/, "")
-const REPO_URL = process.env.REPO_URL || "https://github.com/aline-aroucha/pui"
+const REPO_URL = process.env.REPO_URL || "https://github.com/aline-aroucha/uiuiui"
 const MAGOO_VERSION = "1.6.0"
 const read = (p) => readFileSync(join(root, p), "utf8")
 const write = (p, s) => {
@@ -31,9 +31,9 @@ const components = readdirSync(join(root, "preview/examples")).map((f) => f.repl
 
 // Playground configs run in Node too, so each page's Markdown twin can carry the default example code
 const playground = (() => {
-  const sandbox = { window: { React: { createElement() {}, useState() {}, useEffect() {}, Fragment: "f" }, ReactDOM: {}, PUI: {} }, document: { querySelectorAll: () => [] } }
-  vm.runInNewContext(read("preview/playground.js").replace("var configs = {", "var configs = window.PUI_PLAYGROUND_CONFIGS = {"), sandbox)
-  return sandbox.window.PUI_PLAYGROUND_CONFIGS
+  const sandbox = { window: { React: { createElement() {}, useState() {}, useEffect() {}, Fragment: "f" }, ReactDOM: {}, UIUIUI: {} }, document: { querySelectorAll: () => [] } }
+  vm.runInNewContext(read("preview/playground.js").replace("var configs = {", "var configs = window.UIUIUI_PLAYGROUND_CONFIGS = {"), sandbox)
+  return sandbox.window.UIUIUI_PLAYGROUND_CONFIGS
 })()
 const defaultCode = (name) => {
   const cfg = playground[name]
@@ -44,7 +44,7 @@ const defaultCode = (name) => {
 // ------------------------------------------------------------ tokens.css
 const cssValue = (v) => (v.startsWith("{") ? `var(--${v.slice(1, -1)})` : v)
 const tokensCss = [
-  "/* PUI — generated from tokens/tokens.json */",
+  "/* UIUIUI — generated from tokens/tokens.json */",
   ":root, .light-scope {",
   ...colors.map((t) => `  --${t.name}: ${cssValue(t.value.light)};`),
   "}",
@@ -95,7 +95,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   const mdPath = path.replace(/\.html$/, ".md")
   const pageUrl = abs(path)
   const mdUrl = abs(mdPath)
-  const aiPrompt = `Answer questions about the following PUI documentation page: ${pageUrl}\nMarkdown source: ${mdUrl}`
+  const aiPrompt = `Answer questions about the following UIUIUI documentation page: ${pageUrl}\nMarkdown source: ${mdUrl}`
 
   const nav = NAV.map(
     ([group, items]) => `<div class="nav-section">
@@ -121,14 +121,14 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title === "PUI" ? "PUI" : `${esc(title)} | PUI`}</title>
+<title>${title === "UIUIUI" ? "UIUIUI" : `${esc(title)} | UIUIUI`}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="alternate" type="text/markdown" title="LLM-friendly version" href="${base}${mdPath}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Geist+Mono:wght@400;600&display=swap">
-<script>try{var t=localStorage.getItem("pui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}</script>
+<script>try{var t=localStorage.getItem("uiuiui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}</script>
 <link rel="stylesheet" href="${base}assets/tokens.css">
-<link rel="stylesheet" href="${base}assets/pui.css">
+<link rel="stylesheet" href="${base}assets/uiuiui.css">
 <link rel="stylesheet" href="${base}assets/site.css">
 </head>
 <body>
@@ -136,7 +136,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <div class="frame">
   <header class="site-header">
     <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Menu">${icon.menu}</button>
-    <a class="brand" href="${base}index.html"><span class="brand-mark" aria-hidden="true"></span>PUI</a>
+    <a class="brand" href="${base}index.html"><span class="brand-mark" aria-hidden="true"></span>UIUIUI</a>
     <div class="search" role="search">
       <label for="search-input" class="sr-only">Search documentation</label>
       <span class="search-icon">${icon.search}</span>
@@ -159,7 +159,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
           <div class="page-head">
             <h1>${esc(title)}</h1>
             <div class="llm-menu">
-              <button class="pui-btn pui-btn--ghost pui-btn--size-sm" type="button" data-copy-md="${base}${mdPath}">${icon.copy}<span>Copy for LLM</span></button>
+              <button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-md="${base}${mdPath}">${icon.copy}<span>Copy for LLM</span></button>
               <button class="icon-btn" type="button" id="llm-more" aria-expanded="false" aria-controls="llm-options" aria-label="Markdown options">${icon.more}</button>
               <ul id="llm-options" class="llm-options" hidden>
                 <li><a href="${base}${mdPath}">View as Markdown</a></li>
@@ -186,7 +186,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   </div>
 </div>
 <script type="application/json" id="search-index">${JSON.stringify(searchIndex).replace(/</g, "\\u003c")}</script>
-<script>window.PUI_BASE = ${JSON.stringify(base)}</script>
+<script>window.UIUIUI_BASE = ${JSON.stringify(base)}</script>
 <script src="${base}assets/site.js"></script>
 ${scripts}
 </body>
@@ -204,7 +204,7 @@ function emit(page) {
     page.introMd || "",
     ...page.sections.filter((s) => s.md !== null).map((s) => (s.title ? `## ${s.title}\n\n${s.md}` : s.md)),
     related ? `## Related pages\n\n${related}` : "",
-    `---\nPUI documentation · ${abs(page.path)}`,
+    `---\nUIUIUI documentation · ${abs(page.path)}`,
   ].filter(Boolean)
   write(page.path.replace(/\.html$/, ".md"), text.join("\n\n") + "\n")
 }
@@ -216,9 +216,9 @@ const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText
   const [lead, ...parts] = guide.split(/^## /m)
   emit({
     path: "index.html",
-    title: "PUI",
+    title: "UIUIUI",
     description: lead.trim(),
-    intro: `<div class="pui-row cta"><a class="pui-btn pui-btn--default" href="components/button.html">Browse components</a><a class="pui-btn pui-btn--outline" href="ai.html">Use with AI</a></div>`,
+    intro: `<div class="uiuiui-row cta"><a class="uiuiui-btn uiuiui-btn--default" href="components/button.html">Browse components</a><a class="uiuiui-btn uiuiui-btn--outline" href="ai.html">Use with AI</a></div>`,
     sections: parts.map((p) => {
       const [head, ...rest] = p.split("\n")
       return section(head.trim(), rest.join("\n").trim())
@@ -229,14 +229,14 @@ const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText
 // ------------------------------------------------------------ use with AI
 {
   const copyRow = (label, value) =>
-    `<div class="copy-row"><div><div class="copy-label">${label}</div><code>${esc(value)}</code></div><button class="pui-btn pui-btn--outline pui-btn--size-sm" type="button" data-copy="${esc(value)}">Copy</button></div>`
+    `<div class="copy-row"><div><div class="copy-label">${label}</div><code>${esc(value)}</code></div><button class="uiuiui-btn uiuiui-btn--outline uiuiui-btn--size-sm" type="button" data-copy="${esc(value)}">Copy</button></div>`
   const rows = (items) => items.map(([l, v]) => copyRow(l, v)).join("")
   const listMd = (items) => items.map(([l, v]) => `- ${l}: \`${v}\``).join("\n")
   const install = [
-    ["Set up the project (style, cn(), AGENTS.md, CLAUDE.md, Magoo MCP)", "npx @aline-aroucha/pui init"],
-    ["Add components", "npx @aline-aroucha/pui add button card input"],
-    ["Add every component", "npx @aline-aroucha/pui add --all"],
-    ["Update installed components", "npx @aline-aroucha/pui add --all --overwrite"],
+    ["Set up the project (style, cn(), AGENTS.md, CLAUDE.md, Magoo MCP)", "npx @aline-aroucha/uiuiui init"],
+    ["Add components", "npx @aline-aroucha/uiuiui add button card input"],
+    ["Add every component", "npx @aline-aroucha/uiuiui add --all"],
+    ["Update installed components", "npx @aline-aroucha/uiuiui add --all --overwrite"],
   ]
   const files = [
     ["Index for LLMs", abs("llms.txt")],
@@ -245,24 +245,24 @@ const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText
     ["Tokens as JSON", abs("tokens.json")],
     ["CSS with the tokens (globals.css)", abs("globals.css")],
   ]
-  const rulesMd = `1. \`pui init\` writes \`AGENTS.md\` and a \`CLAUDE.md\` that imports it, so Claude Code and Codex pick up the rules automatically.
-2. For Cursor, save the same text as \`.cursor/rules/pui.mdc\`. For GitHub Copilot, as \`.github/copilot-instructions.md\`.
-3. \`pui init\` also adds the read-only **Magoo MCP** to \`.mcp.json\`, so agents can check keyboard, screen reader and acceptance criteria while they build.
-4. To let agents find and install PUI components on their own, \`pui init\` registers \`@pui\` in \`components.json\`; turn on the shadcn MCP with \`npx shadcn@latest mcp init\`.
+  const rulesMd = `1. \`uiuiui init\` writes \`AGENTS.md\` and a \`CLAUDE.md\` that imports it, so Claude Code and Codex pick up the rules automatically.
+2. For Cursor, save the same text as \`.cursor/rules/uiuiui.mdc\`. For GitHub Copilot, as \`.github/copilot-instructions.md\`.
+3. \`uiuiui init\` also adds the read-only **Magoo MCP** to \`.mcp.json\`, so agents can check keyboard, screen reader and acceptance criteria while they build.
+4. To let agents find and install UIUIUI components on their own, \`uiuiui init\` registers \`@uiuiui\` in \`components.json\`; turn on the shadcn MCP with \`npx shadcn@latest mcp init\`.
 5. Every page on this site has a Markdown twin: use **Copy for LLM** at the top of a page, or replace \`.html\` with \`.md\` in its address.`
-  const promptText = `Use the PUI design system. Read ${abs("llms-full.txt")} before you start.
+  const promptText = `Use the UIUIUI design system. Read ${abs("llms-full.txt")} before you start.
 Use only components from @/components/ui, color only through tokens (bg-primary, text-muted-foreground…),
 US English UI copy, one primary action per area, and Magoo behavior for every component.`
   emit({
     path: "ai.html",
     title: "Use with AI",
-    description: "PUI publishes plain-text files, an installer and agent rules made for AI tools.",
+    description: "UIUIUI publishes plain-text files, an installer and agent rules made for AI tools.",
     sections: [
-      section("Install in a project", `The \`pui\` command sets up a React + Tailwind v4 project and adds components from the PUI registry.\n\n${listMd(install)}`,
-        `<p>The <code>pui</code> command sets up a React + Tailwind v4 project and adds components from the PUI registry.</p>${rows(install)}`),
+      section("Install in a project", `The \`uiuiui\` command sets up a React + Tailwind v4 project and adds components from the UIUIUI registry.\n\n${listMd(install)}`,
+        `<p>The <code>uiuiui</code> command sets up a React + Tailwind v4 project and adds components from the UIUIUI registry.</p>${rows(install)}`),
       section("Files for agents", listMd(files), rows(files)),
       section("Make the agent follow the rules", rulesMd),
-      section("Registry", "```json\n" + JSON.stringify({ registries: { "@pui": abs("r/{name}.json") } }, null, 2) + "\n```"),
+      section("Registry", "```json\n" + JSON.stringify({ registries: { "@uiuiui": abs("r/{name}.json") } }, null, 2) + "\n```"),
       section("Suggested first prompt", "```text\n" + promptText + "\n```"),
     ],
   })
@@ -291,7 +291,7 @@ US English UI copy, one primary action per area, and Magoo behavior for every co
       return section(
         title,
         "| Token | Light | Dark | Usage |\n| --- | --- | --- | --- |\n" + list.map((t) => `| \`${t.name}\` | \`${t.value.light}\` | \`${t.value.dark}\` | ${t.usage} |`).join("\n"),
-        `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(title)} tokens"><table class="pui-table tokens-table"><thead><tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead><tbody>${list
+        `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(title)} tokens"><table class="uiuiui-table tokens-table"><thead><tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead><tbody>${list
           .map((t) => `<tr><td><code class="tok">${t.name}</code><div class="usage">${esc(t.usage)}</div></td><td>${swatch(t, "light")}</td><td>${swatch(t, "dark")}</td></tr>`)
           .join("")}</tbody></table></div>`
       )
@@ -343,7 +343,7 @@ emit({
 // ------------------------------------------------------------ components
 function propTable(part, props) {
   const showDefault = props.some((p) => p.default)
-  const html = `<div class="table-wrap prop-table" tabindex="0" role="region" aria-label="${part} props"><table class="pui-table">
+  const html = `<div class="table-wrap prop-table" tabindex="0" role="region" aria-label="${part} props"><table class="uiuiui-table">
 <thead><tr><th scope="col">Name</th><th scope="col">Type</th>${showDefault ? '<th scope="col">Default</th>' : ""}</tr></thead>
 <tbody>${props
     .map(
@@ -361,7 +361,7 @@ for (const c of components) {
   const info = api[c]
   const raw = read(`docs/components/${s}.md`).replace(/^# .*\n+/, "")
   const [intro, ...parts] = raw.split(/^## /m)
-  const install = (intro.match(/```bash\n([\s\S]*?)```/) || [])[1]?.trim() || `npx @aline-aroucha/pui add ${s}`
+  const install = (intro.match(/```bash\n([\s\S]*?)```/) || [])[1]?.trim() || `npx @aline-aroucha/uiuiui add ${s}`
   const lead = intro.replace(/```bash[\s\S]*?```/, "").trim()
   const access = parts.find((p) => p.startsWith("Accessibility"))
   const usage = parts.filter((p) => p !== access).map((p) => "### " + p.trim()).join("\n\n")
@@ -371,10 +371,10 @@ for (const c of components) {
     md: "```tsx\n" + code + "\n```",
     html: `<div class="vx" data-playground="${c}">
   <div class="vx-mount"></div>
-  <div class="vx-code"><div class="vx-code-bar"><span>Code</span><button class="pui-btn pui-btn--ghost pui-btn--size-sm" type="button" data-copy-from="vx-code-${s}">Copy</button></div><pre tabindex="0"><code id="vx-code-${s}">${esc(code)}</code></pre></div>
+  <div class="vx-code"><div class="vx-code-bar"><span>Code</span><button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-from="vx-code-${s}">Copy</button></div><pre tabindex="0"><code id="vx-code-${s}">${esc(code)}</code></pre></div>
 </div>`,
   }
-  const gallery = `<div class="example-frame"><div id="preview" class="pui-stage"></div></div>
+  const gallery = `<div class="example-frame"><div id="preview" class="uiuiui-stage"></div></div>
 <details class="code"><summary>Example source</summary><pre><code>${esc(read(`preview/examples/${c}.js`))}</code></pre></details>`
   const tables = Object.entries(info.parts).map(([part, props]) => ({ part, ...propTable(part, props) }))
   const apiMd = `Install:\n\n\`\`\`bash\n${install}\n\`\`\`\n\n\`\`\`tsx\n${info.anatomy}\n\`\`\`\n\n` + tables.map((t) => `### ${t.part}\n\n${t.md}`).join("\n\n")
@@ -397,7 +397,7 @@ ${tables.map((t) => `<h3 id="${anchor(t.part)}-props">${t.part}</h3>${t.html}`).
     related: (info.related || []).map((r) => [`components/${slug(r)}.html`, r]),
     scripts: `<script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/pui.js"></script>
+<script src="../assets/uiuiui.js"></script>
 <script src="../assets/playground.js"></script>
 <script src="../assets/examples/${c}.js"></script>`,
   })
@@ -405,7 +405,7 @@ ${tables.map((t) => `<h3 id="${anchor(t.part)}-props">${t.part}</h3>${t.html}`).
 
 // ------------------------------------------------------------ assets and files for AI agents
 write("assets/tokens.css", tokensCss)
-for (const f of ["pui.css", "pui.js", "playground.js"]) cpSync(join(root, "preview", f), join(out, "assets", f))
+for (const f of ["uiuiui.css", "uiuiui.js", "playground.js"]) cpSync(join(root, "preview", f), join(out, "assets", f))
 cpSync(join(root, "preview/examples"), join(out, "assets/examples"), { recursive: true })
 cpSync(join(root, "site/site.css"), join(out, "assets/site.css"))
 cpSync(join(root, "site/site.js"), join(out, "assets/site.js"))
@@ -418,7 +418,7 @@ cpSync(join(root, "src/styles/globals.css"), join(out, "globals.css"))
 cpSync(join(root, "AGENTS.md"), join(out, "AGENTS.md"))
 write(
   "llms.txt",
-  `# PUI
+  `# UIUIUI
 
 > A design system for React + Tailwind v4: tokens, ${components.length} components and rules for AI agents. Behavior follows Magoo ${MAGOO_VERSION}. UI copy in US English.
 
@@ -432,8 +432,8 @@ Every page has a Markdown twin: replace \`.html\` with \`.md\`.
 - [Colors](${abs("colors.md")}), [Typography](${abs("typography.md")}), [Spacing](${abs("spacing.md")})
 
 ## Install
-- \`npx @aline-aroucha/pui init\`: style, cn() helper, AGENTS.md, CLAUDE.md, Magoo MCP
-- \`npx @aline-aroucha/pui add <component>\`: components from ${abs("r/")}
+- \`npx @aline-aroucha/uiuiui init\`: style, cn() helper, AGENTS.md, CLAUDE.md, Magoo MCP
+- \`npx @aline-aroucha/uiuiui add <component>\`: components from ${abs("r/")}
 
 ## Components
 ${components.map((c) => `- [${c}](${abs(`components/${slug(c)}.md`)}): ${api[c].description}`).join("\n")}

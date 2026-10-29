@@ -1,4 +1,4 @@
-var P = window.PUI, h = React.createElement;
+var P = window.UIUIUI, h = React.createElement;
   var rows = [['#4821', 'Maya Chen', 'success', '✓ Paid', '$1,280.00'], ['#4822', 'Leo Park', 'warning', '! Pending', '$349.90'], ['#4823', 'Sara Diaz', 'destructive', '× Declined', '$2,015.50']];
   ReactDOM.createRoot(document.getElementById('preview')).render(h(P.Table, null,
     h(P.TableCaption, null, 'Orders, October 2026'),

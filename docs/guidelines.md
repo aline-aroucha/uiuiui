@@ -1,12 +1,12 @@
-# PUI guidelines
+# UIUIUI guidelines
 
-PUI is a design system built on [shadcn/ui](https://ui.shadcn.com): the same components and CSS variable names, with the PUI identity. A neutral base in a slightly green-tinted gray and **one** brand color, the deep teal `primary`. Everything here is written to be followed by people and by AI agents alike.
+UIUIUI is a design system built on [shadcn/ui](https://ui.shadcn.com): the same components and CSS variable names, with the UIUIUI identity. A neutral base in a slightly green-tinted gray and **one** brand color, the deep teal `primary`. Everything here is written to be followed by people and by AI agents alike.
 
 ## Rules for AI agents
 
-Read this section before generating any PUI interface.
+Read this section before generating any UIUIUI interface.
 
-1. **Use the PUI components** from `@/components/ui/*`. Install what is missing with `npx @aline-aroucha/pui add <name>`. Don't hand-build Button, Input, Select and so on.
+1. **Use the UIUIUI components** from `@/components/ui/*`. Install what is missing with `npx @aline-aroucha/uiuiui add <name>`. Don't hand-build Button, Input, Select and so on.
 2. **Color only through tokens.** Use the semantic Tailwind classes generated from the tokens: `bg-background`, `text-foreground`, `bg-primary text-primary-foreground`, `text-muted-foreground`, `border-border`, `bg-success text-success-foreground`. **Never** use hex, `rgb()` or the Tailwind palette (`bg-teal-600`, `text-gray-500`, `bg-white`, `text-black`).
 3. **Every background has its text pair.** `bg-primary` → `text-primary-foreground`; `bg-accent` → `text-accent-foreground`. Don't put `text-white` on a color: in the dark theme the pair is dark text.
 4. **Dark mode is automatic** through the `.dark` class on `<html>`. Don't write `dark:` color overrides; the tokens already switch.
@@ -21,7 +21,7 @@ Read this section before generating any PUI interface.
 
 ## Behavior and accessibility
 
-PUI defines how things look; how they behave follows **[Magoo](https://magoo.cc/en)** 1.6.0, the interaction-behavior library by Marcelo Sales (MIT). Every component page has an **Accessibility** section adapted from its Magoo entry, with the Magoo IDs it is based on.
+UIUIUI defines how things look; how they behave follows **[Magoo](https://magoo.cc/en)** 1.6.0, the interaction-behavior library by Marcelo Sales (MIT). Every component page has an **Accessibility** section adapted from its Magoo entry, with the Magoo IDs it is based on.
 
 - **Every interactive state is visible:** hover, pressed, keyboard focus (solid 2px ring), selected, disabled, invalid. None depends on color alone.
 - **Keyboard:** `Tab` / `Shift+Tab` follow the visual order; `Enter` and `Space` act like the native element; `Esc` closes overlays; focus is never trapped outside dialogs and always lands somewhere predictable after an element closes.
@@ -29,7 +29,7 @@ PUI defines how things look; how they behave follows **[Magoo](https://magoo.cc/
 - **Forms:** persistent labels, instructions and errors tied to the field (`Field`), values kept after an invalid submit, concrete error text.
 - **Touch:** labels are part of the target; controls keep comfortable touch areas, also with zoom.
 - **Motion:** animations stop when the person prefers reduced motion; a loader never replaces the final message.
-- Components PUI doesn't ship yet (Modal, Dialogs, Toasts, Accordion, Menu, Tooltip, Radio button, Slider, Autocomplete, Dates, File upload, Breadcrumb, Pagination, Step indicator, Carousel, Drag and drop, Links, Lists, Headings, Page regions, Tabbar) still follow their Magoo page when you build them.
+- Components UIUIUI doesn't ship yet (Modal, Dialogs, Toasts, Accordion, Menu, Tooltip, Radio button, Slider, Autocomplete, Dates, File upload, Breadcrumb, Pagination, Step indicator, Carousel, Drag and drop, Links, Lists, Headings, Page regions, Tabbar) still follow their Magoo page when you build them.
 
 Agents can query Magoo directly through its read-only MCP server (Node.js 20.19+):
 
@@ -55,7 +55,7 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 | `card-foreground` | `{foreground}` | `{foreground}` | Text inside a card. |
 | `popover` | `#ffffff` | `#101918` | Background of popovers, menus, the open Select and tooltips. |
 | `popover-foreground` | `{foreground}` | `{foreground}` | Text inside a popover. |
-| `primary` | `#0b6b60` | `#45c4b0` | The PUI brand color (deep teal). Primary action, active item, links. As text it reads on background and card (6.4:1 / 8.9:1). One primary action per area. |
+| `primary` | `#0b6b60` | `#45c4b0` | The UIUIUI brand color (deep teal). Primary action, active item, links. As text it reads on background and card (6.4:1 / 8.9:1). One primary action per area. |
 | `primary-foreground` | `#f3fbf9` | `#032019` | Text and icons on primary (6.1:1 / 8:1). Dark text in the dark theme: never hard-code white on primary. |
 | `secondary` | `#f0f4f3` | `#1a2624` | Secondary buttons and surfaces. Tailwind: bg-secondary. |
 | `secondary-foreground` | `#14211f` | `#e6eeec` | Text on secondary. |
@@ -79,7 +79,7 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 | `glass-clear-foreground` | `#ffffff` | `#ffffff` | Icons and bold labels on clear glass. |
 
 - Checked text pairs: every text color is ≥ 4.5:1 on the backgrounds its usage names, in both themes; field borders (`input`) and the focus ring (`ring`) are ≥ 3:1.
-- `success`, `warning`, `destructive-foreground` and the matching Badge variants are **PUI additions** to shadcn, for record status.
+- `success`, `warning`, `destructive-foreground` and the matching Badge variants are **UIUIUI additions** to shadcn, for record status.
 - `border` is decorative (≈1.3:1). When a border outlines a control, use `input`.
 - Charts: `chart-1` … `chart-5` in order; they also differ in lightness, not only in hue.
 
@@ -99,9 +99,9 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 
 ## Material: Liquid Glass
 
-PUI follows Apple's Liquid Glass model: **glass is the controls and navigation layer that floats above content; content stays solid.** Glass bends what is behind it into a soft, saturated blur, catches light on its rim and lifts off the page. Keeping it to the layer above content is what lets it be very transparent and still readable.
+UIUIUI follows Apple's Liquid Glass model: **glass is the controls and navigation layer that floats above content; content stays solid.** Glass bends what is behind it into a soft, saturated blur, catches light on its rim and lifts off the page. Keeping it to the layer above content is what lets it be very transparent and still readable.
 
-| Layer | PUI pieces | Material |
+| Layer | UIUIUI pieces | Material |
 | --- | --- | --- |
 | Controls and navigation | secondary, outline and ghost buttons; the tab track; toolbars and app bars you build | `glass` + `shadow-glass` |
 | Floating layers with text | menus, select lists, popovers; the selected tab; hover on glass buttons | `glass-strong` + `shadow-glass` |
@@ -154,7 +154,7 @@ Icons come from [Heroicons](https://heroicons.com) (MIT), by the makers of Tailw
 - Icons inherit `currentColor`; color them with text tokens (`text-muted-foreground`, `text-destructive`), never with hex.
 - An icon next to text is decorative: Heroicons renders `aria-hidden="true"` by default. An icon-only button needs `aria-label` on the button.
 - Status icons pair with a word: `CheckCircleIcon` + "Paid", `ExclamationTriangleIcon` + "Pending", `ExclamationCircleIcon` + "Declined".
-- Components from shadcn/ui that PUI doesn't ship import `lucide-react`; replace those icons with their Heroicons match before using them:
+- Components from shadcn/ui that UIUIUI doesn't ship import `lucide-react`; replace those icons with their Heroicons match before using them:
 
 | lucide-react | Heroicons |
 | --- | --- |
@@ -169,19 +169,19 @@ Icons come from [Heroicons](https://heroicons.com) (MIT), by the makers of Tailw
 | `MoreHorizontal` | `EllipsisHorizontalIcon` |
 | `Calendar` | `CalendarIcon` |
 
-PUI has no logo yet: the name is set in type. When a mark exists, it goes in the "Logos" asset group.
+UIUIUI has no logo yet: the name is set in type. When a mark exists, it goes in the "Logos" asset group.
 
 ## Components
 
-PUI ships 17 components: Alert, Avatar, Badge, Button, Card, Checkbox, Field, Input, Label, PasswordInput, Select, Separator, Skeleton, Switch, Table, Tabs, Textarea. They start from the shadcn/ui source, adjusted to the PUI tokens (destructive text pairs, solid focus ring, badge radius, `success` and `warning` variants) and to the Magoo behavior rules (urgency-based alert roles, hover and pressed feedback, mixed checkbox, keyboard-scrollable tables, reduced motion). Any other shadcn/ui component (Dialog, DropdownMenu, Sheet, Sonner, Command…) also works: it inherits the PUI tokens automatically.
+UIUIUI ships 17 components: Alert, Avatar, Badge, Button, Card, Checkbox, Field, Input, Label, PasswordInput, Select, Separator, Skeleton, Switch, Table, Tabs, Textarea. They start from the shadcn/ui source, adjusted to the UIUIUI tokens (destructive text pairs, solid focus ring, badge radius, `success` and `warning` variants) and to the Magoo behavior rules (urgency-based alert roles, hover and pressed feedback, mixed checkbox, keyboard-scrollable tables, reduced motion). Any other shadcn/ui component (Dialog, DropdownMenu, Sheet, Sonner, Command…) also works: it inherits the UIUIUI tokens automatically.
 
 ## Using it in code
 
 In a React project with Tailwind v4 (Next.js or Vite):
 
 ```bash
-npx @aline-aroucha/pui init
-npx @aline-aroucha/pui add button input label card
+npx @aline-aroucha/uiuiui init
+npx @aline-aroucha/uiuiui add button input label card
 ```
 
-`init` sets up the project, installs the PUI theme and writes `AGENTS.md` + `CLAUDE.md`, the files that make Claude, Cursor and Copilot follow these rules.
+`init` sets up the project, installs the UIUIUI theme and writes `AGENTS.md` + `CLAUDE.md`, the files that make Claude, Cursor and Copilot follow these rules.

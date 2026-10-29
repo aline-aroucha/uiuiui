@@ -3,7 +3,7 @@
 Tabular data. Parts: `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`. For sorting, filters and pagination, drive it with TanStack Table.
 
 ```bash
-npx @aline-aroucha/pui add table badge
+npx @aline-aroucha/uiuiui add table badge
 ```
 
 ## What you provide
@@ -15,7 +15,7 @@ npx @aline-aroucha/pui add table badge
 ## Accessibility
 - Use tables for data compared by rows and columns, never for layout.
 - Always give it a `TableCaption` (or a heading) that explains what the data is. Column headers are `<th scope="col">`; for row headers use `<th scope="row">`.
-- Static cells take no focus. When the table scrolls sideways, PUI makes the container focusable so arrows can scroll it; pass `label` to name that region.
+- Static cells take no focus. When the table scrolls sideways, UIUIUI makes the container focusable so arrows can scroll it; pass `label` to name that region.
 - Sortable columns use a button in the header with the current direction exposed (`aria-sort` on the `th`); focus stays on the control after sorting.
 - Row selection shows single, partial and all states; say how many records a bulk action affects before running it.
 - Design loading, empty, no-match and failed states as different messages.

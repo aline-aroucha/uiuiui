@@ -3,7 +3,7 @@
 Loading placeholder shaped like the content that is on its way.
 
 ```bash
-npx @aline-aroucha/pui add skeleton
+npx @aline-aroucha/uiuiui add skeleton
 ```
 
 ## What you provide
@@ -11,7 +11,7 @@ npx @aline-aroucha/pui add skeleton
 - Use it for loads longer than ~300ms. The animation stops under `prefers-reduced-motion`.
 
 ## Accessibility
-- A skeleton is decorative: PUI hides it from screen readers (`aria-hidden`) and stops the pulse when the person prefers reduced motion.
+- A skeleton is decorative: UIUIUI hides it from screen readers (`aria-hidden`) and stops the pulse when the person prefers reduced motion.
 - Always pair it with text in a `role="status"` region that names what is loading ("Loading orders…"), and set `aria-busy` on the region being updated, back to `false` when done.
 - A skeleton never replaces the outcome: end every wait with the content, an error with "Try again", or an empty state.
 - Don't draw fake buttons or links in a skeleton, and don't move focus while it updates.

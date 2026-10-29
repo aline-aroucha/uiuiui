@@ -1,9 +1,9 @@
-# PUI
+# UIUIUI
 
 > A design system on top of shadcn/ui + Tailwind v4. Slightly green-tinted neutrals and one brand color (deep teal `primary`). UI copy in US English.
 
 ## Docs
-- [Documentation site](https://aline-aroucha.github.io/pui): tokens, typography, components with live previews
+- [Documentation site](https://aline-aroucha.github.io/uiuiui): tokens, typography, components with live previews
 - [Agent rules](AGENTS.md): what to always and never do
 - [Full guidelines](docs/guidelines.md)
 - [Tokens](tokens/tokens.json): colors (light/dark), typography, spacing, radius, shadow

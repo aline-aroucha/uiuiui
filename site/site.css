@@ -1,4 +1,4 @@
-/* PUI documentation site. Layout: header row, collapsible side navigation, raised content panel with an
+/* UIUIUI documentation site. Layout: header row, collapsible side navigation, raised content panel with an
    "On this page" column. Colors and sizes come from tokens only. */
 /* Inter everywhere, the closest Google Fonts match to SF Pro; its optical sizes give the display cut to large titles. */
 :root {
@@ -11,7 +11,7 @@
 html { background: var(--frame); }
 body { background: var(--frame); font-family: var(--font-sans); font-size: 14px; line-height: 20px; margin: 0; }
 a { color: var(--primary); text-underline-offset: 3px; }
-a.pui-btn:not(.pui-btn--link) { text-decoration: none; }
+a.uiuiui-btn:not(.uiuiui-btn--link) { text-decoration: none; }
 code { font-family: var(--font-mono); font-size: 13px; }
 svg { flex-shrink: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -35,7 +35,7 @@ svg { flex-shrink: 0; }
   background: transparent; color: var(--foreground); cursor: pointer; }
 .icon-btn:hover { background: var(--accent); color: var(--accent-foreground); }
 .icon-btn:active { transform: translateY(1px); }
-.icon-btn svg, .search-icon svg, .pui-btn svg, .llm-options svg { width: 16px; height: 16px; fill: currentColor; }
+.icon-btn svg, .search-icon svg, .uiuiui-btn svg, .llm-options svg { width: 16px; height: 16px; fill: currentColor; }
 .menu-btn { display: none; }
 
 /* ---------- search */
@@ -117,13 +117,13 @@ svg { flex-shrink: 0; }
 .vx-control { display: grid; gap: 6px; }
 .vx-control--inline { display: flex; align-items: center; gap: 8px; }
 .vx-label { font: 500 13px/16px var(--font-mono); color: var(--foreground); }
-.vx-control .pui-input, .vx-control select { background: var(--panel); }
+.vx-control .uiuiui-input, .vx-control select { background: var(--panel); }
 .vx-code { grid-area: code; min-width: 0; background: var(--panel); border-radius: var(--radius-lg); overflow: hidden; }
 .vx-code-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 6px 16px; border-bottom: 1px solid var(--border);
   color: var(--muted-foreground); font-size: 13px; }
 .article .vx-code pre { margin: 0; border-radius: 0; background: transparent; }
 .example-frame { border: 1px solid var(--border); border-radius: var(--radius-xl); font-size: 14px; line-height: 20px; overflow-x: auto; }
-.example-frame .pui-stage { padding: 32px 24px; }
+.example-frame .uiuiui-stage { padding: 32px 24px; }
 .example-frame p, .vx-preview p { margin: 0; }
 details.code { margin-top: 12px; }
 details.code summary { cursor: pointer; color: var(--muted-foreground); font-size: 14px; }

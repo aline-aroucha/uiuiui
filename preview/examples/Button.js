@@ -1,20 +1,20 @@
-var P = window.PUI, h = React.createElement;
+var P = window.UIUIUI, h = React.createElement;
   ReactDOM.createRoot(document.getElementById('preview')).render(h('div', null,
-    h('div', { className: 'pui-row' },
+    h('div', { className: 'uiuiui-row' },
       h(P.Button, null, 'Save changes'),
       h(P.Button, { variant: 'secondary' }, 'Duplicate'),
       h(P.Button, { variant: 'outline' }, 'Export CSV'),
       h(P.Button, { variant: 'ghost' }, 'Cancel'),
       h(P.Button, { variant: 'destructive' }, 'Delete project'),
       h(P.Button, { variant: 'link' }, 'View history')),
-    h('div', { className: 'pui-row', style: { marginTop: 12 } },
+    h('div', { className: 'uiuiui-row', style: { marginTop: 12 } },
       h(P.Button, { size: 'sm' }, 'Small'),
       h(P.Button, { size: 'lg' }, 'Large'),
       h(P.Button, { size: 'icon', variant: 'outline', 'aria-label': 'Add' },
         h(P.Icon, { name: 'plus' })),
       h(P.Button, { disabled: true }, 'Disabled')),
-    h('div', { className: 'pui-media', style: { marginTop: 12 } },
-      h('div', { className: 'pui-dim' },
-        h(P.Button, { size: 'icon', className: 'pui-glass-clear', 'aria-label': 'Play' }, h(P.Icon, { name: 'play' })),
-        h(P.Button, { className: 'pui-glass-clear' }, 'Share'),
-        h('span', { className: 'pui-media__caption' }, 'Clear glass over media, on a 50% dim layer')))));
+    h('div', { className: 'uiuiui-media', style: { marginTop: 12 } },
+      h('div', { className: 'uiuiui-dim' },
+        h(P.Button, { size: 'icon', className: 'uiuiui-glass-clear', 'aria-label': 'Play' }, h(P.Icon, { name: 'play' })),
+        h(P.Button, { className: 'uiuiui-glass-clear' }, 'Share'),
+        h('span', { className: 'uiuiui-media__caption' }, 'Clear glass over media, on a 50% dim layer')))));

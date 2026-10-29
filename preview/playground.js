@@ -1,7 +1,7 @@
-// PUI docs: interactive example for each component page (preview + controls + generated code).
-// Previews use the reference implementation in preview/pui.js (window.PUI).
+// UIUIUI docs: interactive example for each component page (preview + controls + generated code).
+// Previews use the reference implementation in preview/uiuiui.js (window.UIUIUI).
 (function () {
-  var React = window.React, ReactDOM = window.ReactDOM, P = window.PUI, h = React.createElement
+  var React = window.React, ReactDOM = window.ReactDOM, P = window.UIUIUI, h = React.createElement
 
   function attrs(props) {
     return Object.keys(props).filter(function (k) { return props[k] !== undefined && props[k] !== false && props[k] !== "" })
@@ -89,7 +89,7 @@
       ],
       render: function (p) {
         var checked = p.defaultChecked === "indeterminate" ? "indeterminate" : p.defaultChecked === "true"
-        return h("div", { className: "pui-inline" }, h(P.Checkbox, { id: "vx-cb", key: p.defaultChecked, defaultChecked: checked, disabled: p.disabled }), h(P.Label, { htmlFor: "vx-cb" }, p.label))
+        return h("div", { className: "uiuiui-inline" }, h(P.Checkbox, { id: "vx-cb", key: p.defaultChecked, defaultChecked: checked, disabled: p.disabled }), h(P.Label, { htmlFor: "vx-cb" }, p.label))
       },
       code: function (p) {
         var dc = p.defaultChecked === "indeterminate" ? 'defaultChecked="indeterminate"' : p.defaultChecked === "true" ? "defaultChecked" : ""
@@ -137,7 +137,7 @@
     },
     Label: {
       controls: [{ name: "children", type: "text", value: "I accept the terms of service" }],
-      render: function (p) { return h("div", { className: "pui-inline" }, h(P.Checkbox, { id: "vx-terms", defaultChecked: true }), h(P.Label, { htmlFor: "vx-terms" }, p.children)) },
+      render: function (p) { return h("div", { className: "uiuiui-inline" }, h(P.Checkbox, { id: "vx-terms", defaultChecked: true }), h(P.Label, { htmlFor: "vx-terms" }, p.children)) },
       code: function (p) {
         return imports("label", ["Label"]) + 'import { Checkbox } from "@/components/ui/checkbox"\n\n' +
           '<div className="flex items-center gap-2">\n  <Checkbox id="terms" defaultChecked />\n  <Label htmlFor="terms">' + p.children + "</Label>\n</div>"
@@ -180,8 +180,8 @@
       controls: [{ name: "orientation", type: "select", options: ["horizontal", "vertical"], value: "horizontal" }],
       render: function (p) {
         return p.orientation === "vertical"
-          ? h("div", { className: "pui-row", style: { height: 20 } }, "Profile", h(P.Separator, { orientation: "vertical" }), "Security", h(P.Separator, { orientation: "vertical" }), "Notifications")
-          : h("div", { style: { width: "100%", maxWidth: 360 } }, h("div", { style: { fontWeight: 600 } }, "Account settings"), h(P.Separator, { style: { margin: "12px 0" } }), h("div", { className: "pui-muted" }, "Profile, security and notifications."))
+          ? h("div", { className: "uiuiui-row", style: { height: 20 } }, "Profile", h(P.Separator, { orientation: "vertical" }), "Security", h(P.Separator, { orientation: "vertical" }), "Notifications")
+          : h("div", { style: { width: "100%", maxWidth: 360 } }, h("div", { style: { fontWeight: 600 } }, "Account settings"), h(P.Separator, { style: { margin: "12px 0" } }), h("div", { className: "uiuiui-muted" }, "Profile, security and notifications."))
       },
       code: function (p) { return imports("separator", ["Separator"]) + tag("Separator", { orientation: unless(p.orientation, "horizontal") }) }
     },
@@ -189,7 +189,7 @@
       controls: [{ name: "shape", type: "select", options: ["text", "avatar", "card"], value: "text" }],
       render: function (p) {
         var s = { text: { width: 220, height: 16 }, avatar: { width: 40, height: 40, borderRadius: 9999 }, card: { width: 280, height: 120, borderRadius: 12 } }[p.shape]
-        return h("div", { className: "pui-stage", style: { padding: 0 } }, h("span", { role: "status", className: "pui-muted" }, "Loading orders…"), h(P.Skeleton, { style: s }))
+        return h("div", { className: "uiuiui-stage", style: { padding: 0 } }, h("span", { role: "status", className: "uiuiui-muted" }, "Loading orders…"), h(P.Skeleton, { style: s }))
       },
       code: function (p) {
         var c = { text: "h-4 w-56", avatar: "size-10 rounded-full", card: "h-30 w-72 rounded-xl" }[p.shape]
@@ -202,7 +202,7 @@
         { name: "defaultChecked", type: "boolean", value: true },
         { name: "disabled", type: "boolean", value: false }
       ],
-      render: function (p) { return h("div", { className: "pui-inline" }, h(P.Switch, { id: "vx-sw", key: String(p.defaultChecked), defaultChecked: p.defaultChecked, disabled: p.disabled }), h(P.Label, { htmlFor: "vx-sw" }, p.label)) },
+      render: function (p) { return h("div", { className: "uiuiui-inline" }, h(P.Switch, { id: "vx-sw", key: String(p.defaultChecked), defaultChecked: p.defaultChecked, disabled: p.disabled }), h(P.Label, { htmlFor: "vx-sw" }, p.label)) },
       code: function (p) {
         return imports("switch", ["Switch"]) + 'import { Label } from "@/components/ui/label"\n\n<div className="flex items-center gap-2">\n  <Switch id="notifications"' +
           (p.defaultChecked ? " defaultChecked" : "") + (p.disabled ? " disabled" : "") + ' />\n  <Label htmlFor="notifications">' + p.label + "</Label>\n</div>"
@@ -268,10 +268,10 @@
         h(P.Switch, { id: id, checked: value, onCheckedChange: onChange }), h("label", { htmlFor: id, className: "vx-label" }, c.name))
     }
     var field = c.type === "select"
-      ? h("div", { className: "pui-select" }, h("select", { id: id, value: value, onChange: function (e) { onChange(e.target.value) } },
+      ? h("div", { className: "uiuiui-select" }, h("select", { id: id, value: value, onChange: function (e) { onChange(e.target.value) } },
           c.options.map(function (o) { return h("option", { key: o, value: o }, o) })),
           h(P.Icon, { name: "chevron-down" }))
-      : h("input", { id: id, className: "pui-input", value: value, onChange: function (e) { onChange(e.target.value) } })
+      : h("input", { id: id, className: "uiuiui-input", value: value, onChange: function (e) { onChange(e.target.value) } })
     return h("div", { className: "vx-control", key: c.name }, h("label", { htmlFor: id, className: "vx-label" }, c.name), field)
   }
 

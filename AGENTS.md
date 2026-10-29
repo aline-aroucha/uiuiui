@@ -1,12 +1,12 @@
-# PUI — rules for AI agents
+# UIUIUI — rules for AI agents
 
-This project uses **PUI**, a design system on top of shadcn/ui + Tailwind v4.
-Full documentation (tokens, components, live previews): https://aline-aroucha.github.io/pui
+This project uses **UIUIUI**, a design system on top of shadcn/ui + Tailwind v4.
+Full documentation (tokens, components, live previews): https://aline-aroucha.github.io/uiuiui
 Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 
 ## Always
 
-- Use components from `@/components/ui/*`. If one is missing, run `npx @aline-aroucha/pui add <component>`. Don't rebuild components PUI already has.
+- Use components from `@/components/ui/*`. If one is missing, run `npx @aline-aroucha/uiuiui add <component>`. Don't rebuild components UIUIUI already has.
 - Color **only** through semantic classes: `bg-background`, `text-foreground`, `bg-card`, `bg-primary text-primary-foreground`,
   `bg-secondary`, `bg-muted text-muted-foreground`, `bg-accent text-accent-foreground`, `bg-destructive text-destructive-foreground`,
   `bg-success text-success-foreground`, `bg-warning text-warning-foreground`, `border-border`, `border-input`, `ring-ring`,
@@ -49,7 +49,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 
 Behavior follows Magoo 1.6.0 (https://magoo.cc/en), by Marcelo Sales. Before building or changing any component, read its "Accessibility"
 section in `docs/components/` and its Magoo page, or ask the Magoo MCP ("Use the Magoo MCP to check the Modal component's keyboard behavior").
-For components PUI doesn't ship yet (modal, toasts, menu, tooltip, radio button, slider, pagination…), build them to their Magoo page.
+For components UIUIUI doesn't ship yet (modal, toasts, menu, tooltip, radio button, slider, pagination…), build them to their Magoo page.
 
 - Visible hover, pressed and focus states; status never by color alone.
 - `Enter` / `Space` act like native controls; arrows inside composite widgets (tabs, menus, listboxes); `Esc` closes overlays; predictable focus after closing.

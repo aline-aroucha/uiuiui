@@ -3,7 +3,7 @@
 Persistent message inside the page. Parts: `AlertTitle`, `AlertDescription`.
 
 ```bash
-npx @aline-aroucha/pui add alert
+npx @aline-aroucha/uiuiui add alert
 ```
 
 ## What you provide
@@ -16,7 +16,7 @@ npx @aline-aroucha/pui add alert
 - Errors state the problem and the fix, without apologizing ("The card has expired. Update your payment method.").
 
 ## Accessibility
-- PUI announces by urgency: the `destructive` variant uses `role="alert"`; the default variant uses `role="status"`, so it doesn't interrupt reading. Pass `role` to override when needed.
+- UIUIUI announces by urgency: the `destructive` variant uses `role="alert"`; the default variant uses `role="status"`, so it doesn't interrupt reading. Pass `role` to override when needed.
 - Reading an alert needs no interaction and the alert never takes focus just to be read. `Tab` reaches only the links and buttons inside it.
 - The type is clear without color or icon alone: the title says what happened and the description says what to do.
 - Dismissible alerts have a visible close button; after closing, focus moves to a predictable place.

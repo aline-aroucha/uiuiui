@@ -1,4 +1,4 @@
-var P = window.PUI, h = React.createElement;
+var P = window.UIUIUI, h = React.createElement;
   ReactDOM.createRoot(document.getElementById('preview')).render(h(P.Tabs, { defaultValue: 'general' },
     h(P.TabsList, null, h(P.TabsTrigger, { value: 'general' }, 'General'), h(P.TabsTrigger, { value: 'team' }, 'Team'), h(P.TabsTrigger, { value: 'billing' }, 'Billing')),
     h(P.TabsContent, { value: 'general' }, 'Company name, logo and time zone.'),

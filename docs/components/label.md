@@ -3,7 +3,7 @@
 Label for a form control.
 
 ```bash
-npx @aline-aroucha/pui add label
+npx @aline-aroucha/uiuiui add label
 ```
 
 ## What you provide

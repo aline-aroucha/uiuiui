@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "pui",
-  "homepage": "https://aline-aroucha.github.io/pui",
+  "name": "uiuiui",
+  "homepage": "https://aline-aroucha.github.io/uiuiui",
   "items": [
     {
       "name": "style",
       "type": "registry:style",
       "extends": "none",
-      "title": "PUI",
-      "description": "The PUI base: tokens (light and dark colors, radius, fonts), base styles and the cn() helper.",
+      "title": "UIUIUI",
+      "description": "The UIUIUI base: tokens (light and dark colors, radius, fonts), base styles and the cn() helper.",
       "dependencies": [
         "tw-animate-css",
         "clsx",
@@ -17,7 +17,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "css": {
         "@import \"tw-animate-css\"": {},
@@ -182,14 +182,14 @@
       "name": "utils",
       "type": "registry:lib",
       "title": "cn()",
-      "description": "Class name helper used by every PUI component.",
+      "description": "Class name helper used by every UIUIUI component.",
       "dependencies": [
         "clsx",
         "tailwind-merge"
       ],
       "files": [
         {
-          "path": "registry/pui/lib/utils.ts",
+          "path": "registry/uiuiui/lib/utils.ts",
           "type": "registry:lib",
           "target": "lib/utils.ts"
         }
@@ -199,16 +199,16 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "PUI Alert. Docs: https://aline-aroucha.github.io/pui/components/alert.html",
+      "description": "UIUIUI Alert. Docs: https://aline-aroucha.github.io/uiuiui/components/alert.html",
       "dependencies": [
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/alert.tsx",
+          "path": "registry/uiuiui/ui/alert.tsx",
           "type": "registry:ui"
         }
       ]
@@ -217,16 +217,16 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "PUI Avatar. Docs: https://aline-aroucha.github.io/pui/components/avatar.html",
+      "description": "UIUIUI Avatar. Docs: https://aline-aroucha.github.io/uiuiui/components/avatar.html",
       "dependencies": [
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/avatar.tsx",
+          "path": "registry/uiuiui/ui/avatar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -235,17 +235,17 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "PUI Badge. Docs: https://aline-aroucha.github.io/pui/components/badge.html",
+      "description": "UIUIUI Badge. Docs: https://aline-aroucha.github.io/uiuiui/components/badge.html",
       "dependencies": [
         "class-variance-authority",
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/badge.tsx",
+          "path": "registry/uiuiui/ui/badge.tsx",
           "type": "registry:ui"
         }
       ]
@@ -254,17 +254,17 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "PUI Button. Docs: https://aline-aroucha.github.io/pui/components/button.html",
+      "description": "UIUIUI Button. Docs: https://aline-aroucha.github.io/uiuiui/components/button.html",
       "dependencies": [
         "class-variance-authority",
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/button.tsx",
+          "path": "registry/uiuiui/ui/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -273,14 +273,14 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "PUI Card. Docs: https://aline-aroucha.github.io/pui/components/card.html",
+      "description": "UIUIUI Card. Docs: https://aline-aroucha.github.io/uiuiui/components/card.html",
       "dependencies": [],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/card.tsx",
+          "path": "registry/uiuiui/ui/card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -289,17 +289,17 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "PUI Checkbox. Docs: https://aline-aroucha.github.io/pui/components/checkbox.html",
+      "description": "UIUIUI Checkbox. Docs: https://aline-aroucha.github.io/uiuiui/components/checkbox.html",
       "dependencies": [
         "@heroicons/react",
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/checkbox.tsx",
+          "path": "registry/uiuiui/ui/checkbox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -308,17 +308,17 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "PUI Field. Docs: https://aline-aroucha.github.io/pui/components/field.html",
+      "description": "UIUIUI Field. Docs: https://aline-aroucha.github.io/uiuiui/components/field.html",
       "dependencies": [
         "@heroicons/react"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json",
-        "https://aline-aroucha.github.io/pui/r/label.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/label.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/field.tsx",
+          "path": "registry/uiuiui/ui/field.tsx",
           "type": "registry:ui"
         }
       ]
@@ -327,14 +327,14 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "PUI Input. Docs: https://aline-aroucha.github.io/pui/components/input.html",
+      "description": "UIUIUI Input. Docs: https://aline-aroucha.github.io/uiuiui/components/input.html",
       "dependencies": [],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/input.tsx",
+          "path": "registry/uiuiui/ui/input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -343,16 +343,16 @@
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
-      "description": "PUI Label. Docs: https://aline-aroucha.github.io/pui/components/label.html",
+      "description": "UIUIUI Label. Docs: https://aline-aroucha.github.io/uiuiui/components/label.html",
       "dependencies": [
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/label.tsx",
+          "path": "registry/uiuiui/ui/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -361,18 +361,18 @@
       "name": "password-input",
       "type": "registry:ui",
       "title": "Password input",
-      "description": "PUI Password-input. Docs: https://aline-aroucha.github.io/pui/components/password-input.html",
+      "description": "UIUIUI Password-input. Docs: https://aline-aroucha.github.io/uiuiui/components/password-input.html",
       "dependencies": [
         "@heroicons/react"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json",
-        "https://aline-aroucha.github.io/pui/r/input.json",
-        "https://aline-aroucha.github.io/pui/r/button.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/input.json",
+        "https://aline-aroucha.github.io/uiuiui/r/button.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/password-input.tsx",
+          "path": "registry/uiuiui/ui/password-input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -381,17 +381,17 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "PUI Select. Docs: https://aline-aroucha.github.io/pui/components/select.html",
+      "description": "UIUIUI Select. Docs: https://aline-aroucha.github.io/uiuiui/components/select.html",
       "dependencies": [
         "@heroicons/react",
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/select.tsx",
+          "path": "registry/uiuiui/ui/select.tsx",
           "type": "registry:ui"
         }
       ]
@@ -400,16 +400,16 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "PUI Separator. Docs: https://aline-aroucha.github.io/pui/components/separator.html",
+      "description": "UIUIUI Separator. Docs: https://aline-aroucha.github.io/uiuiui/components/separator.html",
       "dependencies": [
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/separator.tsx",
+          "path": "registry/uiuiui/ui/separator.tsx",
           "type": "registry:ui"
         }
       ]
@@ -418,14 +418,14 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "PUI Skeleton. Docs: https://aline-aroucha.github.io/pui/components/skeleton.html",
+      "description": "UIUIUI Skeleton. Docs: https://aline-aroucha.github.io/uiuiui/components/skeleton.html",
       "dependencies": [],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/skeleton.tsx",
+          "path": "registry/uiuiui/ui/skeleton.tsx",
           "type": "registry:ui"
         }
       ]
@@ -434,16 +434,16 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "PUI Switch. Docs: https://aline-aroucha.github.io/pui/components/switch.html",
+      "description": "UIUIUI Switch. Docs: https://aline-aroucha.github.io/uiuiui/components/switch.html",
       "dependencies": [
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/switch.tsx",
+          "path": "registry/uiuiui/ui/switch.tsx",
           "type": "registry:ui"
         }
       ]
@@ -452,14 +452,14 @@
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
-      "description": "PUI Table. Docs: https://aline-aroucha.github.io/pui/components/table.html",
+      "description": "UIUIUI Table. Docs: https://aline-aroucha.github.io/uiuiui/components/table.html",
       "dependencies": [],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/table.tsx",
+          "path": "registry/uiuiui/ui/table.tsx",
           "type": "registry:ui"
         }
       ]
@@ -468,17 +468,17 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "PUI Tabs. Docs: https://aline-aroucha.github.io/pui/components/tabs.html",
+      "description": "UIUIUI Tabs. Docs: https://aline-aroucha.github.io/uiuiui/components/tabs.html",
       "dependencies": [
         "class-variance-authority",
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/tabs.tsx",
+          "path": "registry/uiuiui/ui/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -487,14 +487,14 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "PUI Textarea. Docs: https://aline-aroucha.github.io/pui/components/textarea.html",
+      "description": "UIUIUI Textarea. Docs: https://aline-aroucha.github.io/uiuiui/components/textarea.html",
       "dependencies": [],
       "registryDependencies": [
-        "https://aline-aroucha.github.io/pui/r/utils.json"
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
       ],
       "files": [
         {
-          "path": "registry/pui/ui/textarea.tsx",
+          "path": "registry/uiuiui/ui/textarea.tsx",
           "type": "registry:ui"
         }
       ]

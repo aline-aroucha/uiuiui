@@ -1,6 +1,6 @@
 # Third-party notice
 
-The components in `registry/pui/ui/` are derived from shadcn/ui (https://github.com/shadcn-ui/ui), used under the MIT License:
+The components in `registry/uiuiui/ui/` are derived from shadcn/ui (https://github.com/shadcn-ui/ui), used under the MIT License:
 
 MIT License
 
