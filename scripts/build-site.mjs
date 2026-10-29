@@ -100,7 +100,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   const nav = NAV.map(
     ([group, items]) => `<div class="nav-section">
       <p class="nav-heading" id="nav-${anchor(group)}">${group}</p>
-      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
+      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a class="uiuiui-btn uiuiui-btn--ghost nav-link${href === path ? " uiuiui-glass-strong" : ""}" href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
     </div>`
   ).join("")
 
@@ -132,23 +132,23 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <link rel="stylesheet" href="${base}assets/site.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link uiuiui-btn uiuiui-btn--default" href="#main">Skip to content</a>
 <div class="frame">
   <header class="site-header">
-    <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Menu">${icon.menu}</button>
+    <button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-icon menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Menu">${icon.menu}</button>
     <a class="brand" href="${base}index.html"><span class="brand-mark" aria-hidden="true"></span>UIUIUI</a>
     <div class="search" role="search">
       <label for="search-input" class="sr-only">Search documentation</label>
       <span class="search-icon">${icon.search}</span>
-      <input id="search-input" type="search" placeholder="Search" autocomplete="off" aria-describedby="search-status">
+      <input id="search-input" class="uiuiui-input" type="search" placeholder="Search" autocomplete="off" aria-describedby="search-status">
       <p id="search-status" class="sr-only" role="status"></p>
-      <div id="search-results" class="search-results" hidden><ul></ul></div>
+      <div id="search-results" class="search-results uiuiui-glass-strong" hidden><ul></ul></div>
     </div>
     <nav class="header-links" aria-label="Site">
-      <a href="${base}index.html">Docs</a>
-      <a href="${base}ai.html">Use with AI</a>
-      <a href="${esc(REPO_URL)}">GitHub</a>
-      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Dark theme">${icon.theme}</button>
+      <a class="uiuiui-btn uiuiui-btn--ghost" href="${base}index.html">Docs</a>
+      <a class="uiuiui-btn uiuiui-btn--ghost" href="${base}ai.html">Use with AI</a>
+      <a class="uiuiui-btn uiuiui-btn--ghost" href="${esc(REPO_URL)}">GitHub</a>
+      <button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-icon" id="theme-toggle" type="button" aria-label="Dark theme">${icon.theme}</button>
     </nav>
   </header>
   <div class="layout">
@@ -160,8 +160,8 @@ function shell({ path, title, description, intro = "", sections, related = [], s
             <h1>${esc(title)}</h1>
             <div class="llm-menu">
               <button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-md="${base}${mdPath}">${icon.copy}<span>Copy for LLM</span></button>
-              <button class="icon-btn" type="button" id="llm-more" aria-expanded="false" aria-controls="llm-options" aria-label="Markdown options">${icon.more}</button>
-              <ul id="llm-options" class="llm-options" hidden>
+              <button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-icon-sm" type="button" id="llm-more" aria-expanded="false" aria-controls="llm-options" aria-label="Markdown options">${icon.more}</button>
+              <ul id="llm-options" class="llm-options uiuiui-glass-strong" hidden>
                 <li><a href="${base}${mdPath}">View as Markdown</a></li>
                 <li><a href="https://chatgpt.com/?hints=search&amp;q=${encodeURIComponent(aiPrompt)}">Open in ChatGPT ${icon.external}<span class="sr-only">(external site)</span></a></li>
                 <li><a href="https://claude.ai/new?q=${encodeURIComponent(aiPrompt)}">Open in Claude ${icon.external}<span class="sr-only">(external site)</span></a></li>
@@ -175,6 +175,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
         ${tocHtml}
       </div>
       <footer class="site-footer">
+        <div class="uiuiui-separator uiuiui-separator--horizontal" role="none"></div>
         <ul>
           <li>© 2026 Aline Aroucha. MIT License.</li>
           <li>Behavior follows <a href="https://magoo.cc/en">Magoo ${MAGOO_VERSION}</a> by Marcelo Sales</li>
@@ -208,7 +209,9 @@ function emit(page) {
   ].filter(Boolean)
   write(page.path.replace(/\.html$/, ".md"), text.join("\n\n") + "\n")
 }
-const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText, html: html ?? md(mdText) })
+const tableize = (html, label) =>
+  html.replace(/<table>/g, `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(label)} table"><table class="uiuiui-table">`).replace(/<\/table>/g, "</table></div>")
+const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText, html: html ?? tableize(md(mdText), title) })
 
 // ------------------------------------------------------------ overview
 {
@@ -347,7 +350,7 @@ function propTable(part, props) {
 <thead><tr><th scope="col">Name</th><th scope="col">Type</th>${showDefault ? '<th scope="col">Default</th>' : ""}</tr></thead>
 <tbody>${props
     .map(
-      (p) => `<tr class="prop-row"><th scope="row"><code class="prop-name">${esc(p.name)}</code>${p.required ? '<span class="required">Required</span>' : ""}</th><td><code class="prop-type">${esc(p.type)}</code></td>${showDefault ? `<td>${p.default ? `<code>${esc(p.default)}</code>` : '<span aria-label="No default">—</span>'}</td>` : ""}</tr>
+      (p) => `<tr class="prop-row"><th scope="row"><code class="prop-name">${esc(p.name)}</code>${p.required ? '<span class="uiuiui-badge uiuiui-badge--outline required">Required</span>' : ""}</th><td><code class="prop-type">${esc(p.type)}</code></td>${showDefault ? `<td>${p.default ? `<code>${esc(p.default)}</code>` : '<span aria-label="No default">—</span>'}</td>` : ""}</tr>
 <tr class="prop-desc"><td colspan="${showDefault ? 3 : 2}">${mdInline(p.description || "")}</td></tr>`
     )
     .join("")}</tbody></table></div>`
@@ -371,10 +374,10 @@ for (const c of components) {
     md: "```tsx\n" + code + "\n```",
     html: `<div class="vx" data-playground="${c}">
   <div class="vx-mount"></div>
-  <div class="vx-code"><div class="vx-code-bar"><span>Code</span><button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-from="vx-code-${s}">Copy</button></div><pre tabindex="0"><code id="vx-code-${s}">${esc(code)}</code></pre></div>
+  <div class="vx-code uiuiui-card"><div class="vx-code-bar"><span>Code</span><button class="uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-sm" type="button" data-copy-from="vx-code-${s}">Copy</button></div><div class="uiuiui-separator uiuiui-separator--horizontal" role="none"></div><pre tabindex="0"><code id="vx-code-${s}">${esc(code)}</code></pre></div>
 </div>`,
   }
-  const gallery = `<div class="example-frame"><div id="preview" class="uiuiui-stage"></div></div>
+  const gallery = `<div class="example-frame uiuiui-card"><div id="preview" class="uiuiui-stage"></div></div>
 <details class="code"><summary>Example source</summary><pre><code>${esc(read(`preview/examples/${c}.js`))}</code></pre></details>`
   const tables = Object.entries(info.parts).map(([part, props]) => ({ part, ...propTable(part, props) }))
   const apiMd = `Install:\n\n\`\`\`bash\n${install}\n\`\`\`\n\n\`\`\`tsx\n${info.anatomy}\n\`\`\`\n\n` + tables.map((t) => `### ${t.part}\n\n${t.md}`).join("\n\n")

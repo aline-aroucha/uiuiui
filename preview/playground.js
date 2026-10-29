@@ -265,14 +265,14 @@
     var id = uid + "-" + c.name
     if (c.type === "boolean") {
       return h("div", { className: "vx-control vx-control--inline", key: c.name },
-        h(P.Switch, { id: id, checked: value, onCheckedChange: onChange }), h("label", { htmlFor: id, className: "vx-label" }, c.name))
+        h(P.Switch, { id: id, checked: value, onCheckedChange: onChange }), h(P.Label, { htmlFor: id, className: "vx-label" }, c.name))
     }
     var field = c.type === "select"
       ? h("div", { className: "uiuiui-select" }, h("select", { id: id, value: value, onChange: function (e) { onChange(e.target.value) } },
           c.options.map(function (o) { return h("option", { key: o, value: o }, o) })),
           h(P.Icon, { name: "chevron-down" }))
       : h("input", { id: id, className: "uiuiui-input", value: value, onChange: function (e) { onChange(e.target.value) } })
-    return h("div", { className: "vx-control", key: c.name }, h("label", { htmlFor: id, className: "vx-label" }, c.name), field)
+    return h("div", { className: "vx-control", key: c.name }, h(P.Label, { htmlFor: id, className: "vx-label" }, c.name), field)
   }
 
   function Playground(props) {
