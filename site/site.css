@@ -106,9 +106,9 @@ svg { flex-shrink: 0; }
 .vx-preview, .example-frame {
   background-color: var(--panel);
   background-image:
-    radial-gradient(circle at 18% 28%, color-mix(in oklab, var(--primary) 55%, transparent) 0 110px, transparent 260px),
-    radial-gradient(circle at 82% 70%, color-mix(in oklab, var(--chart-2) 50%, transparent) 0 100px, transparent 240px),
-    radial-gradient(circle at 60% 15%, color-mix(in oklab, var(--chart-3) 45%, transparent) 0 70px, transparent 190px);
+    radial-gradient(circle at 18% 28%, color-mix(in oklab, var(--primary) 44%, transparent) 0 110px, transparent 260px),
+    radial-gradient(circle at 82% 70%, color-mix(in oklab, var(--chart-2) 40%, transparent) 0 100px, transparent 240px),
+    radial-gradient(circle at 60% 15%, color-mix(in oklab, var(--chart-3) 36%, transparent) 0 70px, transparent 190px);
 }
 .vx-controls { grid-area: controls; display: grid; grid-auto-rows: min-content; gap: 16px; }
 .vx-control { display: grid; gap: 6px; }
