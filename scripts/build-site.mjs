@@ -3,6 +3,7 @@
 // Usage: SITE_URL=https://user.github.io/uiuiui node scripts/build-site.mjs
 import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync, existsSync } from "node:fs"
 import { join, dirname } from "node:path"
+import { createHash } from "node:crypto"
 import { fileURLToPath } from "node:url"
 import vm from "node:vm"
 import { marked } from "marked"
@@ -63,6 +64,12 @@ const tokensCss = [
   "}",
   "",
 ].join("\n")
+
+// Every asset link carries a build hash, so a cached page never mixes with newer styles or scripts
+const assetSources = ["preview/uiuiui.css", "preview/uiuiui.js", "preview/playground.js", "site/site.css", "site/site.js",
+  ...components.map((c) => `preview/examples/${c}.js`)]
+const ASSET_VERSION = createHash("sha256").update(tokensCss).update(assetSources.map(read).join("\n")).digest("hex").slice(0, 10)
+const v = (href) => `${href}?v=${ASSET_VERSION}`
 
 // ------------------------------------------------------------ site map
 const NAV = [
@@ -127,9 +134,9 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Geist+Mono:wght@400;600&display=swap">
 <script>try{var t=localStorage.getItem("uiuiui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}</script>
-<link rel="stylesheet" href="${base}assets/tokens.css">
-<link rel="stylesheet" href="${base}assets/uiuiui.css">
-<link rel="stylesheet" href="${base}assets/site.css">
+<link rel="stylesheet" href="${v(base + "assets/tokens.css")}">
+<link rel="stylesheet" href="${v(base + "assets/uiuiui.css")}">
+<link rel="stylesheet" href="${v(base + "assets/site.css")}">
 </head>
 <body>
 <a class="skip-link uiuiui-btn uiuiui-btn--default" href="#main">Skip to content</a>
@@ -188,7 +195,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 </div>
 <script type="application/json" id="search-index">${JSON.stringify(searchIndex).replace(/</g, "\\u003c")}</script>
 <script>window.UIUIUI_BASE = ${JSON.stringify(base)}</script>
-<script src="${base}assets/site.js"></script>
+<script src="${v(base + "assets/site.js")}"></script>
 ${scripts}
 </body>
 </html>
@@ -275,8 +282,9 @@ US English UI copy, one primary action per area, and Magoo behavior for every co
 {
   const groups = [
     ["Surfaces and text", (n) => /^(background|foreground|card|popover|secondary|muted|accent|border|input|ring)/.test(n)],
-    ["Brand", (n) => n.startsWith("primary")],
+    ["Brand", (n) => /^(primary|highlight|emphasis)/.test(n)],
     ["Status", (n) => /^(destructive|success|warning)/.test(n)],
+    ["Liquid Glass", (n) => n.startsWith("glass")],
     ["Charts", (n) => n.startsWith("chart")],
     ["Sidebar", (n) => n.startsWith("sidebar")],
   ]
@@ -295,7 +303,7 @@ US English UI copy, one primary action per area, and Magoo behavior for every co
         title,
         "| Token | Light | Dark | Usage |\n| --- | --- | --- | --- |\n" + list.map((t) => `| \`${t.name}\` | \`${t.value.light}\` | \`${t.value.dark}\` | ${t.usage} |`).join("\n"),
         `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(title)} tokens"><table class="uiuiui-table tokens-table"><thead><tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead><tbody>${list
-          .map((t) => `<tr><td><code class="tok">${t.name}</code><div class="usage">${esc(t.usage)}</div></td><td>${swatch(t, "light")}</td><td>${swatch(t, "dark")}</td></tr>`)
+          .map((t) => `<tr><td><code class="tok">${t.name}</code><div class="usage">${mdInline(t.usage)}</div></td><td>${swatch(t, "light")}</td><td>${swatch(t, "dark")}</td></tr>`)
           .join("")}</tbody></table></div>`
       )
     }),
@@ -315,7 +323,7 @@ emit({
         .map(
           (s) => `<div class="type-row"><div class="type-meta"><code class="tok">${s.name}</code><span>${s.fontSize} / ${s.lineHeight} · ${s.fontWeight}</span></div>
 <div class="type-sample" style="font-family:var(--font-${g.family});font-size:${s.fontSize};line-height:${s.lineHeight};font-weight:${s.fontWeight};letter-spacing:${s.letterSpacing || "normal"}">${esc(s.sample)}</div>
-<div class="usage">${esc(s.usage)}</div></div>`
+<div class="usage">${mdInline(s.usage)}</div></div>`
         )
         .join("")}</div>`
     )
@@ -331,13 +339,13 @@ emit({
     description: "A 4px scale, radii derived from `--radius` and subtle shadows.",
     sections: [
       section("Spacing", tableMd(tokens.spacing.tokens), `<div class="space-list">${tokens.spacing.tokens
-        .map((t) => `<div class="space-row"><code class="tok">${t.name}</code><span class="bar" style="width:${t.value}"></span><span class="val">${t.value}</span><span class="usage">${esc(t.usage)}</span></div>`)
+        .map((t) => `<div class="space-row"><code class="tok">${t.name}</code><span class="bar" style="width:${t.value}"></span><span class="val">${t.value}</span><span class="usage">${mdInline(t.usage)}</span></div>`)
         .join("")}</div>`),
       section("Radius", tableMd(tokens.radius.tokens), `<div class="demo-grid">${tokens.radius.tokens
-        .map((t) => `<div class="demo-tile"><span class="radius-box" style="border-radius:${t.value}"></span><code class="tok">${t.name}</code><span class="val">${t.value}</span><span class="usage">${esc(t.usage)}</span></div>`)
+        .map((t) => `<div class="demo-tile"><span class="radius-box" style="border-radius:${t.value}"></span><code class="tok">${t.name}</code><span class="val">${t.value}</span><span class="usage">${mdInline(t.usage)}</span></div>`)
         .join("")}</div>`),
       section("Shadow", tableMd(tokens.shadow.tokens), `<div class="demo-grid">${tokens.shadow.tokens
-        .map((t) => `<div class="demo-tile"><span class="shadow-box" style="box-shadow:var(--${t.name})"></span><code class="tok">${t.name}</code><span class="usage">${esc(t.usage)}</span></div>`)
+        .map((t) => `<div class="demo-tile"><span class="shadow-box" style="box-shadow:var(--${t.name})"></span><code class="tok">${t.name}</code><span class="usage">${mdInline(t.usage)}</span></div>`)
         .join("")}</div>`),
     ],
   })
@@ -400,9 +408,9 @@ ${tables.map((t) => `<h3 id="${anchor(t.part)}-props">${t.part}</h3>${t.html}`).
     related: (info.related || []).map((r) => [`components/${slug(r)}.html`, r]),
     scripts: `<script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/uiuiui.js"></script>
-<script src="../assets/playground.js"></script>
-<script src="../assets/examples/${c}.js"></script>`,
+<script src="${v("../assets/uiuiui.js")}"></script>
+<script src="${v("../assets/playground.js")}"></script>
+<script src="${v(`../assets/examples/${c}.js`)}"></script>`,
   })
 }
 
