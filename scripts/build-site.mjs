@@ -96,6 +96,12 @@ const icon = {
   external: heroicon("arrow-top-right-on-square"),
 }
 
+// Runs right after the sidebar is parsed, before the first paint: the sidebar keeps its scroll position from page to page,
+// and the current page's item is always in view (centered when it would be hidden)
+const NAV_SCROLL = `(function(){var s=document.getElementById("sidebar"),k="uiuiui-nav-scroll";try{var y=sessionStorage.getItem(k);if(y!==null)s.scrollTop=+y}catch(e){}
+var c=s.querySelector('[aria-current="page"]');if(c&&s.clientHeight){var r=c.getBoundingClientRect(),b=s.getBoundingClientRect();if(r.top<b.top||r.bottom>b.bottom)s.scrollTop+=r.top-b.top-(s.clientHeight-r.height)/2}
+addEventListener("pagehide",function(){try{sessionStorage.setItem(k,s.scrollTop)}catch(e){}})})()`
+
 function shell({ path, title, description, intro = "", sections, related = [], scripts = "" }) {
   const depth = path.split("/").length - 1
   const base = depth ? "../".repeat(depth) : "./"
@@ -160,6 +166,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   </header>
   <div class="layout">
     <nav class="sidebar" id="sidebar" aria-label="Documentation">${nav}</nav>
+    <script>${NAV_SCROLL}</script>
     <main class="panel" id="main" tabindex="-1">
       <div class="panel-grid">
         <article class="article">

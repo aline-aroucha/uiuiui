@@ -16,10 +16,13 @@
   // Mobile navigation
   var menuBtn = document.getElementById("menu-toggle")
   var sidebar = document.getElementById("sidebar")
-  menuBtn.addEventListener("click", function () {
-    var open = sidebar.classList.toggle("open")
+  function setMenu(open) {
+    sidebar.classList.toggle("open", open)
     menuBtn.setAttribute("aria-expanded", String(open))
-  })
+  }
+  menuBtn.addEventListener("click", function () { setMenu(!sidebar.classList.contains("open")) })
+  // Esc closes the open menu and returns focus to its button
+  sidebar.addEventListener("keydown", function (e) { if (e.key === "Escape" && sidebar.classList.contains("open")) { setMenu(false); menuBtn.focus() } })
 
   // Copy helpers: the button text confirms the copy
   function flash(btn, text) {
