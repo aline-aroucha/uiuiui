@@ -22,6 +22,10 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-btn--ghost { background: transparent; color: var(--foreground); }
 .uiuiui-btn--destructive { background: var(--destructive); color: var(--destructive-foreground); box-shadow: var(--shadow-xs); }
 .uiuiui-btn--destructive:hover { background: color-mix(in oklab, var(--destructive) 90%, var(--background)); }
+.uiuiui-btn--highlight { background: var(--highlight); color: var(--highlight-foreground); box-shadow: var(--shadow-xs); }
+.uiuiui-btn--highlight:hover { background: color-mix(in oklab, var(--highlight) 90%, var(--background)); }
+.uiuiui-btn--emphasis { background: var(--emphasis); color: var(--emphasis-foreground); box-shadow: var(--shadow-xs); }
+.uiuiui-btn--emphasis:hover { background: color-mix(in oklab, var(--emphasis) 90%, var(--background)); }
 .uiuiui-btn--link { background: transparent; color: var(--primary); text-decoration: underline; text-underline-offset: 4px; height: auto; padding: 0; }
 .uiuiui-btn--size-sm { height: 32px; padding: 0 12px; gap: 6px; }
 .uiuiui-btn--size-lg { height: 40px; padding: 0 24px; }
@@ -35,6 +39,8 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-badge--destructive { background: var(--destructive); color: var(--destructive-foreground); }
 .uiuiui-badge--success { background: var(--success); color: var(--success-foreground); }
 .uiuiui-badge--warning { background: var(--warning); color: var(--warning-foreground); }
+.uiuiui-badge--highlight { background: var(--highlight); color: var(--highlight-foreground); }
+.uiuiui-badge--emphasis { background: var(--emphasis); color: var(--emphasis-foreground); }
 
 .uiuiui-input { box-sizing: border-box; width: 100%; height: 36px; border: 1px solid var(--input); border-radius: var(--radius-md); background: transparent;
   color: var(--foreground); font: 400 14px/20px var(--font-sans); padding: 4px 12px; box-shadow: var(--shadow-xs); }

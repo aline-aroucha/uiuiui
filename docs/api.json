@@ -34,7 +34,7 @@
     "anatomy": "<Badge>\n  <Icon />\n  Text\n</Badge>",
     "parts": {
       "Badge": [
-        { "name": "variant", "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"link\" | \"destructive\" | \"success\" | \"warning\"", "default": "\"default\"", "description": "Visual style. Status variants always pair color with a word or symbol." },
+        { "name": "variant", "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"link\" | \"destructive\" | \"success\" | \"warning\" | \"highlight\" | \"emphasis\"", "default": "\"default\"", "description": "Visual style. Status variants always pair color with a word or symbol." },
         { "name": "asChild", "type": "boolean", "default": "false", "description": "Renders its child (e.g. a link) with the badge style." },
         { "name": "children", "type": "ReactNode", "required": true, "description": "The label." }
       ]
@@ -46,7 +46,7 @@
     "anatomy": "<Button>\n  <Icon />\n  Label\n</Button>",
     "parts": {
       "Button": [
-        { "name": "variant", "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"destructive\" | \"link\"", "default": "\"default\"", "description": "Emphasis. Use one `default` button per area." },
+        { "name": "variant", "type": "\"default\" | \"highlight\" | \"emphasis\" | \"secondary\" | \"outline\" | \"ghost\" | \"destructive\" | \"link\"", "default": "\"default\"", "description": "Emphasis. Use one `default` button per area; `highlight` (yellow) and `emphasis` (red) at most once each, never for deletion." },
         { "name": "size", "type": "\"xs\" | \"sm\" | \"default\" | \"lg\" | \"icon-xs\" | \"icon-sm\" | \"icon\" | \"icon-lg\"", "default": "\"default\"", "description": "Height from 24px to 40px; `icon` sizes are square and need `aria-label`." },
         { "name": "asChild", "type": "boolean", "default": "false", "description": "Renders its child (e.g. a link) with the button style." },
         { "name": "disabled", "type": "boolean", "default": "false", "description": "Removes the button from the tab order and blocks the action." },

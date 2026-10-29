@@ -44,7 +44,7 @@
     Badge: {
       controls: [
         { name: "children", type: "text", value: "✓ Paid" },
-        { name: "variant", type: "select", options: ["default", "secondary", "outline", "destructive", "success", "warning"], value: "success" }
+        { name: "variant", type: "select", options: ["default", "secondary", "outline", "destructive", "success", "warning", "highlight", "emphasis"], value: "success" }
       ],
       render: function (p) { return h(P.Badge, { variant: p.variant }, p.children) },
       code: function (p) { return imports("badge", ["Badge"]) + tag("Badge", { variant: unless(p.variant, "default") }, p.children) }
@@ -52,7 +52,7 @@
     Button: {
       controls: [
         { name: "children", type: "text", value: "Save changes" },
-        { name: "variant", type: "select", options: ["default", "secondary", "outline", "ghost", "destructive", "link"], value: "default" },
+        { name: "variant", type: "select", options: ["default", "highlight", "emphasis", "secondary", "outline", "ghost", "destructive", "link"], value: "default" },
         { name: "size", type: "select", options: sizes, value: "default" },
         { name: "disabled", type: "boolean", value: false }
       ],

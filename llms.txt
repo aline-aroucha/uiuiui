@@ -1,6 +1,6 @@
 # UIUIUI
 
-> A design system on top of shadcn/ui + Tailwind v4. Slightly green-tinted neutrals and one brand color (deep teal `primary`). UI copy in US English.
+> A design system on top of shadcn/ui + Tailwind v4. Slightly cool neutrals and the three primary colors as the brand: blue `primary`, yellow `highlight`, red `emphasis`. UI copy in US English.
 
 ## Docs
 - [Documentation site](https://aline-aroucha.github.io/uiuiui): tokens, typography, components with live previews

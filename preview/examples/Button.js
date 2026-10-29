@@ -2,6 +2,8 @@ var P = window.UIUIUI, h = React.createElement;
   ReactDOM.createRoot(document.getElementById('preview')).render(h('div', null,
     h('div', { className: 'uiuiui-row' },
       h(P.Button, null, 'Save changes'),
+      h(P.Button, { variant: 'highlight' }, 'Upgrade'),
+      h(P.Button, { variant: 'emphasis' }, 'Go live'),
       h(P.Button, { variant: 'secondary' }, 'Duplicate'),
       h(P.Button, { variant: 'outline' }, 'Export CSV'),
       h(P.Button, { variant: 'ghost' }, 'Cancel'),

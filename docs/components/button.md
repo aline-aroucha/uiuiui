@@ -8,12 +8,14 @@ npx @aline-aroucha/uiuiui add button
 
 ## What you provide
 - `children`: a verb that says what happens ("Save changes", "Delete project"). Three words at most.
-- `variant`: `default` | `secondary` | `outline` | `ghost` | `destructive` | `link`.
+- `variant`: `default` | `highlight` | `emphasis` | `secondary` | `outline` | `ghost` | `destructive` | `link`.
 - `size`: `xs` (24px) | `sm` (32px) | `default` (36px) | `lg` (40px); icon-only: `icon-xs` | `icon-sm` | `icon` | `icon-lg` (requires `aria-label`).
 - `asChild` to render an `<a>` / `<Link>` that looks like a button.
 
 ## When to use each variant
-- `default` (primary): the main action. **One per visible area** (card, dialog, toolbar).
+- `default` (primary blue): the main action. **One per visible area** (card, dialog, toolbar).
+- `highlight` (primary yellow): a supporting action you want noticed, such as "Upgrade" or "Try it". At most one per area, never instead of `default`.
+- `emphasis` (primary red): an attention-grabbing action that is not destructive, such as "Go live" or "Record". For deletion use `destructive`.
 - `secondary`: supporting actions next to the main one.
 - `outline`: neutral actions in toolbars, filters, export.
 - `ghost`: low-emphasis actions in lists and menus; "Cancel" in dialogs.

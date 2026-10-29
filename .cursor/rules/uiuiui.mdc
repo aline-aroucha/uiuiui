@@ -14,6 +14,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 - Use components from `@/components/ui/*`. If one is missing, run `npx @aline-aroucha/uiuiui add <component>`. Don't rebuild components UIUIUI already has.
 - Color **only** through semantic classes: `bg-background`, `text-foreground`, `bg-card`, `bg-primary text-primary-foreground`,
   `bg-secondary`, `bg-muted text-muted-foreground`, `bg-accent text-accent-foreground`, `bg-destructive text-destructive-foreground`,
+  `bg-highlight text-highlight-foreground`, `bg-emphasis text-emphasis-foreground`,
   `bg-success text-success-foreground`, `bg-warning text-warning-foreground`, `border-border`, `border-input`, `ring-ring`,
   `fill-chart-1`…`fill-chart-5`.
 - Every colored background uses its `*-foreground` pair for text.
@@ -39,6 +40,8 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Intent | Component |
 | --- | --- |
 | Main action | `<Button>` |
+| Supporting action you want noticed | `<Button variant="highlight">` (yellow) |
+| Attention action, not destructive | `<Button variant="emphasis">` (red) |
 | Supporting action | `<Button variant="secondary">` or `"outline"` |
 | Cancel / low emphasis | `<Button variant="ghost">` |
 | Irreversible action | `<Button variant="destructive">` inside an `AlertDialog` |

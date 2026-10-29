@@ -1,6 +1,6 @@
 # UIUIUI guidelines
 
-UIUIUI is a design system built on [shadcn/ui](https://ui.shadcn.com): the same components and CSS variable names, with the UIUIUI identity. A neutral base in a slightly green-tinted gray and **one** brand color, the deep teal `primary`. Everything here is written to be followed by people and by AI agents alike.
+UIUIUI is a design system built on [shadcn/ui](https://ui.shadcn.com): the same components and CSS variable names, with the UIUIUI identity. A neutral base in a slightly cool gray and the three primary colors as the brand: blue `primary`, yellow `highlight` and red `emphasis`. Everything here is written to be followed by people and by AI agents alike.
 
 ## Rules for AI agents
 
@@ -45,41 +45,42 @@ Magoo is educational guidance, not a certification: verify each behavior in the 
 
 ## Color
 
-Neutrals lean slightly toward the brand green so they don't read as stock gray. The brand appears sparingly and on purpose: main action, active item, focus, links, chart series 1.
+The brand is the three primary colors. **Blue** (`primary`) is the main one: main action, active item, focus, links, chart series 1. **Yellow** (`highlight`, with dark text) and **red** (`emphasis`, the same red as `destructive`) mark supporting actions and labels that need to stand out, and lead the chart palette. Neutrals lean slightly cool so the three colors stay clean.
 
 | Token | Light | Dark | Usage |
 | --- | --- | --- | --- |
-| `background` | `#ffffff` | `#0a1110` | Page background. Tailwind: bg-background. |
-| `foreground` | `#0d1615` | `#e6eeec` | Primary text on background, card and popover (18:1 light, 16:1 dark). |
-| `card` | `#ffffff` | `#101918` | Card and raised panel background. Tailwind: bg-card. |
+| `background` | `#ffffff` | `#0a0d14` | Page background. Tailwind: bg-background. |
+| `foreground` | `#0f1420` | `#e7eaf0` | Primary text on background, card and popover (18:1 light, 16:1 dark). |
+| `card` | `#ffffff` | `#10141c` | Card and raised panel background. Tailwind: bg-card. |
 | `card-foreground` | `{foreground}` | `{foreground}` | Text inside a card. |
-| `popover` | `#ffffff` | `#101918` | Background of popovers, menus, the open Select and tooltips. |
+| `popover` | `#ffffff` | `#10141c` | Background of popovers, menus, the open Select and tooltips. |
 | `popover-foreground` | `{foreground}` | `{foreground}` | Text inside a popover. |
-| `primary` | `#0b6b60` | `#45c4b0` | The UIUIUI brand color (deep teal). Primary action, active item, links. As text it reads on background and card (6.4:1 / 8.9:1). One primary action per area. |
-| `primary-foreground` | `#f3fbf9` | `#032019` | Text and icons on primary (6.1:1 / 8:1). Dark text in the dark theme: never hard-code white on primary. |
-| `secondary` | `#f0f4f3` | `#1a2624` | Secondary buttons and surfaces. Tailwind: bg-secondary. |
-| `secondary-foreground` | `#14211f` | `#e6eeec` | Text on secondary. |
-| `muted` | `#f0f4f3` | `#1a2624` | Quiet backgrounds: table row hover, Skeleton, empty areas. |
-| `muted-foreground` | `#576865` | `#93a5a1` | Secondary text, descriptions, placeholders, metadata. Reads on background, card and muted (≥5.3:1). |
-| `accent` | `#e3f1ee` | `#16302c` | Hover and highlight for menu items, ghost buttons and selected rows. |
-| `accent-foreground` | `#0e3c36` | `#c3ebe3` | Text on accent (10:1). |
-| `destructive` | `#c8321f` | `#f0715f` | Destructive actions and errors. As text it reads on background (5.3:1 / 6.6:1). |
-| `destructive-foreground` | `#ffffff` | `#2a0804` | Text on destructive (≥5.3:1 in both themes). |
+| `primary` | `#1d4ed8` | `#7aa2ff` | The UIUIUI brand color (primary blue). Primary action, active item, focus, links. As text it reads on background and card (6.7:1 / 7.4:1). One primary action per area. |
+| `primary-foreground` | `#ffffff` | `#0a1433` | Text and icons on primary (6.7:1 / 7.3:1). Dark text in the dark theme: never hard-code white on primary. |
+| `secondary` | `#f1f3f7` | `#1a202b` | Secondary buttons and surfaces. Tailwind: bg-secondary. |
+| `secondary-foreground` | `#141a26` | `#e7eaf0` | Text on secondary. |
+| `muted` | `#f1f3f7` | `#1a202b` | Quiet backgrounds: table row hover, Skeleton, empty areas. |
+| `muted-foreground` | `#5a6475` | `#98a1b2` | Secondary text, descriptions, placeholders, metadata. Reads on background, card and muted (≥5.3:1). |
+| `accent` | `#e6edfb` | `#18264a` | Hover and highlight for menu items, ghost buttons and selected rows. |
+| `accent-foreground` | `#132a63` | `#c9d8fb` | Text on accent (10:1). |
+| `highlight` | `#f7c51e` | `#ffd84d` | The second brand color (primary yellow). Highlighted supporting actions and badges: `bg-highlight text-highlight-foreground`. Never as text on background: it does not reach 4.5:1. |
+| `highlight-foreground` | `#241a00` | `#241a00` | Text and icons on highlight (10.6:1 / 12.4:1). Always dark text: never white on yellow. |
+| `emphasis` | `{destructive}` | `{destructive}` | The third brand color (primary red), shared with destructive. Attention-grabbing actions that are not destructive (Go live, Record): `bg-emphasis text-emphasis-foreground`. For deletion use `destructive` inside an AlertDialog. |
+| `emphasis-foreground` | `{destructive-foreground}` | `{destructive-foreground}` | Text and icons on emphasis. |
+| `destructive` | `#c8231a` | `#ff7a6b` | Destructive actions and errors (primary red). As text it reads on background (5.7:1 / 7.6:1). |
+| `destructive-foreground` | `#ffffff` | `#2a0804` | Text on destructive (≥5:1 in both themes). |
 | `success` | `#13734a` | `#4cc38a` | Success and confirmation states. Always pair it with an icon or a word. |
 | `success-foreground` | `#ffffff` | `#03200f` | Text on success. |
 | `warning` | `#a35a00` | `#f0a54a` | Warnings and pending states. Always pair it with an icon or a word. |
 | `warning-foreground` | `#ffffff` | `#2a1600` | Text on warning. |
-| `border` | `#dce4e2` | `#24332f` | Dividers and card borders. Decorative: carries no meaning on its own. |
-| `input` | `#82928e` | `#56706b` | Field borders (Input, Select, Checkbox, Switch off). Strong enough to reach 3:1. |
+| `border` | `#dde2ea` | `#252c39` | Dividers and card borders. Decorative: carries no meaning on its own. |
+| `input` | `#838c9c` | `#5c6880` | Field borders (Input, Select, Checkbox, Switch off). Strong enough to reach 3:1. |
 | `ring` | `{primary}` | `{primary}` | Focus ring: 2px solid + 2px offset on background. ≥6:1 in both themes. |
-| `glass` | `#ffffff99` | `#16211f99` | Regular Liquid Glass (60% fill, strong blur): controls that float over page and card surfaces, such as secondary, outline and ghost buttons and the tab track. Utility: `glass`. Text keeps ≥4.5:1 over the neutral surfaces; over color or media use `glass-strong` or `glass-clear`. |
-| `glass-strong` | `#ffffffe3` | `#16211fe6` | Dense glass for floating layers that carry text: menus, popovers, the selected tab, hover on glass buttons. Utility: `glass-strong`. Text keeps ≥4.5:1 over neutral, brand and chart colors. |
-| `glass-clear` | `#ffffff1f` | `#ffffff1f` | Clear glass for controls over photos and video. Always on a `bg-glass-dim` layer, with `text-glass-clear-foreground` icons and bold labels. Utility: `glass-clear`. |
-| `glass-dim` | `#00000080` | `#00000080` | Dimming layer (50% black) behind clear glass, so its white icons and bold labels keep ≥3:1 even over white media. |
-| `glass-clear-foreground` | `#ffffff` | `#ffffff` | Icons and bold labels on clear glass. |
+| `glass` | `#ffffff99` | `#161b2599` | Regular Liquid Glass (60% fill, strong blur): controls that float over page and card surfaces, such as secondary, outline and ghost buttons and the tab track. Utility: `glass`. Text keeps ≥4.5:1 over the neutral surfaces; over color or media use `glass-strong` or `glass-clear`. |
 
 - Checked text pairs: every text color is ≥ 4.5:1 on the backgrounds its usage names, in both themes; field borders (`input`) and the focus ring (`ring`) are ≥ 3:1.
 - `success`, `warning`, `destructive-foreground` and the matching Badge variants are **UIUIUI additions** to shadcn, for record status.
+- `highlight` and `emphasis` (with their `-foreground` pairs) are **UIUIUI additions** too: the Button and Badge variants of the same names use them. Yellow never works as text on a light background; always put it behind `text-highlight-foreground`.
 - `border` is decorative (≈1.3:1). When a border outlines a control, use `input`.
 - Charts: `chart-1` … `chart-5` in order; they also differ in lightness, not only in hue.
 

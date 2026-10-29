@@ -285,7 +285,7 @@ US English UI copy, one primary action per area, and Magoo behavior for every co
   emit({
     path: "colors.html",
     title: "Colors",
-    description: "Neutrals with a slight lean toward the brand green, and one brand color, `primary`. In Tailwind each token becomes `bg-*`, `text-*` and `border-*`.",
+    description: "The three primary colors are the brand: blue `primary`, yellow `highlight` and red `emphasis`, over slightly cool neutrals. In Tailwind each token becomes `bg-*`, `text-*` and `border-*`.",
     sections: groups.map(([title, test]) => {
       const list = colors.filter((t) => test(t.name))
       return section(
