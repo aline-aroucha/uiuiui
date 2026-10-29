@@ -29,6 +29,10 @@
     var label = btn.querySelector("span") || btn
     var original = label.textContent
     label.textContent = text
+    // Screen readers hear the result too: the button text alone is not announced
+    var status = document.getElementById("copy-status")
+    status.textContent = ""
+    setTimeout(function () { status.textContent = text === "Copied" ? "Copied to clipboard" : text }, 50)
     setTimeout(function () { label.textContent = original }, 1500)
   }
   function copy(btn, text) {

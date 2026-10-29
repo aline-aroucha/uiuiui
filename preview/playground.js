@@ -215,7 +215,7 @@
       ],
       render: function (p) {
         var rows = [["#4821", "Maya Chen", "$1,280.00"], ["#4822", "Leo Park", "$349.90"]]
-        return h("div", { style: { width: "100%" } }, h(P.Table, { "aria-label": undefined },
+        return h("div", { style: { width: "100%" } }, h(P.Table, { label: p.caption },
           h(P.TableCaption, null, p.caption),
           h(P.TableHeader, null, h(P.TableRow, null, h(P.TableHead, null, "Order"), h(P.TableHead, null, "Customer"), h(P.TableHead, { className: "num" }, "Amount"))),
           h(P.TableBody, null, rows.map(function (r) { return h(P.TableRow, { key: r[0] }, h(P.TableCell, null, r[0]), h(P.TableCell, null, r[1]), h(P.TableCell, { className: "num" }, r[2])) }))))

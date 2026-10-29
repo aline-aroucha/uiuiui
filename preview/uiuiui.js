@@ -71,7 +71,16 @@
     var c = React.useContext(TabsCtx);
     return c[0] === p.value ? h('div', { role: 'tabpanel', className: cx('uiuiui-tabs__content', p.className) }, p.children) : null;
   }
-  function Table(p) { return h('div', { className: 'uiuiui-table-wrap' }, h('table', Object.assign(omit(p, ['className']), { className: cx('uiuiui-table', p.className) }))); }
+  function Table(p) {
+    var ref = React.useRef(null), st = React.useState(false), scrollable = st[0];
+    React.useEffect(function () {
+      var el = ref.current; if (!el) return;
+      var check = function () { st[1](el.scrollWidth > el.clientWidth); };
+      check(); var ro = new ResizeObserver(check); ro.observe(el); return function () { ro.disconnect(); };
+    }, []);
+    var region = scrollable ? { tabIndex: 0, role: 'region', 'aria-label': p.label || 'Table' } : {};
+    return h('div', Object.assign({ ref: ref, className: 'uiuiui-table-wrap' }, region), h('table', Object.assign(omit(p, ['className', 'label']), { className: cx('uiuiui-table', p.className) })));
+  }
   var TableHeader = slot('thead', ''), TableBody = slot('tbody', ''), TableRow = slot('tr', ''), TableHead = function (p) { return h('th', Object.assign({ scope: 'col' }, p)); }, TableCell = slot('td', ''),
       TableCaption = slot('caption', 'uiuiui-table__caption');
   function Separator(p) {

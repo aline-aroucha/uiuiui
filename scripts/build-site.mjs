@@ -155,6 +155,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
       <span class="search-icon">${icon.search}</span>
       <input id="search-input" class="uiuiui-input" type="search" placeholder="Search" autocomplete="off" aria-describedby="search-status">
       <p id="search-status" class="sr-only" role="status"></p>
+      <p id="copy-status" class="sr-only" role="status"></p>
       <div id="search-results" class="search-results uiuiui-glass-strong" hidden><ul></ul></div>
     </div>
     <nav class="header-links" aria-label="Site">
@@ -223,8 +224,13 @@ function emit(page) {
   ].filter(Boolean)
   write(page.path.replace(/\.html$/, ".md"), text.join("\n\n") + "\n")
 }
-const tableize = (html, label) =>
-  html.replace(/<table>/g, `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(label)} table"><table class="uiuiui-table">`).replace(/<\/table>/g, "</table></div>")
+const tableize = (html, label) => {
+  const count = (html.match(/<table>/g) || []).length
+  let n = 0
+  return html
+    .replace(/<table>/g, () => `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(label)} table${count > 1 ? ` ${++n} of ${count}` : ""}"><table class="uiuiui-table">`)
+    .replace(/<\/table>/g, "</table></div>")
+}
 const section = (title, mdText, html) => ({ title, id: anchor(title), md: mdText, html: html ?? tableize(md(mdText), title) })
 
 // ------------------------------------------------------------ overview
