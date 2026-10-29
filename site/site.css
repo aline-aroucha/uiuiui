@@ -102,13 +102,16 @@ svg { flex-shrink: 0; }
 .vx-mount { display: contents; }
 .vx-preview { grid-area: example; min-height: 200px; display: flex; align-items: center; justify-content: center; padding: 32px 24px;
   border-radius: var(--radius-lg); min-width: 0; }
-/* Documentation backdrop: color behind the previews so the Liquid Glass material is visible (not a product pattern) */
-.vx-preview, .example-frame {
-  background-color: var(--panel);
+/* Documentation backdrop: three equal orbs side by side, each a third of the card wide, so the glass has color behind it
+   (not a product pattern). The orbs sit on a layer behind the content and scale with the card (container units). */
+.vx-preview, .example-frame { position: relative; isolation: isolate; container-type: inline-size; background-color: var(--panel); }
+.vx-preview::before, .example-frame::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  --orb: calc(100cqw / 6);
   background-image:
-    radial-gradient(circle at 18% 28%, color-mix(in oklab, var(--primary) 44%, transparent) 0 110px, transparent 260px),
-    radial-gradient(circle at 82% 70%, color-mix(in oklab, var(--chart-2) 40%, transparent) 0 100px, transparent 240px),
-    radial-gradient(circle at 60% 15%, color-mix(in oklab, var(--chart-3) 36%, transparent) 0 70px, transparent 190px);
+    radial-gradient(circle calc(var(--orb) * 2.8) at 16.667% 50%, color-mix(in oklab, var(--primary) 44%, transparent) 0 calc(var(--orb) * 1.1), transparent),
+    radial-gradient(circle calc(var(--orb) * 2.8) at 50% 50%, color-mix(in oklab, var(--chart-3) 36%, transparent) 0 calc(var(--orb) * 1.1), transparent),
+    radial-gradient(circle calc(var(--orb) * 2.8) at 83.333% 50%, color-mix(in oklab, var(--chart-2) 40%, transparent) 0 calc(var(--orb) * 1.1), transparent);
 }
 .vx-controls { grid-area: controls; display: grid; grid-auto-rows: min-content; gap: 16px; }
 .vx-control { display: grid; gap: 6px; }
