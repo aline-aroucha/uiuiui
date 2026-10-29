@@ -125,7 +125,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <meta name="description" content="${esc(description)}">
 <link rel="alternate" type="text/markdown" title="LLM-friendly version" href="${base}${mdPath}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Geist+Mono:wght@400;600&display=swap">
 <script>try{var t=localStorage.getItem("pui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}</script>
 <link rel="stylesheet" href="${base}assets/tokens.css">
 <link rel="stylesheet" href="${base}assets/pui.css">
@@ -303,7 +303,7 @@ US English UI copy, one primary action per area, and Magoo behavior for every co
 emit({
   path: "typography.html",
   title: "Typography",
-  description: "Geist for the UI and headings, Geist Mono for code and aligned numbers. The UI base is 14px (`text-sm`).",
+  description: "Inter for the UI and headings (the closest Google Fonts match to SF Pro), Geist Mono for code and aligned numbers. The UI base is 14px (`text-sm`).",
   sections: tokens.type.groups.map((g) =>
     section(
       g.name,

@@ -12,4 +12,9 @@ var P = window.PUI, h = React.createElement;
       h(P.Button, { size: 'lg' }, 'Large'),
       h(P.Button, { size: 'icon', variant: 'outline', 'aria-label': 'Add' },
         h(P.Icon, { name: 'plus' })),
-      h(P.Button, { disabled: true }, 'Disabled'))));
+      h(P.Button, { disabled: true }, 'Disabled')),
+    h('div', { className: 'pui-media', style: { marginTop: 12 } },
+      h('div', { className: 'pui-dim' },
+        h(P.Button, { size: 'icon', className: 'pui-glass-clear', 'aria-label': 'Play' }, h(P.Icon, { name: 'play' })),
+        h(P.Button, { className: 'pui-glass-clear' }, 'Share'),
+        h('span', { className: 'pui-media__caption' }, 'Clear glass over media, on a 50% dim layer')))));

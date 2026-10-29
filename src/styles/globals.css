@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -38,8 +38,12 @@
   --color-ring: var(--ring);
   --color-glass: var(--glass);
   --color-glass-strong: var(--glass-strong);
+  --color-glass-clear: var(--glass-clear);
+  --color-glass-dim: var(--glass-dim);
+  --color-glass-clear-foreground: var(--glass-clear-foreground);
   --color-glass-border: var(--glass-border);
   --color-glass-solid: var(--glass-solid);
+  --color-glass-clear-solid: var(--glass-clear-solid);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -80,10 +84,14 @@
   --border: #dce4e2;
   --input: #82928e;
   --ring: var(--primary);
-  --glass: #ffffffe3;
-  --glass-strong: #fffffff0;
+  --glass: #ffffff99;
+  --glass-strong: #ffffffe3;
+  --glass-clear: #ffffff1f;
+  --glass-dim: #00000080;
+  --glass-clear-foreground: #ffffff;
   --glass-border: #ffffffb3;
   --glass-solid: #f7f9f9;
+  --glass-clear-solid: #0d1615;
   --chart-1: #0b6b60;
   --chart-2: #2f74b5;
   --chart-3: #c9821f;
@@ -97,8 +105,8 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
-  --glass-shadow: inset 0 1px 0 0 #ffffffe6, 0 1px 2px 0 #0d16150f, 0 8px 24px -8px #0d161529;
-  --glass-blur: 16px;
+  --glass-shadow: inset 0 1px 0 0 #ffffffe6, inset 0 -1px 0 0 #ffffff40, inset 0 0 0 1px #ffffff59, 0 1px 2px 0 #0d16150f, 0 10px 30px -10px #0d161538;
+  --glass-blur: 24px;
 }
 
 .dark {
@@ -125,10 +133,14 @@
   --border: #24332f;
   --input: #56706b;
   --ring: var(--primary);
-  --glass: #16211fe6;
-  --glass-strong: #101918f2;
+  --glass: #16211f99;
+  --glass-strong: #16211fe6;
+  --glass-clear: #ffffff1f;
+  --glass-dim: #00000080;
+  --glass-clear-foreground: #ffffff;
   --glass-border: #ffffff24;
   --glass-solid: #16211f;
+  --glass-clear-solid: #0d1615;
   --chart-1: #45c4b0;
   --chart-2: #6aa9e6;
   --chart-3: #f0b257;
@@ -142,16 +154,17 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
-  --glass-shadow: inset 0 1px 0 0 #ffffff1f, 0 1px 2px 0 #00000066, 0 8px 24px -8px #00000099;
+  --glass-shadow: inset 0 1px 0 0 #ffffff38, inset 0 -1px 0 0 #ffffff0d, inset 0 0 0 1px #ffffff1a, 0 1px 2px 0 #00000066, 0 10px 30px -10px #000000a6;
 }
 
-/* Liquid Glass: translucent surface with a blurred, saturated backdrop. Pair with shadow-glass.
-   Turns solid when the person asks for reduced transparency. */
+/* Liquid Glass: translucent fill over a blurred, saturated backdrop. Pair with shadow-glass.
+   glass: controls over neutral surfaces · glass-strong: menus, popovers, selected states · glass-clear: controls over media
+   All turn solid with Reduce transparency or Increase contrast. */
 @utility glass {
   background-color: var(--glass);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  @media (prefers-reduced-transparency: reduce) {
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
     background-color: var(--glass-solid);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -160,13 +173,30 @@
 
 @utility glass-strong {
   background-color: var(--glass-strong);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  @media (prefers-reduced-transparency: reduce) {
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
     background-color: var(--glass-solid);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+}
+
+@utility glass-clear {
+  background-color: var(--glass-clear);
+  color: var(--glass-clear-foreground);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    background-color: var(--glass-clear-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Scroll edge effect: content fades out as it scrolls under a glass bar */
+@utility scroll-edge {
+  mask-image: linear-gradient(to bottom, transparent, black 24px, black calc(100% - 24px), transparent);
 }
 
 @layer base {

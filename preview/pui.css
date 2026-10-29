@@ -107,27 +107,42 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .pui-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .pui-avatar__fallback { display: grid; place-items: center; width: 100%; height: 100%; background: var(--muted); color: var(--foreground); font-size: 12px; font-weight: 500; }
 
-/* Liquid Glass material (mirrors the `glass`, `glass-strong` and `shadow-glass` utilities in globals.css) */
-.pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-badge--secondary, .pui-badge--outline, .pui-input, .pui-select select,
-.pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-skeleton, .pui-btn--ghost:hover {
+/* Liquid Glass (mirrors the `glass`, `glass-strong` and `shadow-glass` utilities in globals.css).
+   Glass on controls and navigation; content (cards, fields, alerts, badges) stays solid. */
+.pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-btn--ghost:hover, .pui-tabs__list {
   background-color: var(--glass);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(200%);
 }
-.pui-tabs__trigger[data-state="active"], .pui-btn--secondary:hover { background-color: var(--glass-strong); }
-.pui-btn, .pui-input, .pui-select select, .pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-tabs__trigger[data-state="active"], .pui-switch, .pui-switch__thumb { box-shadow: var(--glass-shadow); }
+.pui-glass-strong, .pui-tabs__trigger[data-state="active"], .pui-btn--secondary:hover, .pui-btn--outline:hover {
+  background-color: var(--glass-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+}
+.pui-btn, .pui-tabs__list, .pui-tabs__trigger[data-state="active"], .pui-switch__thumb { box-shadow: var(--glass-shadow); }
 .pui-btn--ghost:not(:hover), .pui-btn--link { box-shadow: none; }
+.pui-btn--outline, .pui-btn--outline:hover { color: var(--foreground); }
 .pui-btn, .pui-badge, .pui-tabs__list, .pui-tabs__trigger { border-radius: var(--radius-full); }
-.pui-btn--secondary, .pui-card, .pui-alert, .pui-tabs__list, .pui-badge--secondary { border: 1px solid var(--glass-border); }
 .pui-input, .pui-select select, .pui-skeleton { border-radius: var(--radius-lg); }
+.pui-input, .pui-select select, .pui-checkbox { background-color: var(--background); }
+.pui-checkbox[data-state="checked"], .pui-checkbox[data-state="indeterminate"] { background-color: var(--primary); }
 .pui-card { border-radius: var(--radius-2xl); }
 .pui-alert { border-radius: var(--radius-xl); }
 .pui-tabs__list { padding: 3px; }
 .pui-tabs__trigger { padding: 4px 12px; }
-.pui-checkbox[data-state="checked"], .pui-checkbox[data-state="indeterminate"] { background-color: var(--primary); }
-@media (prefers-reduced-transparency: reduce) {
-  .pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-badge--secondary, .pui-badge--outline, .pui-input, .pui-select select,
-  .pui-checkbox, .pui-card, .pui-alert, .pui-tabs__list, .pui-skeleton, .pui-btn--ghost:hover, .pui-tabs__trigger[data-state="active"] {
+/* Clear glass over media, always on a dim layer */
+.pui-media { border-radius: var(--radius-xl); overflow: hidden; background: var(--chart-3); background-image:
+  radial-gradient(circle at 20% 40%, var(--chart-1) 0 60px, transparent 120px), radial-gradient(circle at 85% 60%, var(--chart-2) 0 70px, transparent 140px); }
+.pui-dim { background: var(--glass-dim); padding: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.pui-btn.pui-glass-clear { background-color: var(--glass-clear); color: var(--glass-clear-foreground); font-weight: 600;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%); backdrop-filter: blur(var(--glass-blur)) saturate(200%); }
+.pui-media__caption { color: var(--glass-clear-foreground); font-weight: 600; font-size: 14px; }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .pui-btn.pui-glass-clear { background-color: var(--glass-clear-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .pui-glass, .pui-btn--secondary, .pui-btn--outline, .pui-btn--ghost:hover, .pui-tabs__list,
+  .pui-glass-strong, .pui-tabs__trigger[data-state="active"], .pui-btn--secondary:hover, .pui-btn--outline:hover {
     background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
   }
 }

@@ -1,9 +1,8 @@
 /* PUI documentation site. Layout: header row, collapsible side navigation, raised content panel with an
    "On this page" column. Colors and sizes come from tokens only. */
-/* Inter Tight (Google Fonts), the closest free match to Helvetica Now Display, for large text only
-   (page titles, section headings, page descriptions); the rest of the UI uses Geist. */
+/* Inter everywhere, the closest Google Fonts match to SF Pro; its optical sizes give the display cut to large titles. */
 :root {
-  --font-display: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);
   --frame: var(--muted);
   --panel: var(--background);
 }

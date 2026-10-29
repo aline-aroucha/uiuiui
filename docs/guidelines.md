@@ -12,7 +12,7 @@ Read this section before generating any PUI interface.
 4. **Dark mode is automatic** through the `.dark` class on `<html>`. Don't write `dark:` color overrides; the tokens already switch.
 5. **Spacing on the 4px scale:** `gap-2` (8), `gap-4` (16), `gap-6` (24), `gap-8` (32), `py-12` (48). No arbitrary values (`p-[13px]`).
 6. **Radii:** `rounded-full` on buttons, badges, tab tracks, switches and avatars; `rounded-lg` on fields; `rounded-xl` on alerts, menus and popovers; `rounded-2xl` on cards.
-12. **Material is Liquid Glass.** Surfaces use the `glass` utility (or `glass-strong` for floating layers and selected states) with `shadow-glass` and a `border-glass-border` edge. PUI components already do this; build new surfaces the same way, never with raw `backdrop-blur` or `bg-white/60`.
+12. **Material is Liquid Glass, on the controls layer.** Glass is for what floats above content: buttons, the tab track, toolbars, menus, popovers. Content (cards, fields, tables, alerts, badges) stays solid. Use `glass` over neutral surfaces, `glass-strong` for menus, popovers and anything over color, `glass-clear` on a `bg-glass-dim` layer over photos and video. Always add `shadow-glass`; never raw `backdrop-blur` or `bg-white/60`.
 7. **One primary action per area.** The others are `secondary`, `outline` or `ghost`.
 8. **UI copy in US English**, sentence case, en-US formats (`$1,280.00`, `Oct 21, 2026`, `9:42 AM`).
 9. **Accessibility:** every control has a `Label`; icon-only buttons have an `aria-label`; status is never conveyed by color alone (add an icon or a word).
@@ -72,11 +72,11 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 | `border` | `#dce4e2` | `#24332f` | Dividers and card borders. Decorative: carries no meaning on its own. |
 | `input` | `#82928e` | `#56706b` | Field borders (Input, Select, Checkbox, Switch off). Strong enough to reach 3:1. |
 | `ring` | `{primary}` | `{primary}` | Focus ring: 2px solid + 2px offset on background. ≥6:1 in both themes. |
-| `glass` | `#ffffffe3` | `#16211fe6` | Liquid Glass surface (89% / 90% opaque, blurred backdrop): cards, alerts, fields, secondary buttons, tab tracks. Utility: `glass`. Opaque enough that every text token keeps ≥4.5:1 over the page, brand and chart colors. |
-| `glass-strong` | `#fffffff0` | `#101918f2` | Denser glass for floating layers and selected states: menus, popovers, the active tab, hover on glass buttons. Utility: `glass-strong`. |
-| `glass-border` | `#ffffffb3` | `#ffffff24` | Hairline edge that catches light on glass. Decorative: field and control borders keep `input`. |
-| `glass-solid` | `#f7f9f9` | `#16211f` | What glass becomes when the person turns on Reduce transparency (`prefers-reduced-transparency`). |
-| `chart-1` | `#0b6b60` | `#45c4b0` | Chart series 1 (the brand). |
+| `glass` | `#ffffff99` | `#16211f99` | Regular Liquid Glass (60% fill, strong blur): controls that float over page and card surfaces, such as secondary, outline and ghost buttons and the tab track. Utility: `glass`. Text keeps ≥4.5:1 over the neutral surfaces; over color or media use `glass-strong` or `glass-clear`. |
+| `glass-strong` | `#ffffffe3` | `#16211fe6` | Dense glass for floating layers that carry text: menus, popovers, the selected tab, hover on glass buttons. Utility: `glass-strong`. Text keeps ≥4.5:1 over neutral, brand and chart colors. |
+| `glass-clear` | `#ffffff1f` | `#ffffff1f` | Clear glass for controls over photos and video. Always on a `bg-glass-dim` layer, with `text-glass-clear-foreground` icons and bold labels. Utility: `glass-clear`. |
+| `glass-dim` | `#00000080` | `#00000080` | Dimming layer (50% black) behind clear glass, so its white icons and bold labels keep ≥3:1 even over white media. |
+| `glass-clear-foreground` | `#ffffff` | `#ffffff` | Icons and bold labels on clear glass. |
 
 - Checked text pairs: every text color is ≥ 4.5:1 on the backgrounds its usage names, in both themes; field borders (`input`) and the focus ring (`ring`) are ≥ 3:1.
 - `success`, `warning`, `destructive-foreground` and the matching Badge variants are **PUI additions** to shadcn, for record status.
@@ -85,7 +85,7 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 
 ## Typography
 
-**Geist** for UI and headings, **Geist Mono** for code and aligned numbers (both from Google Fonts, the same as shadcn v4). The UI base is 14px (`text-sm`); content pages use 16px with `leading-7`.
+**Inter** for UI and headings, the closest Google Fonts match to Apple's SF Pro; its optical sizes (`opsz` 14–32) switch to the display cut at large sizes, like SF Pro Text and SF Pro Display. **Geist Mono** for code and aligned numbers. The UI base is 14px (`text-sm`); content pages use 16px with `leading-7`. On Apple devices the stack falls back to the system font if Inter can't load.
 
 - Headings `h1`–`h4` in `tracking-tight`, with `text-wrap: balance`. One `h1` per screen.
 - UI: `body` (14/20). Labels: `label` (14/14, 500). Captions and badges: `caption` (12/16).
@@ -99,21 +99,30 @@ Neutrals lean slightly toward the brand green so they don't read as stock gray. 
 
 ## Material: Liquid Glass
 
-Every PUI component is made of glass: a translucent surface that blurs and saturates what is behind it, a hairline edge that catches light and a soft shadow that lifts it. It gives depth without heavy borders and lets the page's color show through.
+PUI follows Apple's Liquid Glass model: **glass is the controls and navigation layer that floats above content; content stays solid.** Glass bends what is behind it into a soft, saturated blur, catches light on its rim and lifts off the page. Keeping it to the layer above content is what lets it be very transparent and still readable.
 
-| Utility | Made of | Use |
+| Layer | PUI pieces | Material |
 | --- | --- | --- |
-| `glass` | `--glass` (89% / 90% opaque) + `blur(var(--glass-blur)) saturate(180%)` | Cards, alerts, fields, secondary and outline buttons, tab tracks, checkboxes |
-| `glass-strong` | `--glass-strong` (94% / 95%) + the same blur | Menus, popovers, the active tab, hover on glass buttons |
-| `shadow-glass` | `--glass-shadow`: top highlight + soft drop shadow | Every glass surface and every solid button |
-| `border-glass-border` | `--glass-border` hairline | Edges of cards, alerts, tab tracks and secondary buttons |
+| Controls and navigation | secondary, outline and ghost buttons; the tab track; toolbars and app bars you build | `glass` + `shadow-glass` |
+| Floating layers with text | menus, select lists, popovers; the selected tab; hover on glass buttons | `glass-strong` + `shadow-glass` |
+| Controls over photos and video | play, close, share and similar icon buttons on media | `glass-clear` + `shadow-glass` on a `bg-glass-dim` layer |
+| Content | cards, fields, tables, alerts, badges, checkboxes, skeletons | solid (`bg-card`, `bg-background`, `bg-muted`) |
+| Prominent actions | primary and destructive buttons | solid color + `shadow-glass` |
 
-- **Prominent actions stay solid.** Primary and destructive buttons and status badges keep their solid color and only get `shadow-glass`, so their text contrast never depends on the backdrop.
-- **Shapes are soft:** capsules (`rounded-full`) for buttons, badges and tab tracks; `rounded-lg` fields; `rounded-2xl` cards.
-- **Contrast is built in.** The glass is opaque enough that `foreground`, `muted-foreground`, `secondary-foreground` and `destructive` keep at least 4.5:1 when the glass sits over the page background, `muted`, `card`, `accent`, `primary` or the chart colors, in both themes. The build checks these pairs.
-- **Don't stack glass on glass** (a glass card inside a glass panel) and don't place glass with text directly over photos or video; put a solid surface or a scrim between them.
-- **Reduce transparency is respected.** When the person turns it on (`prefers-reduced-transparency: reduce`), every glass surface becomes the solid `glass-solid` color with no blur.
-- Glass shows best when there is color behind it, such as a branded header, charts or imagery. On a plain background it reads as a clean, lifted surface.
+| Utility | Fill | Text stays readable over |
+| --- | --- | --- |
+| `glass` | 60%, `blur(24px) saturate(200%)` | page, card, muted, accent and secondary surfaces (≥4.5:1) |
+| `glass-strong` | 89% / 90% | any surface, including brand and chart colors (≥4.5:1) |
+| `glass-clear` | 12%, white content | media under a 50% `glass-dim` layer, white icons and bold labels (≥3:1, even over white) |
+
+The build checks every pair above in both themes.
+
+- **The rim makes it glass.** `shadow-glass` stacks a bright top rim, a faint bottom rim, a hairline all around and a soft drop shadow. Use it on every glass control and on solid buttons; it composes with the focus ring.
+- **Shapes are soft and concentric:** capsules (`rounded-full`) for controls, `rounded-lg` fields, `rounded-xl` menus and alerts, `rounded-2xl` cards.
+- **Never glass on glass,** never glass with small text directly over media (use `glass-clear` with the dim layer), and never glass for a whole content area.
+- **Scroll edge effect:** a scroll container that runs under a glass bar gets `scroll-edge`, so content fades instead of colliding with the bar.
+- **Glass needs something behind it.** It shines over imagery, charts or a branded header; over a plain page it reads as a light, lifted control.
+- **Accessibility settings win.** With Reduce transparency (`prefers-reduced-transparency`) or Increase contrast (`prefers-contrast: more`), every glass surface becomes solid (`glass-solid`, `glass-clear-solid`) with no blur.
 
 ## States
 

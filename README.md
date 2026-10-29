@@ -31,7 +31,7 @@ npx @aline-aroucha/pui list
 ```
 
 The `pui` CLI (`cli/pui.mjs`, no dependencies) installs from the PUI registry at https://aline-aroucha.github.io/pui/r/ using the shadcn CLI under the hood.
-Fonts (Next.js): `import { Geist, Geist_Mono } from "next/font/google"` and apply the `--font-sans` / `--font-mono` variables on `<html>`.
+Fonts (Next.js): `import { Inter, Geist_Mono } from "next/font/google"` (Inter with `axes: ["opsz"]`) and apply the `--font-sans` / `--font-mono` variables on `<html>`.
 
 The CLI is published on npm as [`@aline-aroucha/pui`](https://www.npmjs.com/package/@aline-aroucha/pui). To release a new version: bump `version` in `package.json`, then `npm publish`.
 
