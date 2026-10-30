@@ -149,6 +149,32 @@
           "    </DialogHeader>\n    {/* fields */}\n    <DialogFooter>\n      <DialogClose asChild>\n        <Button variant=\"ghost\">Cancel</Button>\n      </DialogClose>\n      <Button type=\"submit\">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>"
       }
     },
+    DropdownMenu: {
+      controls: [
+        { name: "subject", type: "text", value: "Q3 sales" },
+        { name: "shortcuts", type: "boolean", value: true },
+        { name: "destructive", type: "boolean", value: true }
+      ],
+      render: function (p) {
+        return h(P.DropdownMenu, null,
+          h(P.DropdownMenuTrigger, null, h(P.Button, { variant: "ghost", size: "icon", "aria-label": "More actions for " + p.subject }, h(P.Icon, { name: "ellipsis-horizontal" }))),
+          h(P.DropdownMenuContent, null,
+            h(P.DropdownMenuItem, null, h(P.Icon, { name: "pencil-square" }), "Edit", p.shortcuts ? h(P.DropdownMenuShortcut, null, "⌘E") : null),
+            h(P.DropdownMenuItem, null, h(P.Icon, { name: "document-duplicate" }), "Duplicate", p.shortcuts ? h(P.DropdownMenuShortcut, null, "⌘D") : null),
+            p.destructive ? h(P.DropdownMenuSeparator) : null,
+            p.destructive ? h(P.DropdownMenuItem, { variant: "destructive" }, h(P.Icon, { name: "trash" }), "Delete") : null))
+      },
+      code: function (p) {
+        var sc = function (k) { return p.shortcuts ? "\n      <DropdownMenuShortcut>⌘" + k + "</DropdownMenuShortcut>" : "" }
+        return 'import { DocumentDuplicateIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid"\n' + imports("button", ["Button"]) +
+          imports("dropdown-menu", ["DropdownMenu", "DropdownMenuContent", "DropdownMenuItem"].concat(p.destructive ? ["DropdownMenuSeparator"] : []).concat(p.shortcuts ? ["DropdownMenuShortcut"] : []).concat(["DropdownMenuTrigger"])) +
+          "<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button variant=\"ghost\" size=\"icon\" aria-label=\"More actions for " + p.subject + "\">\n      <EllipsisHorizontalIcon />\n    </Button>\n  </DropdownMenuTrigger>\n  <DropdownMenuContent>\n" +
+          "    <DropdownMenuItem onSelect={edit}>\n      <PencilSquareIcon />\n      Edit" + sc("E") + "\n    </DropdownMenuItem>\n" +
+          "    <DropdownMenuItem onSelect={duplicate}>\n      <DocumentDuplicateIcon />\n      Duplicate" + sc("D") + "\n    </DropdownMenuItem>\n" +
+          (p.destructive ? "    <DropdownMenuSeparator />\n    <DropdownMenuItem variant=\"destructive\" onSelect={confirmDelete}>\n      <TrashIcon />\n      Delete\n    </DropdownMenuItem>\n" : "") +
+          "  </DropdownMenuContent>\n</DropdownMenu>"
+      }
+    },
     Field: {
       controls: [
         { name: "label", type: "text", value: "Email" },

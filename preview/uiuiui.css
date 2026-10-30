@@ -198,3 +198,24 @@ body { background: var(--background); color: var(--foreground); font-family: var
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .uiuiui-tooltip__content { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+/* DropdownMenu: dense glass list; the focused item takes the brand highlight */
+.uiuiui-menu { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; box-sizing: border-box; min-width: 208px; padding: 4px; display: grid;
+  border-radius: var(--radius-xl); color: var(--popover-foreground); text-align: left; font: 400 14px/20px var(--font-sans);
+  background-color: var(--glass-strong); box-shadow: var(--glass-shadow); -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%); backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  animation: uiuiui-dialog-in .12s ease-out; }
+.uiuiui-menu__item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: var(--radius-lg); cursor: default; outline: none; user-select: none; }
+.uiuiui-menu__item svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+.uiuiui-menu__item:focus { background: var(--primary); color: var(--primary-foreground); }
+.uiuiui-menu__item[data-variant="destructive"] { color: var(--destructive); }
+.uiuiui-menu__item[data-variant="destructive"]:focus { background: var(--destructive); color: var(--destructive-foreground); }
+.uiuiui-menu__item[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+.uiuiui-menu__item--inset { position: relative; padding-left: 32px; }
+.uiuiui-menu__indicator { position: absolute; left: 8px; display: flex; }
+.uiuiui-menu__label { padding: 6px 8px; font-weight: 500; }
+.uiuiui-menu__shortcut { margin-left: auto; font-size: 12px; letter-spacing: .1em; opacity: .8; }
+.uiuiui-menu__separator { height: 1px; margin: 4px -4px; background: var(--border); }
+@media (prefers-reduced-motion: reduce) { .uiuiui-menu { animation: none; } }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .uiuiui-menu { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}

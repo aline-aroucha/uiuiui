@@ -1,9 +1,9 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
   var React = window.React, h = React.createElement;
-  var ICONS = {"check": [{"d": "M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "minus": [{"d": "M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z", "fillRule": null, "clipRule": null}], "chevron-down": [{"d": "M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "exclamation-circle": [{"d": "M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye": [{"d": "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z", "fillRule": null, "clipRule": null}, {"d": "M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye-slash": [{"d": "M3.28 2.22a.75.75 0 0 0-1.06 1.06l10.5 10.5a.75.75 0 1 0 1.06-1.06l-1.322-1.323a7.012 7.012 0 0 0 2.16-3.11.87.87 0 0 0 0-.567A7.003 7.003 0 0 0 4.82 3.76l-1.54-1.54Zm3.196 3.195 1.135 1.136A1.502 1.502 0 0 1 9.45 8.389l1.136 1.135a3 3 0 0 0-4.109-4.109Z", "fillRule": "evenodd", "clipRule": "evenodd"}, {"d": "m7.812 10.994 1.816 1.816A7.003 7.003 0 0 1 1.38 8.28a.87.87 0 0 1 0-.566 6.985 6.985 0 0 1 1.113-2.039l2.513 2.513a3 3 0 0 0 2.806 2.806Z", "fillRule": null, "clipRule": null}], "plus": [{"d": "M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z", "fillRule": null, "clipRule": null}], "play": [{"d": "M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z", "fillRule": null, "clipRule": null}], "x-mark": [{"d": "M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z", "fillRule": null, "clipRule": null}], "pencil-square": [{"d": "M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z", "fillRule": null, "clipRule": null}, {"d": "M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z", "fillRule": null, "clipRule": null}], "arrow-down-tray": [{"d": "M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z", "fillRule": null, "clipRule": null}, {"d": "M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z", "fillRule": null, "clipRule": null}], "trash": [{"d": "M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z", "fillRule": "evenodd", "clipRule": "evenodd"}]};
+  var ICONS = {"check": [{"d": "M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "minus": [{"d": "M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z", "fillRule": null, "clipRule": null}], "chevron-down": [{"d": "M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "exclamation-circle": [{"d": "M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye": [{"d": "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z", "fillRule": null, "clipRule": null}, {"d": "M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye-slash": [{"d": "M3.28 2.22a.75.75 0 0 0-1.06 1.06l10.5 10.5a.75.75 0 1 0 1.06-1.06l-1.322-1.323a7.012 7.012 0 0 0 2.16-3.11.87.87 0 0 0 0-.567A7.003 7.003 0 0 0 4.82 3.76l-1.54-1.54Zm3.196 3.195 1.135 1.136A1.502 1.502 0 0 1 9.45 8.389l1.136 1.135a3 3 0 0 0-4.109-4.109Z", "fillRule": "evenodd", "clipRule": "evenodd"}, {"d": "m7.812 10.994 1.816 1.816A7.003 7.003 0 0 1 1.38 8.28a.87.87 0 0 1 0-.566 6.985 6.985 0 0 1 1.113-2.039l2.513 2.513a3 3 0 0 0 2.806 2.806Z", "fillRule": null, "clipRule": null}], "plus": [{"d": "M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z", "fillRule": null, "clipRule": null}], "play": [{"d": "M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z", "fillRule": null, "clipRule": null}], "x-mark": [{"d": "M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z", "fillRule": null, "clipRule": null}], "pencil-square": [{"d": "M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z", "fillRule": null, "clipRule": null}, {"d": "M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z", "fillRule": null, "clipRule": null}], "arrow-down-tray": [{"d": "M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z", "fillRule": null, "clipRule": null}, {"d": "M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z", "fillRule": null, "clipRule": null}], "trash": [{"d": "M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "ellipsis-horizontal": [{"d": "M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM6.5 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM12.5 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z", "fillRule": null, "clipRule": null}], "document-duplicate": [{"d": "M5.5 3.5A1.5 1.5 0 0 1 7 2h2.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 1 .439 1.061V9.5A1.5 1.5 0 0 1 12 11V8.621a3 3 0 0 0-.879-2.121L9 4.379A3 3 0 0 0 6.879 3.5H5.5Z", "fillRule": null, "clipRule": null}, {"d": "M4 5a1.5 1.5 0 0 0-1.5 1.5v6A1.5 1.5 0 0 0 4 14h5a1.5 1.5 0 0 0 1.5-1.5V8.621a1.5 1.5 0 0 0-.44-1.06L7.94 5.439A1.5 1.5 0 0 0 6.878 5H4Z", "fillRule": null, "clipRule": null}], "chevron-right": [{"d": "M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z", "fillRule": "evenodd", "clipRule": "evenodd"}]};
   function Icon(p) {
     return h('svg', { viewBox: '0 0 16 16', fill: 'currentColor', 'aria-hidden': true, 'data-slot': 'icon', className: p.className },
       ICONS[p.name].map(function (d, i) { return h('path', { key: i, d: d.d, fillRule: d.fillRule || undefined, clipRule: d.clipRule || undefined }); }));
@@ -251,5 +251,62 @@
   function TooltipContent(p) { return p.children; }
   function TooltipProvider(p) { return p.children; }
   Object.assign(api, { Tooltip: Tooltip, TooltipTrigger: TooltipTrigger, TooltipContent: TooltipContent, TooltipProvider: TooltipProvider });
+
+  // DropdownMenu: an ARIA menu button. Enter/Space/ArrowDown open on the first item, arrows move, Home/End jump,
+  // Enter/Space run the item, Esc closes, Tab leaves; focus goes back to the trigger
+  var MenuCtx = React.createContext(null);
+  function DropdownMenu(p) {
+    var c = useControlled(p.open, !!p.defaultOpen, p.onOpenChange), root = React.useRef(null), trigger = React.useRef(null);
+    var id = 'menu-' + React.useId().replace(/:/g, '');
+    React.useEffect(function () {
+      if (!c[0]) return;
+      var away = function (e) { if (root.current && !root.current.contains(e.target)) c[1](false); };
+      document.addEventListener('mousedown', away); return function () { document.removeEventListener('mousedown', away); };
+    }, [c[0]]);
+    var close = function (refocus) { c[1](false); if (refocus) { var t = trigger.current && trigger.current.querySelector('button'); if (t) t.focus(); } };
+    return h(MenuCtx.Provider, { value: { open: c[0], setOpen: c[1], close: close, id: id, trigger: trigger } }, h('span', { ref: root, className: 'uiuiui-popover' }, p.children));
+  }
+  function DropdownMenuTrigger(p) {
+    var c = React.useContext(MenuCtx), child = React.Children.only(p.children);
+    return h('span', { ref: c.trigger, style: { display: 'contents' } }, React.cloneElement(child, { id: c.id + '-trigger', 'aria-haspopup': 'menu', 'aria-expanded': c.open,
+      'aria-controls': c.open ? c.id : undefined, onClick: function () { c.setOpen(!c.open); },
+      onKeyDown: function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); c.setOpen(true); } } }));
+  }
+  function menuItems(el) { return Array.prototype.filter.call(el.querySelectorAll('[role^="menuitem"]'), function (i) { return i.getAttribute('aria-disabled') !== 'true'; }); }
+  function DropdownMenuContent(p) {
+    var c = React.useContext(MenuCtx), ref = React.useRef(null);
+    React.useEffect(function () { if (c.open && ref.current) { var f = menuItems(ref.current).at(0); if (f) f.focus(); } }, [c.open]);
+    if (!c.open) return null;
+    return h('div', { ref: ref, id: c.id, role: 'menu', 'aria-labelledby': c.id + '-trigger', className: cx('uiuiui-menu', p.className),
+      onKeyDown: function (e) {
+        var items = menuItems(ref.current), i = items.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown') { e.preventDefault(); items.at((i + 1) % items.length).focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); items.at((i - 1 + items.length) % items.length).focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); items.at(0).focus(); }
+        else if (e.key === 'End') { e.preventDefault(); items.at(-1).focus(); }
+        else if (e.key === 'Escape') { e.preventDefault(); c.close(true); }
+        else if (e.key === 'Tab') { c.close(false); }
+      } }, p.children);
+  }
+  function DropdownMenuItem(p) {
+    var c = React.useContext(MenuCtx);
+    var run = function () { if (p.disabled) return; if (p.onSelect) p.onSelect(); c.close(true); };
+    return h('div', { role: 'menuitem', tabIndex: -1, 'aria-disabled': p.disabled || undefined, 'data-variant': p.variant || 'default', className: cx('uiuiui-menu__item', p.className),
+      onClick: run, onMouseEnter: function (e) { e.currentTarget.focus(); },
+      onKeyDown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); run(); } } }, p.children);
+  }
+  function DropdownMenuCheckboxItem(p) {
+    var c = React.useContext(MenuCtx), v = useControlled(p.checked, !!p.defaultChecked, p.onCheckedChange);
+    var run = function () { v[1](!v[0]); c.close(true); };
+    return h('div', { role: 'menuitemcheckbox', 'aria-checked': v[0], tabIndex: -1, className: 'uiuiui-menu__item uiuiui-menu__item--inset', onClick: run, onMouseEnter: function (e) { e.currentTarget.focus(); },
+      onKeyDown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); run(); } } },
+      h('span', { className: 'uiuiui-menu__indicator' }, v[0] ? h(Icon, { name: 'check' }) : null), p.children);
+  }
+  var DropdownMenuLabel = slot('div', 'uiuiui-menu__label'), DropdownMenuShortcut = slot('span', 'uiuiui-menu__shortcut');
+  function DropdownMenuSeparator() { return h('div', { role: 'separator', className: 'uiuiui-menu__separator' }); }
+  function DropdownMenuGroup(p) { return h('div', { role: 'group' }, p.children); }
+  Object.assign(api, { DropdownMenu: DropdownMenu, DropdownMenuTrigger: DropdownMenuTrigger, DropdownMenuContent: DropdownMenuContent, DropdownMenuItem: DropdownMenuItem,
+    DropdownMenuCheckboxItem: DropdownMenuCheckboxItem, DropdownMenuLabel: DropdownMenuLabel, DropdownMenuShortcut: DropdownMenuShortcut,
+    DropdownMenuSeparator: DropdownMenuSeparator, DropdownMenuGroup: DropdownMenuGroup });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

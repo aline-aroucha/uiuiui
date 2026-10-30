@@ -482,6 +482,132 @@
       ]
     }
   },
+  "DropdownMenu": {
+    "added": "2026-10-30",
+    "description": "A list of actions that opens from a button, for commands that don't fit on the screen at once.",
+    "related": [
+      "Button",
+      "AlertDialog",
+      "Popover"
+    ],
+    "anatomy": "<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button size=\"icon\" aria-label />\n  </DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuLabel />\n    <DropdownMenuGroup>\n      <DropdownMenuItem>\n        <Icon />\n        <DropdownMenuShortcut />\n      </DropdownMenuItem>\n    </DropdownMenuGroup>\n    <DropdownMenuSeparator />\n    <DropdownMenuCheckboxItem />\n    <DropdownMenuRadioGroup>\n      <DropdownMenuRadioItem />\n    </DropdownMenuRadioGroup>\n    <DropdownMenuSub>\n      <DropdownMenuSubTrigger />\n      <DropdownMenuSubContent />\n    </DropdownMenuSub>\n  </DropdownMenuContent>\n</DropdownMenu>",
+    "parts": {
+      "DropdownMenu": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "description": "Controlled open state."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "description": "Runs when it opens or closes."
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "default": "true",
+          "description": "While open, the page behind can't be scrolled or reached with the pointer."
+        }
+      ],
+      "DropdownMenuTrigger": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use your Button as the trigger; it gets aria-haspopup=\"menu\" and aria-expanded. Don't give it your own id: the menu is named through the id the trigger is given."
+        }
+      ],
+      "DropdownMenuContent": [
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "default": "\"start\"",
+          "description": "Alignment with the trigger."
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "default": "4",
+          "description": "Gap to the trigger, in px."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "default": "false",
+          "description": "Arrow keys wrap from the last item to the first."
+        }
+      ],
+      "DropdownMenuItem": [
+        {
+          "name": "onSelect",
+          "type": "(event: Event) => void",
+          "description": "Runs the action; the menu then closes."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"destructive\"",
+          "default": "\"default\"",
+          "description": "Destructive items show in red and take the red highlight."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Shown dimmed and skipped by the arrow keys."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "default": "false",
+          "description": "Aligns an item without icon with items that have one."
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "description": "Text for typeahead when the item's content isn't plain text."
+        }
+      ],
+      "DropdownMenuCheckboxItem": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "description": "Exposed as aria-checked on a menuitemcheckbox."
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "(checked: boolean) => void",
+          "description": "Runs when it is toggled."
+        }
+      ],
+      "DropdownMenuRadioGroup": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "The selected DropdownMenuRadioItem."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: string) => void",
+          "description": "Runs when another option is chosen."
+        }
+      ],
+      "DropdownMenuShortcut": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The shortcut as shown, e.g. ⌘D. Wire the shortcut itself in your app."
+        }
+      ],
+      "DropdownMenuLabel": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Names the group below it; not focusable."
+        }
+      ]
+    }
+  },
   "Field": {
     "description": "Ties a label, instructions and an error message to one form control.",
     "related": [
