@@ -563,6 +563,24 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "UIUIUI Tooltip. Docs: https://aline-aroucha.github.io/uiuiui/components/tooltip.html",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

@@ -1036,5 +1036,70 @@
         }
       ]
     }
+  },
+  "Tooltip": {
+    "added": "2026-10-30",
+    "description": "Shows the name of a control, usually an icon-only button, while the pointer rests on it or it has keyboard focus.",
+    "related": [
+      "Button",
+      "Popover"
+    ],
+    "anatomy": "<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild>\n      <Button size=\"icon\" aria-label />\n    </TooltipTrigger>\n    <TooltipContent />\n  </Tooltip>\n</TooltipProvider>",
+    "parts": {
+      "TooltipProvider": [
+        {
+          "name": "delayDuration",
+          "type": "number",
+          "default": "0",
+          "description": "Milliseconds before a tooltip opens on hover. Focus opens it at once."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Your app, or the part of it that uses tooltips."
+        }
+      ],
+      "Tooltip": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "description": "Controlled open state; leave it uncontrolled in most cases."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "description": "Runs when it shows or hides."
+        }
+      ],
+      "TooltipTrigger": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use your control as the trigger; it gets aria-describedby while the tooltip shows."
+        }
+      ],
+      "TooltipContent": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "A few words naming the control, the same as its aria-label."
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "default": "\"top\"",
+          "description": "Preferred side; it flips when there is no room."
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "default": "4",
+          "description": "Gap to the control, in px."
+        }
+      ]
+    }
   }
 }

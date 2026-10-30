@@ -325,6 +325,21 @@
         return imports("textarea", ["Textarea"]) + 'import { Field, FieldControl, FieldLabel } from "@/components/ui/field"\n\n' +
           tag("Field", {}, "  <FieldLabel>Notes</FieldLabel>\n" + tag("FieldControl", {}, tag("Textarea", { placeholder: p.placeholder, disabled: p.disabled }, undefined, "    "), "  "))
       }
+    },
+    Tooltip: {
+      controls: [
+        { name: "label", type: "text", value: "Download CSV" },
+        { name: "icon", type: "select", options: ["arrow-down-tray", "pencil-square", "trash"], value: "arrow-down-tray" }
+      ],
+      render: function (p) {
+        return h(P.Tooltip, null, h(P.TooltipTrigger, null, h(P.Button, { variant: "ghost", size: "icon", "aria-label": p.label }, h(P.Icon, { name: p.icon }))),
+          h(P.TooltipContent, null, p.label))
+      },
+      code: function (p) {
+        var icon = p.icon.replace(/(^|-)([a-z])/g, function (_, __, c) { return c.toUpperCase() }) + "Icon"
+        return 'import { ' + icon + ' } from "@heroicons/react/16/solid"\n' + imports("button", ["Button"]) + imports("tooltip", ["Tooltip", "TooltipContent", "TooltipTrigger"]) +
+          "// TooltipProvider wraps the app once\n<Tooltip>\n  <TooltipTrigger asChild>\n    <Button variant=\"ghost\" size=\"icon\" aria-label=\"" + p.label + "\">\n      <" + icon + " />\n    </Button>\n  </TooltipTrigger>\n  <TooltipContent>" + p.label + "</TooltipContent>\n</Tooltip>"
+      }
     }
   }
 

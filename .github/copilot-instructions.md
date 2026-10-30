@@ -42,6 +42,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Short task that interrupts the flow | `<Dialog>` with a title and Cancel |
 | Irreversible action | `<Button variant="destructive">` inside an `AlertDialog` |
 | Extra content or quick controls next to a button | `<Popover>` (opens on click, never on hover) |
+| Name of an icon-only button | `<Tooltip>` with the same words as its `aria-label` |
 | Status ok / pending / error | `<Badge variant="success" \| "warning" \| "destructive">` |
 | Tabular data | `<Table>` inside a `Card` |
 | Persistent message | `<Alert>` |
