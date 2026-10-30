@@ -249,3 +249,13 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-spinner svg { width: 16px; height: 16px; fill: currentColor; }
 @keyframes uiuiui-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .uiuiui-progress__indicator, .uiuiui-spinner { animation: none !important; transition: none; } }
+
+/* RadioGroup: Checkbox's field look, round */
+.uiuiui-radio-group { display: grid; gap: 12px; }
+.uiuiui-radio { box-sizing: border-box; width: 16px; height: 16px; padding: 0; flex-shrink: 0; display: inline-grid; place-items: center; border: 1px solid var(--input);
+  border-radius: var(--radius-full); background: var(--background); cursor: pointer; box-shadow: var(--shadow-xs); }
+.uiuiui-radio:hover { border-color: var(--primary); }
+.uiuiui-radio:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.uiuiui-radio:disabled { opacity: .5; cursor: not-allowed; }
+.uiuiui-radio__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--primary); }
+.uiuiui-radio-group[aria-invalid="true"] .uiuiui-radio { border-color: var(--destructive); }

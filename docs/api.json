@@ -897,6 +897,84 @@
       ]
     }
   },
+  "RadioGroup": {
+    "added": "2026-10-30",
+    "description": "Picks exactly one option from a short list where every option stays visible.",
+    "related": [
+      "Checkbox",
+      "Select",
+      "Field"
+    ],
+    "anatomy": "<span id=\"speed-label\">Delivery speed</span>\n<RadioGroup aria-labelledby=\"speed-label\">\n  <div>\n    <RadioGroupItem id value />\n    <Label htmlFor />\n  </div>\n</RadioGroup>",
+    "parts": {
+      "RadioGroup": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "description": "Initial value when uncontrolled; leave it out to start with none selected."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: string) => void",
+          "description": "Runs when the selection changes (click, tap, arrows, Space)."
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": true,
+          "description": "Id of the visible question that names the group (or aria-label)."
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\"",
+          "default": "\"vertical\"",
+          "description": "Layout; arrow keys work in both directions either way."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Disables every option."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": "One option must be chosen before submitting."
+        },
+        {
+          "name": "aria-invalid",
+          "type": "boolean",
+          "description": "Set after validation finds a problem; the options take the destructive border."
+        }
+      ],
+      "RadioGroupItem": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "The value this option selects."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Ties the option to its Label (htmlFor)."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Skipped by the arrow keys."
+        }
+      ]
+    }
+  },
   "Select": {
     "description": "Picks one option from a compact list.",
     "related": [

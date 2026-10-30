@@ -480,6 +480,24 @@
       ]
     },
     {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio group",
+      "description": "UIUIUI Radio-group. Docs: https://aline-aroucha.github.io/uiuiui/components/radio-group.html",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",

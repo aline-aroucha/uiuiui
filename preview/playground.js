@@ -273,6 +273,26 @@
         return imports("progress", ["Progress"]) + '<span id="upload-label">' + p.label + "</span>\n<Progress" + v + ' aria-labelledby="upload-label" />'
       }
     },
+    RadioGroup: {
+      controls: [
+        { name: "label", type: "text", value: "Delivery speed" },
+        { name: "defaultValue", type: "select", options: ["standard", "express", "overnight", "none"], value: "standard" },
+        { name: "disabled", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        var opt = function (v, l) { return h("div", { className: "uiuiui-inline", key: v }, h(P.RadioGroupItem, { value: v, id: "vx-speed-" + v, disabled: p.disabled }), h(P.Label, { htmlFor: "vx-speed-" + v }, l)) }
+        return h(P.Card, null, h(P.CardContent, { style: { display: "grid", gap: 12 } },
+          h("div", { id: "vx-speed-label", className: "uiuiui-label" }, p.label),
+          h(P.RadioGroup, { key: p.defaultValue, defaultValue: p.defaultValue === "none" ? undefined : p.defaultValue, "aria-labelledby": "vx-speed-label" },
+            opt("standard", "Standard"), opt("express", "Express"), opt("overnight", "Overnight"))))
+      },
+      code: function (p) {
+        var item = function (v, l) { return '  <div className="flex items-center gap-2">\n    <RadioGroupItem value="' + v + '" id="' + v + '"' + (p.disabled ? " disabled" : "") + ' />\n    <Label htmlFor="' + v + '">' + l + "</Label>\n  </div>" }
+        return imports("label", ["Label"]) + imports("radio-group", ["RadioGroup", "RadioGroupItem"]) +
+          '<span id="speed-label" className="text-sm font-medium">' + p.label + "</span>\n<RadioGroup" + (p.defaultValue === "none" ? "" : ' defaultValue="' + p.defaultValue + '"') + ' aria-labelledby="speed-label">\n' +
+          [item("standard", "Standard"), item("express", "Express"), item("overnight", "Overnight")].join("\n") + "\n</RadioGroup>"
+      }
+    },
     Select: {
       controls: [
         { name: "placeholder", type: "text", value: "Choose a country" },

@@ -52,6 +52,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Short wait in a button or a row | `<Spinner label="…">`, or `aria-hidden` next to visible text |
 | Setting with immediate effect | `<Switch>` |
 | Option saved with the form | `<Checkbox>` |
+| One choice among 2–5 visible options | `<RadioGroup>` named by its question |
 | Any form field (label, help, error) | `<Field>` + `FieldLabel`, `FieldControl`, `FieldDescription`, `FieldError` |
 | Password | `<PasswordInput>` inside a `Field` |
 

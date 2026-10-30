@@ -25,6 +25,7 @@
 - [PasswordInput](docs/components/password-input.md)
 - [Popover](docs/components/popover.md)
 - [Progress](docs/components/progress.md)
+- [RadioGroup](docs/components/radio-group.md)
 - [Select](docs/components/select.md)
 - [Separator](docs/components/separator.md)
 - [Skeleton](docs/components/skeleton.md)

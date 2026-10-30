@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -361,5 +361,30 @@
       className: cx('uiuiui-spinner', p.className) }, h(Icon, { name: 'arrow-path' }));
   }
   Object.assign(api, { Progress: Progress, Spinner: Spinner });
+
+  // RadioGroup: one Tab stop (the checked option, or the first); arrows move and select; Space selects
+  var RadioCtx = React.createContext(null);
+  function RadioGroup(p) {
+    var c = useControlled(p.value, p.defaultValue, p.onValueChange), ref = React.useRef(null);
+    var move = function (e) {
+      var keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+      if (!(e.key in keys)) return;
+      e.preventDefault();
+      var items = Array.prototype.filter.call(ref.current.querySelectorAll('[role=radio]'), function (i) { return !i.disabled; });
+      var next = items.at((items.indexOf(document.activeElement) + keys[e.key] + items.length) % items.length);
+      next.focus(); c[1](next.getAttribute('data-value'));
+    };
+    return h(RadioCtx.Provider, { value: { value: c[0], set: c[1], first: React.useRef(null) } },
+      h('div', { ref: ref, role: 'radiogroup', 'aria-labelledby': p['aria-labelledby'], 'aria-label': p['aria-label'], 'aria-describedby': p['aria-describedby'],
+        'aria-invalid': p['aria-invalid'], className: cx('uiuiui-radio-group', p.className), onKeyDown: move }, p.children));
+  }
+  function RadioGroupItem(p) {
+    var c = React.useContext(RadioCtx), on = c.value === p.value;
+    var reachable = on || (c.value == null && c.first.current == null && !p.disabled ? (c.first.current = p.value, true) : c.value == null && c.first.current === p.value);
+    return h('button', { type: 'button', role: 'radio', id: p.id, 'aria-checked': on, 'data-state': on ? 'checked' : 'unchecked', 'data-value': p.value, disabled: p.disabled,
+      tabIndex: reachable ? 0 : -1, className: 'uiuiui-radio', onClick: function () { c.set(p.value); },
+      onKeyDown: function (e) { if (e.key === ' ') { e.preventDefault(); c.set(p.value); } } }, on ? h('span', { className: 'uiuiui-radio__dot' }) : null);
+  }
+  Object.assign(api, { RadioGroup: RadioGroup, RadioGroupItem: RadioGroupItem });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();
