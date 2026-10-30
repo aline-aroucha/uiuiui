@@ -1163,6 +1163,89 @@
       ]
     }
   },
+  "Toast": {
+    "added": "2026-10-30",
+    "description": "A short message about the result of an action, shown in a corner without interrupting the task. Built on Sonner.",
+    "related": [
+      "Alert",
+      "AlertDialog",
+      "Button"
+    ],
+    "anatomy": "<Toaster />\n\ntoast(\"Changes saved\", {\n  description,\n  action: { label: \"Undo\", onClick },\n})",
+    "parts": {
+      "Toaster": [
+        {
+          "name": "position",
+          "type": "\"top-left\" | \"top-center\" | \"top-right\" | \"bottom-left\" | \"bottom-center\" | \"bottom-right\"",
+          "default": "\"bottom-right\"",
+          "description": "Corner where toasts stack. Keep it clear of the main actions and the on-screen keyboard."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": "6000",
+          "description": "Milliseconds before a toast leaves; the timer pauses on hover and focus."
+        },
+        {
+          "name": "closeButton",
+          "type": "boolean",
+          "default": "false",
+          "description": "Adds a named close button to every toast."
+        },
+        {
+          "name": "hotkey",
+          "type": "string[]",
+          "default": "[\"altKey\", \"KeyT\"]",
+          "description": "Moves focus to the notifications region."
+        }
+      ],
+      "toast()": [
+        {
+          "name": "message",
+          "type": "ReactNode",
+          "required": true,
+          "description": "One short sentence: what happened (\"Changes saved\")."
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "One more sentence of detail."
+        },
+        {
+          "name": "action",
+          "type": "{ label: string; onClick: () => void }",
+          "description": "One follow-up, such as Undo. Give the toast a longer duration."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "description": "Overrides the Toaster duration for this message; Infinity keeps it until closed."
+        }
+      ],
+      "toast.success / info / warning / error": [
+        {
+          "name": "message",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Adds the status icon; the words still say what happened."
+        }
+      ],
+      "toast.promise": [
+        {
+          "name": "promise",
+          "type": "Promise<T>",
+          "required": true,
+          "description": "Shows loading, then success or error, in the same toast."
+        },
+        {
+          "name": "options",
+          "type": "{ loading; success; error }",
+          "required": true,
+          "description": "The message for each state."
+        }
+      ]
+    }
+  },
   "Tooltip": {
     "added": "2026-10-30",
     "description": "Shows the name of a control, usually an icon-only button, while the pointer rests on it or it has keyboard focus.",

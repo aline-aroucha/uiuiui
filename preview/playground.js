@@ -352,6 +352,30 @@
           tag("Field", {}, "  <FieldLabel>Notes</FieldLabel>\n" + tag("FieldControl", {}, tag("Textarea", { placeholder: p.placeholder, disabled: p.disabled }, undefined, "    "), "  "))
       }
     },
+    Toast: {
+      controls: [
+        { name: "message", type: "text", value: "Report archived" },
+        { name: "description", type: "text", value: "" },
+        { name: "type", type: "select", options: ["default", "success", "info", "warning", "error"], value: "default" },
+        { name: "action", type: "boolean", value: true }
+      ],
+      render: function (p) {
+        var show = function () {
+          var opts = { description: p.description || undefined }
+          if (p.action) { opts.action = { label: "Undo", onClick: function () { P.toast("Report restored") } }; opts.duration = 10000 }
+          if (p.type === "default") P.toast(p.message, opts); else P.toast[p.type](p.message, opts)
+        }
+        return h("div", null, h(P.Toaster), h(P.Button, { variant: "outline", onClick: show }, "Show toast"))
+      },
+      code: function (p) {
+        var fn = p.type === "default" ? "toast" : "toast." + p.type
+        var opts = []
+        if (p.description) opts.push('description: "' + p.description + '"')
+        if (p.action) opts.push('action: { label: "Undo", onClick: restore }', "duration: 10000")
+        return imports("toast", ["Toaster", "toast"]) + "// Once, near the root of the app\n<Toaster />\n\n// After the action\n" + fn + '("' + p.message + '"' +
+          (opts.length ? ", {\n  " + opts.join(",\n  ") + ",\n}" : "") + ")"
+      }
+    },
     Tooltip: {
       controls: [
         { name: "label", type: "text", value: "Download CSV" },

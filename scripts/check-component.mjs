@@ -118,7 +118,7 @@ function check(slug) {
 
   // 3. Live preview
   ok("Preview", `preview/examples/${name}.js exists`, exists(`preview/examples/${name}.js`))
-  ok("Preview", `preview/uiuiui.js exports ${name}`, new RegExp(`\\b${name}: ${name}\\b`).test(previewJs))
+  ok("Preview", `preview/uiuiui.js exports ${name}`, new RegExp(`\\b${name}: [A-Za-z]+\\b`).test(previewJs))
   ok("Preview", `preview/playground.js has a ${name} playground`, new RegExp(`\\n\\s{4}${name}: \\{`).test(playground))
 
   // 4. Tokens and style

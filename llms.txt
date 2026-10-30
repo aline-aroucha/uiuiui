@@ -31,4 +31,5 @@
 - [Table](docs/components/table.md)
 - [Tabs](docs/components/tabs.md)
 - [Textarea](docs/components/textarea.md)
+- [Toast](docs/components/toast.md)
 - [Tooltip](docs/components/tooltip.md)
