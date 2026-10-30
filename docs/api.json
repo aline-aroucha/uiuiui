@@ -1,4 +1,76 @@
 {
+  "Accordion": {
+    "description": "Sections that open and close under their titles; each title is a heading with a button.",
+    "anatomy": "<Accordion type collapsible defaultValue>\n  <AccordionItem value>\n    <AccordionTrigger level />\n    <AccordionContent />\n  </AccordionItem>\n</Accordion>",
+    "parts": {
+      "Accordion": [
+        {
+          "name": "type",
+          "type": "\"single\" | \"multiple\"",
+          "description": "One section open at a time, or any number."
+        },
+        {
+          "name": "collapsible",
+          "type": "boolean",
+          "default": "false",
+          "description": "With type=\"single\", lets the open section be closed too. Recommended."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | string[]",
+          "description": "Section(s) open at first: a string for single, an array for multiple."
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "description": "Open section(s), when you control the state."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value) => void",
+          "description": "Called when a section opens or closes."
+        }
+      ],
+      "AccordionItem": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Identifies the section."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "The section can't be opened or closed."
+        }
+      ],
+      "AccordionTrigger": [
+        {
+          "name": "level",
+          "type": "2 | 3 | 4 | 5 | 6",
+          "default": "3",
+          "description": "Heading level of the title, to fit the page outline."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The section title; says exactly what the section holds."
+        }
+      ],
+      "AccordionContent": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The section body, removed from the page while closed."
+        }
+      ]
+    },
+    "related": [
+      "Tabs",
+      "Card"
+    ],
+    "added": "2026-10-30"
+  },
   "Alert": {
     "description": "Shows a persistent message inside the page, announced by urgency.",
     "related": [
@@ -231,6 +303,59 @@
         }
       ]
     }
+  },
+  "Breadcrumb": {
+    "description": "Shows where the page sits in the hierarchy and links back to the levels above it.",
+    "anatomy": "<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href />\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage />\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>",
+    "parts": {
+      "Breadcrumb": [
+        {
+          "name": "aria-label",
+          "type": "string",
+          "default": "\"Breadcrumb\"",
+          "description": "Name of the navigation landmark."
+        }
+      ],
+      "BreadcrumbLink": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "Address of a level above; the text matches that page's title."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render your router's link (e.g. Next.js Link) with the breadcrumb styles."
+        }
+      ],
+      "BreadcrumbPage": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Title of the current page; text with aria-current=\"page\", not a link."
+        }
+      ],
+      "BreadcrumbSeparator": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Another separator icon; the default is a Heroicons chevron. Always hidden from screen readers."
+        }
+      ],
+      "BreadcrumbEllipsis": [
+        {
+          "name": "className",
+          "type": "string",
+          "description": "Draws the collapsed levels; put it in a DropdownMenuTrigger button named \"Show 2 more levels\"."
+        }
+      ]
+    },
+    "related": [
+      "DropdownMenu",
+      "Tabs"
+    ],
+    "added": "2026-10-30"
   },
   "Button": {
     "description": "Triggers an action on the current screen.",

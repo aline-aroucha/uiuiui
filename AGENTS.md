@@ -46,6 +46,8 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | More actions on an item | `<DropdownMenu>` on a button named for the item ("More actions for Q3 sales") |
 | Status ok / pending / error | `<Badge variant="success" \| "warning" \| "destructive">` |
 | Tabular data | `<Table>` inside a `Card` |
+| Where the page sits in the hierarchy | `<Breadcrumb>` with links to the levels above and `BreadcrumbPage` last |
+| Optional sections opened on demand (FAQ, settings groups) | `<Accordion>` with titles at the right heading level |
 | Persistent message | `<Alert>` |
 | Feedback after an action | `toast()` from `@/components/ui/toast` (Sonner), never for critical errors |
 | Wait with a known total, or a long one | `<Progress>` named by its label (no `value` = indeterminate) |

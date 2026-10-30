@@ -204,6 +204,25 @@
       ]
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "UIUIUI Accordion. Docs: https://aline-aroucha.github.io/uiuiui/components/accordion.html",
+      "dependencies": [
+        "@heroicons/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
@@ -273,6 +292,25 @@
       "files": [
         {
           "path": "registry/uiuiui/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "UIUIUI Breadcrumb. Docs: https://aline-aroucha.github.io/uiuiui/components/breadcrumb.html",
+      "dependencies": [
+        "@heroicons/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/breadcrumb.tsx",
           "type": "registry:ui"
         }
       ]

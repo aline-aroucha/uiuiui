@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"},{"name":"Breadcrumb"},{"name":"Accordion"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -614,5 +614,48 @@
       h('span', { role: 'status', className: 'sr-only' }, ann[0]));
   }
   Object.assign(api, { FileUpload: FileUpload });
+
+  // Breadcrumb: a named nav landmark with an ordered list; separators are hidden; the current page is text with aria-current
+  function Breadcrumb(p) { return h('nav', Object.assign({ 'aria-label': 'Breadcrumb' }, omit(p, ['className']), { className: cx('uiuiui-breadcrumb', p.className) })); }
+  var BreadcrumbList = slot('ol', 'uiuiui-breadcrumb__list');
+  var BreadcrumbItem = slot('li', 'uiuiui-breadcrumb__item');
+  var BreadcrumbLink = slot('a', 'uiuiui-breadcrumb__link');
+  function BreadcrumbPage(p) { return h('span', Object.assign({ 'aria-current': 'page' }, omit(p, ['className']), { className: cx('uiuiui-breadcrumb__page', p.className) })); }
+  function BreadcrumbSeparator(p) { return h('li', { role: 'presentation', 'aria-hidden': true, className: cx('uiuiui-breadcrumb__separator', p.className) }, p.children || h(Icon, { name: 'chevron-right' })); }
+  function BreadcrumbEllipsis(p) { return h('span', { role: 'presentation', 'aria-hidden': true, className: cx('uiuiui-breadcrumb__ellipsis', p.className) }, h(Icon, { name: 'ellipsis-horizontal' })); }
+  Object.assign(api, { Breadcrumb: Breadcrumb, BreadcrumbList: BreadcrumbList, BreadcrumbItem: BreadcrumbItem, BreadcrumbLink: BreadcrumbLink,
+    BreadcrumbPage: BreadcrumbPage, BreadcrumbSeparator: BreadcrumbSeparator, BreadcrumbEllipsis: BreadcrumbEllipsis });
+
+  // Accordion: each title is a heading with a button (aria-expanded, aria-controls); closed panels are hidden, so they take no focus
+  var AccordionCtx = React.createContext(null), AccordionItemCtx = React.createContext(null);
+  function Accordion(p) {
+    var multiple = p.type === 'multiple', c = useControlled(p.value, p.defaultValue != null ? p.defaultValue : (multiple ? [] : ''), p.onValueChange);
+    return h(AccordionCtx.Provider, { value: { multiple: multiple, collapsible: p.collapsible, value: c[0], set: c[1] } },
+      h('div', { className: cx('uiuiui-accordion', p.className) }, p.children));
+  }
+  function AccordionItem(p) {
+    var a = React.useContext(AccordionCtx), id = React.useId();
+    var open = a.multiple ? a.value.indexOf(p.value) >= 0 : a.value === p.value;
+    var locked = open && !a.multiple && !a.collapsible;
+    var toggle = function () {
+      if (a.multiple) a.set(open ? a.value.filter(function (v) { return v !== p.value; }) : a.value.concat([p.value]));
+      else if (!locked) a.set(open ? '' : p.value);
+    };
+    return h(AccordionItemCtx.Provider, { value: { open: open, locked: locked, toggle: toggle, id: id, disabled: p.disabled } },
+      h('div', { 'data-state': open ? 'open' : 'closed', className: cx('uiuiui-accordion__item', p.className) }, p.children));
+  }
+  function AccordionTrigger(p) {
+    var i = React.useContext(AccordionItemCtx);
+    return h('h' + (p.level || 3), { className: 'uiuiui-accordion__heading' },
+      h('button', { type: 'button', id: i.id + 'trigger', 'aria-expanded': i.open, 'aria-controls': i.id + 'panel', 'aria-disabled': i.locked || undefined,
+        disabled: i.disabled, 'data-state': i.open ? 'open' : 'closed', className: cx('uiuiui-accordion__trigger', p.className), onClick: i.toggle },
+        h('span', null, p.children), h(Icon, { name: 'chevron-down' })));
+  }
+  function AccordionContent(p) {
+    var i = React.useContext(AccordionItemCtx);
+    return h('div', { id: i.id + 'panel', role: 'region', 'aria-labelledby': i.id + 'trigger', hidden: !i.open, className: 'uiuiui-accordion__content' },
+      h('div', { className: cx('uiuiui-accordion__body', p.className) }, p.children));
+  }
+  Object.assign(api, { Accordion: Accordion, AccordionItem: AccordionItem, AccordionTrigger: AccordionTrigger, AccordionContent: AccordionContent });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

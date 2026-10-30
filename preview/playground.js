@@ -46,6 +46,29 @@
 
   var sizes = ["sm", "default", "lg"]
   var configs = {
+    Accordion: {
+      controls: [
+        { name: "type", type: "select", options: ["single", "multiple"], value: "single" },
+        { name: "collapsible", type: "boolean", value: true },
+        { name: "level", type: "select", options: ["2", "3", "4"], value: "2" }
+      ],
+      render: function (p) {
+        var lvl = Number(p.level)
+        return h(P.Card, { style: { width: "100%", maxWidth: 440 } }, h(P.CardContent, null,
+          h(P.Accordion, { key: p.type + p.collapsible, type: p.type, collapsible: p.collapsible, defaultValue: p.type === "single" ? "methods" : ["methods"] },
+            h(P.AccordionItem, { value: "methods" }, h(P.AccordionTrigger, { level: lvl }, "Which payment methods can I use?"),
+              h(P.AccordionContent, null, "Cards, bank transfer and, on yearly plans, invoices paid within 30 days.")),
+            h(P.AccordionItem, { value: "currency" }, h(P.AccordionTrigger, { level: lvl }, "Can I pay in another currency?"),
+              h(P.AccordionContent, null, "Yes. Choose the currency in Billing; prices are converted on the day you pay.")))))
+      },
+      code: function (p) {
+        var lvl = p.level !== "3" ? " level={" + p.level + "}" : ""
+        return imports("accordion", ["Accordion", "AccordionContent", "AccordionItem", "AccordionTrigger"]) +
+          '<Accordion type="' + p.type + '"' + (p.type === "single" && p.collapsible ? " collapsible" : "") + " defaultValue=" + (p.type === "single" ? '"methods"' : '{["methods"]}') + ">\n" +
+          '  <AccordionItem value="methods">\n    <AccordionTrigger' + lvl + ">Which payment methods can I use?</AccordionTrigger>\n    <AccordionContent>Cards, bank transfer and, on yearly plans, invoices paid within 30 days.</AccordionContent>\n  </AccordionItem>\n" +
+          '  <AccordionItem value="currency">\n    <AccordionTrigger' + lvl + ">Can I pay in another currency?</AccordionTrigger>\n    <AccordionContent>Yes. Choose the currency in Billing; prices are converted on the day you pay.</AccordionContent>\n  </AccordionItem>\n</Accordion>"
+      }
+    },
     Alert: {
       controls: [
         { name: "variant", type: "select", options: ["default", "destructive"], value: "default" },
@@ -104,6 +127,23 @@
       code: function (p) {
         return imports("button", ["Button"]) +
           tag("Button", { variant: unless(p.variant, "default"), size: unless(p.size, "default"), disabled: p.disabled }, p.children)
+      }
+    },
+    Breadcrumb: {
+      controls: [
+        { name: "page", type: "text", value: "Q3 sales" },
+        { name: "levels", type: "select", options: ["2", "3", "4"], value: "4" }
+      ],
+      render: function (p) {
+        var above = ["Home", "Reports", "Sales"].slice(0, Number(p.levels) - 1), items = []
+        above.forEach(function (l) { items.push(h(P.BreadcrumbItem, { key: l }, h(P.BreadcrumbLink, { href: "#" }, l)), h(P.BreadcrumbSeparator, { key: l + "-s" })) })
+        return h(P.Breadcrumb, null, h(P.BreadcrumbList, null, items, h(P.BreadcrumbItem, null, h(P.BreadcrumbPage, null, p.page))))
+      },
+      code: function (p) {
+        var above = ["Home", "Reports", "Sales"].slice(0, Number(p.levels) - 1), hrefs = { Home: "/", Reports: "/reports", Sales: "/reports/sales" }
+        return imports("breadcrumb", ["Breadcrumb", "BreadcrumbItem", "BreadcrumbLink", "BreadcrumbList", "BreadcrumbPage", "BreadcrumbSeparator"]) +
+          "<Breadcrumb>\n  <BreadcrumbList>\n" + above.map(function (l) { return '    <BreadcrumbItem>\n      <BreadcrumbLink href="' + hrefs[l] + '">' + l + "</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n" }).join("") +
+          "    <BreadcrumbItem>\n      <BreadcrumbPage>" + p.page + "</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>"
       }
     },
     Card: {

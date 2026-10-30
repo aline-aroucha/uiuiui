@@ -10,10 +10,12 @@
 - [CSS](src/styles/globals.css): tokens as shadcn CSS variables
 
 ## Components
+- [Accordion](docs/components/accordion.md)
 - [Alert](docs/components/alert.md)
 - [AlertDialog](docs/components/alert-dialog.md)
 - [Avatar](docs/components/avatar.md)
 - [Badge](docs/components/badge.md)
+- [Breadcrumb](docs/components/breadcrumb.md)
 - [Button](docs/components/button.md)
 - [Card](docs/components/card.md)
 - [Checkbox](docs/components/checkbox.md)
