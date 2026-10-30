@@ -240,6 +240,24 @@
           'import { Input } from "@/components/ui/input"\n\n' + tag("Field", { required: p.required, invalid: p.invalid ? "{invalid}" : undefined }, inner).replace('invalid="{invalid}"', "invalid={invalid}")
       }
     },
+    FileUpload: {
+      controls: [
+        { name: "label", type: "text", value: "Receipts" },
+        { name: "maxFiles", type: "select", options: ["1", "3", "10"], value: "3" },
+        { name: "chooseLabel", type: "text", value: "Choose files" }
+      ],
+      render: function (p) {
+        return h(P.Card, { style: { width: "100%", maxWidth: 380 } }, h(P.CardContent, null,
+          h(P.Field, null, h(P.FieldLabel, null, p.label), h(P.FieldDescription, null, "PDF or PNG, up to 10 MB each, up to " + p.maxFiles + (p.maxFiles === "1" ? " file." : " files.")),
+            h(P.FieldControl, null, h(P.FileUpload, { key: p.maxFiles, accept: ".pdf,.png", maxSize: 10485760, maxFiles: Number(p.maxFiles), multiple: p.maxFiles !== "1", chooseLabel: p.chooseLabel })))))
+      },
+      code: function (p) {
+        return imports("file-upload", ["FileUpload"]) + 'import { Field, FieldControl, FieldDescription, FieldLabel } from "@/components/ui/field"\n\n' +
+          "<Field>\n  <FieldLabel>" + p.label + "</FieldLabel>\n  <FieldDescription>PDF or PNG, up to 10 MB each, up to " + p.maxFiles + (p.maxFiles === "1" ? " file" : " files") + ".</FieldDescription>\n  <FieldControl>\n" +
+          '    <FileUpload\n      accept=".pdf,.png"\n      maxSize={10 * 1024 * 1024}\n      maxFiles={' + p.maxFiles + "}" + (p.maxFiles === "1" ? "\n      multiple={false}" : "") +
+          (p.chooseLabel !== "Choose files" ? '\n      chooseLabel="' + p.chooseLabel + '"' : "") + "\n      onUpload={uploadReceipt}\n    />\n  </FieldControl>\n</Field>"
+      }
+    },
     Input: {
       controls: [
         { name: "type", type: "select", options: ["text", "email", "search", "tel", "url"], value: "email" },

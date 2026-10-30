@@ -427,6 +427,26 @@
       ]
     },
     {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "title": "File upload",
+      "description": "UIUIUI File-upload. Docs: https://aline-aroucha.github.io/uiuiui/components/file-upload.html",
+      "dependencies": [
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/button.json",
+        "https://aline-aroucha.github.io/uiuiui/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/file-upload.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",

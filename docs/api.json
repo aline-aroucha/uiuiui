@@ -788,6 +788,69 @@
       ]
     }
   },
+  "FileUpload": {
+    "added": "2026-10-30",
+    "description": "Lets people choose files with a button or drop them in, and shows each file's name, size and upload state.",
+    "related": [
+      "Field",
+      "Progress",
+      "Button"
+    ],
+    "anatomy": "<Field>\n  <FieldLabel />\n  <FieldDescription>PDF, PNG or JPG, up to 10 MB each</FieldDescription>\n  <FieldControl>\n    <FileUpload accept maxSize maxFiles onUpload />\n  </FieldControl>\n  <FieldError />\n</Field>",
+    "parts": {
+      "FileUpload": [
+        {
+          "name": "accept",
+          "type": "string",
+          "description": "Types for the system picker, e.g. \".pdf,.png,.jpg\" or \"image/*\". Checked here and to be checked on the server."
+        },
+        {
+          "name": "maxSize",
+          "type": "number",
+          "description": "Largest size per file, in bytes; bigger files are listed as not added, with the limit."
+        },
+        {
+          "name": "maxFiles",
+          "type": "number",
+          "description": "Most files at once; extra files are listed as not added."
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "default": "true",
+          "description": "Allow choosing several files at once."
+        },
+        {
+          "name": "onUpload",
+          "type": "(file: File, report: (percent: number) => void, signal: AbortSignal) => Promise<void>",
+          "description": "Uploads one file; reject to show \"Upload failed\" with Try again. Leave it out to only select files."
+        },
+        {
+          "name": "onFilesChange",
+          "type": "(files: File[]) => void",
+          "description": "The files currently kept (not rejected, not removed)."
+        },
+        {
+          "name": "chooseLabel",
+          "type": "string",
+          "default": "\"Choose files\"",
+          "description": "Text of the button."
+        },
+        {
+          "name": "dropLabel",
+          "type": "string",
+          "default": "\"or drop them here\"",
+          "description": "Text under the button."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Disables the button and dropping."
+        }
+      ]
+    }
+  },
   "Input": {
     "description": "Single-line text field.",
     "related": [

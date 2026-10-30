@@ -56,6 +56,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | One choice among 2–5 visible options | `<RadioGroup>` named by its question |
 | One choice from a long list (countries, people) | `<Combobox>` inside a `Field` |
 | A date (or a period: two of them) | `<DatePicker>` inside a `Field`, format in `FieldDescription` |
+| Attach files | `<FileUpload>` inside a `Field`, limits in `FieldDescription` |
 | Approximate value or range | `<Slider>` with the value shown and `formatValue`; a number `Input` too when precision matters |
 | Any form field (label, help, error) | `<Field>` + `FieldLabel`, `FieldControl`, `FieldDescription`, `FieldError` |
 | Password | `<PasswordInput>` inside a `Field` |

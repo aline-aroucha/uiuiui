@@ -174,7 +174,7 @@ UIUIUI has no logo yet: the name is set in type. When a mark exists, it goes in 
 
 ## Components
 
-UIUIUI ships 31 components: Alert, AlertDialog, Avatar, Badge, Button, Card, Checkbox, Combobox, DatePicker, Dialog, DropdownMenu, Field, Input, Label, PasswordInput, Popover, Progress, RadioGroup, Select, Separator, Skeleton, Slider, Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup, Tooltip. They start from the shadcn/ui source, adjusted to the UIUIUI tokens (destructive text pairs, solid focus ring, badge radius, `success` and `warning` variants) and to the Magoo behavior rules (urgency-based alert roles, hover and pressed feedback, mixed checkbox, keyboard-scrollable tables, reduced motion). Any other shadcn/ui component (Dialog, DropdownMenu, Sheet, Sonner, Command…) also works: it inherits the UIUIUI tokens automatically.
+UIUIUI ships 32 components: Alert, AlertDialog, Avatar, Badge, Button, Card, Checkbox, Combobox, DatePicker, Dialog, DropdownMenu, Field, FileUpload, Input, Label, PasswordInput, Popover, Progress, RadioGroup, Select, Separator, Skeleton, Slider, Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup, Tooltip. They start from the shadcn/ui source, adjusted to the UIUIUI tokens (destructive text pairs, solid focus ring, badge radius, `success` and `warning` variants) and to the Magoo behavior rules (urgency-based alert roles, hover and pressed feedback, mixed checkbox, keyboard-scrollable tables, reduced motion). Any other shadcn/ui component (Dialog, DropdownMenu, Sheet, Sonner, Command…) also works: it inherits the UIUIUI tokens automatically.
 
 ## Using it in code
 

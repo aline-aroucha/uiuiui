@@ -335,3 +335,21 @@ body { background: var(--background); color: var(--foreground); font-family: var
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .uiuiui-datepicker__panel { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+/* FileUpload: a solid drop zone with a "Choose files" button, and a list of files with their states */
+.uiuiui-upload { display: grid; gap: 12px; }
+.uiuiui-upload__drop { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px; border: 1px dashed var(--input); border-radius: var(--radius-xl);
+  background: var(--background); color: var(--muted-foreground); font: 400 14px/20px var(--font-sans); text-align: center; }
+.uiuiui-upload__drop[data-dragging] { border-color: var(--primary); background: var(--accent); }
+.uiuiui-upload__icon svg { width: 24px; height: 24px; fill: currentColor; }
+.uiuiui-upload__list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.uiuiui-upload__item { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); font: 400 14px/20px var(--font-sans); }
+.uiuiui-upload__row { display: flex; align-items: center; gap: 12px; }
+.uiuiui-upload__status { display: flex; color: var(--muted-foreground); }
+.uiuiui-upload__status svg { width: 16px; height: 16px; fill: currentColor; }
+.uiuiui-upload__status.is-uploaded { color: var(--success); }
+.uiuiui-upload__status.is-failed, .uiuiui-upload__status.is-rejected { color: var(--destructive); }
+.uiuiui-upload__text { display: grid; flex: 1; min-width: 0; }
+.uiuiui-upload__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.uiuiui-upload__meta { font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+.uiuiui-upload__meta.is-error { color: var(--destructive); }
