@@ -44,6 +44,7 @@
     }
   },
   "AlertDialog": {
+    "added": "2026-10-30",
     "description": "Asks the person to confirm before something irreversible or important happens, and waits for an answer.",
     "related": [
       "Dialog",
@@ -383,6 +384,7 @@
     }
   },
   "Dialog": {
+    "added": "2026-10-30",
     "description": "A window over the page for a short task that must be finished or canceled before going back.",
     "related": [
       "AlertDialog",
@@ -645,6 +647,7 @@
     }
   },
   "Popover": {
+    "added": "2026-10-30",
     "description": "Shows extra content or a few quick controls next to the button that opened it, without leaving the page.",
     "related": [
       "Tooltip",

@@ -26,6 +26,9 @@ const CONTENT = ["alert", "avatar", "badge", "card", "field", "input", "label", 
 const INTERACTIVE = ["alert-dialog", "button", "checkbox", "dialog", "input", "password-input", "popover", "select", "switch", "tabs", "textarea"]
 // Form controls validated with the form, so they style the invalid state (a Switch acts at once and is never invalid)
 const FORM = ["checkbox", "input", "select", "textarea"]
+// The 17 components of the first release; every later one needs an "added" date
+const FIRST_RELEASE = ["alert", "avatar", "badge", "button", "card", "checkbox", "field", "input", "label", "password-input", "select",
+  "separator", "skeleton", "switch", "table", "tabs", "textarea"]
 const PALETTE = "slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose"
 
 // ------------------------------------------------------------ which components to check
@@ -104,6 +107,8 @@ function check(slug) {
     ok("Docs", "no emoji", !/\p{Extended_Pictographic}/u.test(md.replace(/[✓×!]/g, "")))
   }
   const entry = api[name]
+  // Components after the first release carry the date they were added: the docs navigation shows "New" for 60 days
+  if (!FIRST_RELEASE.includes(slug)) ok("Docs", `docs/api.json "${name}" has its "added" date (YYYY-MM-DD)`, /^\d{4}-\d{2}-\d{2}$/.test(entry?.added || ""))
   ok("Docs", `docs/api.json has "${name}" with description, anatomy and props`, entry && entry.description && entry.anatomy && Object.keys(entry.parts || {}).length)
   if (entry) {
     const props = Object.values(entry.parts || {}).flat()

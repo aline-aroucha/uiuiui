@@ -72,6 +72,13 @@ const ASSET_VERSION = createHash("sha256").update(tokensCss).update(assetSources
 const v = (href) => `${href}?v=${ASSET_VERSION}`
 
 // ------------------------------------------------------------ site map
+// A component added in the last 60 days (its `added` date in docs/api.json) shows a "New" badge in the navigation
+const NEW_DAYS = 60
+const isNew = (name) => {
+  const added = api[name]?.added
+  return Boolean(added) && (Date.now() - Date.parse(added)) / 864e5 <= NEW_DAYS
+}
+
 const NAV = [
   ["Getting started", [["index.html", "Overview"], ["ai.html", "Use with AI"]]],
   ["Foundations", [["colors.html", "Colors"], ["typography.html", "Typography"], ["spacing.html", "Spacing, radius and shadow"]]],
@@ -113,7 +120,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
   const nav = NAV.map(
     ([group, items]) => `<div class="nav-section">
       <p class="nav-heading" id="nav-${anchor(group)}">${group}</p>
-      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a class="uiuiui-btn ${href === path ? "uiuiui-btn--secondary" : "uiuiui-btn--ghost"} nav-link" href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
+      <ul aria-labelledby="nav-${anchor(group)}">${items.map(([href, label]) => `<li><a class="uiuiui-btn ${href === path ? "uiuiui-btn--secondary" : "uiuiui-btn--ghost"} nav-link" href="${base}${href}"${href === path ? ' aria-current="page"' : ""}>${label}${isNew(label) ? '<span class="uiuiui-badge uiuiui-badge--highlight nav-badge">New</span>' : ""}</a></li>`).join("")}</ul>
     </div>`
   ).join("")
 

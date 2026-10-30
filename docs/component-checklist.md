@@ -20,7 +20,7 @@ steps for every component. Both scripts exit with an error when a check fails.
 | Group | Checks |
 | --- | --- |
 | Files | `registry/uiuiui/ui/<name>.tsx` exists; `registry.json` has the item (`registry:ui`) with its file, every imported package and every UIUIUI component it uses; `cn()` comes from `@/lib/utils` |
-| Docs | `docs/components/<name>.md` with the `npx @aline-aroucha/uiuiui add` line and an Accessibility section that cites its Magoo page (and keyboard use for interactive components); `docs/api.json` entry with description, anatomy and a name, type and description for every prop; no emoji |
+| Docs | `docs/components/<name>.md` with the `npx @aline-aroucha/uiuiui add` line and an Accessibility section that cites its Magoo page (and keyboard use for interactive components); `docs/api.json` entry with description, anatomy and a name, type and description for every prop, and an `added` date (YYYY-MM-DD) for every component after the first release, which shows a "New" badge in the docs navigation for 60 days; no emoji |
 | Preview | an example in `preview/examples/`, the component exported by `preview/uiuiui.js`, a playground in `preview/playground.js` |
 | Tokens | no hex, `rgb()`, `hsl()` or `oklch()`; no Tailwind palette colors or `bg-white`/`text-black`; no `dark:` overrides; no arbitrary spacing or radius; radius from the scale |
 | Icons | Heroicons only: Micro `16/solid`, Mini `20/solid` or Outline `24/outline`; never `lucide-react` |
