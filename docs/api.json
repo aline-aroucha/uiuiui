@@ -43,6 +43,111 @@
       ]
     }
   },
+  "AlertDialog": {
+    "description": "Asks the person to confirm before something irreversible or important happens, and waits for an answer.",
+    "related": [
+      "Dialog",
+      "Button"
+    ],
+    "anatomy": "<AlertDialog>\n  <AlertDialogTrigger asChild>\n    <Button variant=\"destructive\" />\n  </AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogMedia />\n      <AlertDialogTitle />\n      <AlertDialogDescription />\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel />\n      <AlertDialogAction />\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>",
+    "parts": {
+      "AlertDialog": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "description": "Controlled open state."
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "default": "false",
+          "description": "Initial state when uncontrolled."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "description": "Runs when it opens, or closes through Cancel, the action or Esc."
+        }
+      ],
+      "AlertDialogTrigger": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use your Button as the trigger."
+        }
+      ],
+      "AlertDialogContent": [
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\"",
+          "default": "\"default\"",
+          "description": "sm: a narrow, centered confirmation with the two actions side by side."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "(event: KeyboardEvent) => void",
+          "description": "Esc cancels by default; prevent it only while an action is running."
+        }
+      ],
+      "AlertDialogTitle": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "The question, e.g. \"Delete “Website redesign”?\"."
+        }
+      ],
+      "AlertDialogDescription": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "What is lost and whether it can be undone."
+        }
+      ],
+      "AlertDialogMedia": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "An icon above the title (Heroicons Outline 24); decorative."
+        }
+      ],
+      "AlertDialogCancel": [
+        {
+          "name": "variant",
+          "type": "Button variant",
+          "default": "\"ghost\"",
+          "description": "Low emphasis. Receives focus when the dialog opens."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Usually \"Cancel\"."
+        }
+      ],
+      "AlertDialogAction": [
+        {
+          "name": "variant",
+          "type": "Button variant",
+          "default": "\"default\"",
+          "description": "Use \"destructive\" for deletions."
+        },
+        {
+          "name": "onClick",
+          "type": "(event: MouseEvent) => void",
+          "description": "Runs the action, then the dialog closes."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Repeats the verb of the title, e.g. \"Delete project\"."
+        }
+      ]
+    }
+  },
   "Avatar": {
     "description": "Shows a person's photo, with their initials as a fallback.",
     "related": [

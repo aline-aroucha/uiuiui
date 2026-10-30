@@ -27,6 +27,15 @@
         h(P.DialogFooter, null, h(P.DialogClose, null, h(P.Button, { variant: "ghost" }, "Cancel")), h(P.DialogClose, null, h(P.Button, null, "Save changes")))))
   }
 
+  function AlertDialogDemo(p) {
+    var st = React.useState(false)
+    return h(P.AlertDialog, { open: st[0], onOpenChange: st[1] },
+      h(P.AlertDialogTrigger, null, h(P.Button, { variant: p.actionVariant }, p.action)),
+      h(P.AlertDialogContent, null,
+        h(P.AlertDialogHeader, null, h(P.AlertDialogTitle, null, p.title), h(P.AlertDialogDescription, null, p.description)),
+        h(P.AlertDialogFooter, null, h(P.AlertDialogCancel, null, "Cancel"), h(P.AlertDialogAction, { variant: p.actionVariant }, p.action))))
+  }
+
   var sizes = ["sm", "default", "lg"]
   var configs = {
     Alert: {
@@ -39,6 +48,22 @@
       code: function (p) {
         return imports("alert", ["Alert", "AlertDescription", "AlertTitle"]) +
           tag("Alert", { variant: unless(p.variant, "default") }, tag("AlertTitle", {}, p.title, "  ") + "\n" + tag("AlertDescription", {}, p.description, "  "))
+      }
+    },
+    AlertDialog: {
+      controls: [
+        { name: "title", type: "text", value: "Delete “Website redesign”?" },
+        { name: "description", type: "text", value: "This permanently deletes the project and its 24 files. You can’t undo this." },
+        { name: "action", type: "text", value: "Delete project" },
+        { name: "actionVariant", type: "select", options: ["destructive", "default", "emphasis"], value: "destructive" }
+      ],
+      render: function (p) { return h(AlertDialogDemo, p) },
+      code: function (p) {
+        var v = p.actionVariant === "default" ? "" : ' variant="' + p.actionVariant + '"'
+        return imports("button", ["Button"]) + imports("alert-dialog", ["AlertDialog", "AlertDialogAction", "AlertDialogCancel", "AlertDialogContent", "AlertDialogDescription", "AlertDialogFooter", "AlertDialogHeader", "AlertDialogTitle", "AlertDialogTrigger"]) +
+          "<AlertDialog>\n  <AlertDialogTrigger asChild>\n    <Button" + v + ">" + p.action + "</Button>\n  </AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n" +
+          "      <AlertDialogTitle>" + p.title + "</AlertDialogTitle>\n      <AlertDialogDescription>" + p.description + "</AlertDialogDescription>\n    </AlertDialogHeader>\n" +
+          "    <AlertDialogFooter>\n      <AlertDialogCancel>Cancel</AlertDialogCancel>\n      <AlertDialogAction" + v + " onClick={deleteProject}>" + p.action + "</AlertDialogAction>\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>"
       }
     },
     Avatar: {

@@ -11,6 +11,7 @@
 
 ## Components
 - [Alert](docs/components/alert.md)
+- [AlertDialog](docs/components/alert-dialog.md)
 - [Avatar](docs/components/avatar.md)
 - [Badge](docs/components/badge.md)
 - [Button](docs/components/button.md)

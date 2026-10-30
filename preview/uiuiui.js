@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -159,7 +159,7 @@
     var id = 'dialog-' + React.useId().replace(/:/g, '');
     React.useEffect(function () {
       var el = ref.current; if (!el) return;
-      if (d.open && !el.open) { opener.current = document.activeElement; el.showModal(); }
+      if (d.open && !el.open) { opener.current = document.activeElement; el.showModal(); var first = el.querySelector('[data-autofocus]'); if (first) first.focus(); }
       if (!d.open && el.open) { el.close(); if (opener.current && opener.current.focus) opener.current.focus(); }
     }, [d.open]);
     return h('dialog', { ref: ref, className: cx('uiuiui-dialog', p.className), role: p.role, 'aria-labelledby': id + '-title', 'aria-describedby': id + '-description',
@@ -184,5 +184,16 @@
   function DialogDescription(p) { var c = React.useContext(DialogPartsCtx); return h('p', { id: c.id + '-description', className: cx('uiuiui-dialog__description', p.className) }, p.children); }
   Object.assign(api, { Dialog: Dialog, DialogTrigger: DialogTrigger, DialogClose: DialogClose, DialogContent: DialogContent, DialogHeader: DialogHeader,
     DialogFooter: DialogFooter, DialogTitle: DialogTitle, DialogDescription: DialogDescription });
+
+  // AlertDialog: the Dialog preview as role="alertdialog", no corner button, no outside-click close, focus on Cancel
+  function AlertDialog(p) { return h(Dialog, Object.assign({}, p, { dismissible: false })); }
+  var AlertDialogTrigger = DialogTrigger, AlertDialogHeader = DialogHeader, AlertDialogFooter = DialogFooter,
+      AlertDialogTitle = DialogTitle, AlertDialogDescription = DialogDescription;
+  function AlertDialogContent(p) { return h(DialogContent, { role: 'alertdialog', showCloseButton: false, className: p.className }, p.children); }
+  function AlertDialogCancel(p) { return h(DialogClose, null, h(Button, { variant: p.variant || 'ghost', 'data-autofocus': true, onClick: p.onClick }, p.children)); }
+  function AlertDialogAction(p) { return h(DialogClose, null, h(Button, { variant: p.variant || 'default', onClick: p.onClick }, p.children)); }
+  Object.assign(api, { AlertDialog: AlertDialog, AlertDialogTrigger: AlertDialogTrigger, AlertDialogContent: AlertDialogContent, AlertDialogHeader: AlertDialogHeader,
+    AlertDialogFooter: AlertDialogFooter, AlertDialogTitle: AlertDialogTitle, AlertDialogDescription: AlertDialogDescription,
+    AlertDialogCancel: AlertDialogCancel, AlertDialogAction: AlertDialogAction });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();
