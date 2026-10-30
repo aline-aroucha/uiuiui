@@ -159,6 +159,24 @@
           '      placeholder="' + p.placeholder + '"\n      emptyMessage="' + p.emptyMessage + '"\n      listLabel="Countries"\n    />\n  </FieldControl>\n</Field>'
       }
     },
+    DatePicker: {
+      controls: [
+        { name: "label", type: "text", value: "Delivery date" },
+        { name: "min", type: "text", value: "2026-10-01" },
+        { name: "max", type: "text", value: "2026-12-31" }
+      ],
+      render: function (p) {
+        return h("div", { style: { width: "100%", maxWidth: 340, minHeight: 420 } }, h(P.Card, null, h(P.CardContent, null,
+          h(P.Field, null, h(P.FieldLabel, null, p.label), h(P.FieldControl, null, h(P.DatePicker, { key: p.min + p.max, defaultValue: "2026-10-21", min: p.min, max: p.max })),
+            h(P.FieldDescription, null, "Format: MM/DD/YYYY")))))
+      },
+      code: function (p) {
+        return imports("date-picker", ["DatePicker"]) + 'import { Field, FieldControl, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"\n\n' +
+          "<Field invalid={!!error}>\n  <FieldLabel>" + p.label + "</FieldLabel>\n  <FieldControl>\n    <DatePicker\n      value={date}\n      onValueChange={setDate}\n" +
+          '      min="' + p.min + '"\n      max="' + p.max + '"\n      onInvalidInput={(reason) => setError(reason === "format" ? "Enter a date like 10/21/2026." : "Choose a date in range.")}\n    />\n  </FieldControl>\n' +
+          "  <FieldDescription>Format: MM/DD/YYYY</FieldDescription>\n  <FieldError>{error}</FieldError>\n</Field>"
+      }
+    },
     Dialog: {
       controls: [
         { name: "title", type: "text", value: "Edit profile" },

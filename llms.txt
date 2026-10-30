@@ -18,6 +18,7 @@
 - [Card](docs/components/card.md)
 - [Checkbox](docs/components/checkbox.md)
 - [Combobox](docs/components/combobox.md)
+- [DatePicker](docs/components/date-picker.md)
 - [Dialog](docs/components/dialog.md)
 - [DropdownMenu](docs/components/dropdown-menu.md)
 - [Field](docs/components/field.md)

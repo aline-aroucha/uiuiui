@@ -447,6 +447,68 @@
       ]
     }
   },
+  "DatePicker": {
+    "added": "2026-10-30",
+    "description": "A date typed in the field (MM/DD/YYYY) or chosen in a calendar, for deadlines, deliveries and appointments.",
+    "related": [
+      "Field",
+      "Popover",
+      "Input"
+    ],
+    "anatomy": "<Field>\n  <FieldLabel />\n  <FieldControl>\n    <DatePicker min max onInvalidInput />\n  </FieldControl>\n  <FieldDescription>Format: MM/DD/YYYY</FieldDescription>\n  <FieldError />\n</Field>",
+    "parts": {
+      "DatePicker": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Controlled date as YYYY-MM-DD, or \"\" when none."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "default": "\"\"",
+          "description": "Initial date when uncontrolled."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: string) => void",
+          "description": "Runs with YYYY-MM-DD when a date is typed or chosen, and with \"\" when the text isn't a valid date."
+        },
+        {
+          "name": "onInvalidInput",
+          "type": "(reason: \"format\" | \"range\", text: string) => void",
+          "description": "Runs when typed text isn't a date or is outside the limits; show the message in FieldError."
+        },
+        {
+          "name": "min",
+          "type": "string",
+          "description": "Earliest date, YYYY-MM-DD (included)."
+        },
+        {
+          "name": "max",
+          "type": "string",
+          "description": "Latest date, YYYY-MM-DD (included)."
+        },
+        {
+          "name": "isDateDisabled",
+          "type": "(date: string) => boolean",
+          "description": "Marks days that can't be chosen (holidays, sold out)."
+        },
+        {
+          "name": "calendarLabel",
+          "type": "string",
+          "default": "\"Choose date\"",
+          "description": "Name of the calendar button; the selected date is added to it."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Dims the field and the calendar button."
+        }
+      ]
+    }
+  },
   "Dialog": {
     "added": "2026-10-30",
     "description": "A window over the page for a short task that must be finished or canceled before going back.",

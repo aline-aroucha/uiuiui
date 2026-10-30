@@ -350,6 +350,25 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date picker",
+      "description": "UIUIUI Date-picker. Docs: https://aline-aroucha.github.io/uiuiui/components/date-picker.html",
+      "dependencies": [
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

@@ -306,3 +306,32 @@ body { background: var(--background); color: var(--foreground); font-family: var
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .uiuiui-combobox__list { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+/* DatePicker: the field look, a calendar button inside it, a dense-glass calendar dialog */
+.uiuiui-datepicker { position: relative; width: 100%; }
+.uiuiui-datepicker .uiuiui-input { padding-right: 40px; }
+.uiuiui-datepicker .uiuiui-input:hover { border-color: var(--primary); }
+.uiuiui-datepicker__button { position: absolute; right: 4px; top: 4px; width: 28px; height: 28px; display: grid; place-items: center; border: 0; padding: 0;
+  border-radius: var(--radius-full); background: transparent; color: var(--muted-foreground); cursor: pointer; }
+.uiuiui-datepicker__button:hover { background: var(--accent); color: var(--accent-foreground); }
+.uiuiui-datepicker__button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.uiuiui-datepicker__button svg, .uiuiui-datepicker__panel svg { width: 16px; height: 16px; fill: currentColor; }
+.uiuiui-datepicker__panel { position: absolute; z-index: 20; right: 0; top: calc(100% + 4px); padding: 12px; border-radius: var(--radius-xl); color: var(--popover-foreground);
+  background-color: var(--glass-strong); box-shadow: var(--glass-shadow); -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%); backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+  font: 400 14px/20px var(--font-sans); }
+.uiuiui-datepicker__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 8px; }
+.uiuiui-datepicker__month { margin: 0; font: 600 14px/20px var(--font-sans); }
+.uiuiui-datepicker__grid { border-collapse: collapse; }
+.uiuiui-datepicker__grid th { width: 36px; height: 36px; font: 500 12px/16px var(--font-sans); color: var(--muted-foreground); }
+.uiuiui-datepicker__grid td { padding: 0; text-align: center; }
+.uiuiui-datepicker__day { position: relative; width: 36px; height: 36px; border: 0; padding: 0; border-radius: var(--radius-full); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.uiuiui-datepicker__day:hover { background: var(--accent); color: var(--accent-foreground); }
+.uiuiui-datepicker__day:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.uiuiui-datepicker__day.is-today { font-weight: 600; }
+.uiuiui-datepicker__day.is-today::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: var(--radius-full); background: currentColor; }
+.uiuiui-datepicker__day.is-selected { background: var(--primary); color: var(--primary-foreground); box-shadow: var(--glass-shadow); }
+.uiuiui-datepicker__day[aria-disabled="true"] { opacity: .4; text-decoration: line-through; pointer-events: none; }
+.article .uiuiui-datepicker__panel h2 { margin: 0; font: 600 14px/20px var(--font-sans); letter-spacing: 0; }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .uiuiui-datepicker__panel { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
