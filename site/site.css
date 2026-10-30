@@ -85,6 +85,8 @@ svg { flex-shrink: 0; }
 .article h3 { font: 600 18px/26px var(--font-sans); margin: 32px 0 8px; scroll-margin-top: 24px; }
 .article p, .article ul, .article ol { margin: 0 0 16px; }
 .article li + li { margin-top: 6px; }
+/* the previews render components, not article text: no list spacing from the page */
+#preview li + li, .article .vx-preview li + li { margin-top: 0; }
 .article :not(pre) > code { background: var(--muted); padding: 2px 6px; border-radius: var(--radius-sm); font-weight: 600; font-size: 13px; }
 .article pre { background: var(--muted); padding: 16px; border-radius: var(--radius-lg); overflow-x: auto; font-size: 13px; line-height: 20px; margin: 0 0 16px; }
 .article .table-wrap { margin: 0 0 16px; }
