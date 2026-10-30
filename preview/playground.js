@@ -142,6 +142,23 @@
           '<div className="flex items-center gap-2">\n' + line + '\n  <Label htmlFor="summary">' + p.label + "</Label>\n</div>"
       }
     },
+    Combobox: {
+      controls: [
+        { name: "label", type: "text", value: "Country" },
+        { name: "placeholder", type: "text", value: "Start typing a country" },
+        { name: "emptyMessage", type: "text", value: "No matches" }
+      ],
+      render: function (p) {
+        var countries = [{ value: "ar", label: "Argentina" }, { value: "br", label: "Brazil" }, { value: "ca", label: "Canada" }, { value: "cl", label: "Chile" }, { value: "mx", label: "Mexico" }, { value: "pt", label: "Portugal" }, { value: "us", label: "United States" }]
+        return h("div", { style: { width: "100%", maxWidth: 320, minHeight: 240 } }, h(P.Card, null, h(P.CardContent, null,
+          h(P.Field, null, h(P.FieldLabel, null, p.label), h(P.FieldControl, null, h(P.Combobox, { options: countries, placeholder: p.placeholder, emptyMessage: p.emptyMessage, listLabel: "Countries" }))))))
+      },
+      code: function (p) {
+        return imports("combobox", ["Combobox"]) + 'import { Field, FieldControl, FieldLabel } from "@/components/ui/field"\n\n' +
+          'const countries = [\n  { value: "br", label: "Brazil" },\n  { value: "ca", label: "Canada" },\n  // …\n]\n\n<Field>\n  <FieldLabel>' + p.label + "</FieldLabel>\n  <FieldControl>\n    <Combobox\n      options={countries}\n" +
+          '      placeholder="' + p.placeholder + '"\n      emptyMessage="' + p.emptyMessage + '"\n      listLabel="Countries"\n    />\n  </FieldControl>\n</Field>'
+      }
+    },
     Dialog: {
       controls: [
         { name: "title", type: "text", value: "Edit profile" },

@@ -383,6 +383,70 @@
       ]
     }
   },
+  "Combobox": {
+    "added": "2026-10-30",
+    "description": "A text field that suggests options as the person types, for long lists such as countries, people or tags.",
+    "related": [
+      "Select",
+      "Field",
+      "Input"
+    ],
+    "anatomy": "<Field>\n  <FieldLabel />\n  <FieldControl>\n    <Combobox options={[{ value, label, description }]} />\n  </FieldControl>\n  <FieldDescription />\n</Field>",
+    "parts": {
+      "Combobox": [
+        {
+          "name": "options",
+          "type": "{ value: string; label: string; description?: string }[]",
+          "required": true,
+          "description": "The suggestions. Labels are what people type and read."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Controlled confirmed value (\"\" when nothing is chosen)."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "default": "\"\"",
+          "description": "Initial confirmed value when uncontrolled."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: string) => void",
+          "description": "Runs when an option is confirmed, and with \"\" when edited text drops the choice."
+        },
+        {
+          "name": "emptyMessage",
+          "type": "string",
+          "default": "\"No matches\"",
+          "description": "Shown and read when nothing matches."
+        },
+        {
+          "name": "listLabel",
+          "type": "string",
+          "default": "\"Suggestions\"",
+          "description": "Accessible name of the list, e.g. \"Countries\"."
+        },
+        {
+          "name": "formatCount",
+          "type": "(count: number) => string",
+          "description": "The message read after typing stops; defaults to \"N suggestions\"."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "An example of what to type; never a replacement for the label."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Dimmed and out of the Tab order."
+        }
+      ]
+    }
+  },
   "Dialog": {
     "added": "2026-10-30",
     "description": "A window over the page for a short task that must be finished or canceled before going back.",
