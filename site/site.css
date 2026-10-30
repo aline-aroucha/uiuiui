@@ -99,12 +99,10 @@ svg { flex-shrink: 0; }
 .vx-mount { display: contents; }
 .vx-preview { grid-area: example; min-height: 200px; display: flex; align-items: center; justify-content: center; padding: 32px 24px;
   border-radius: var(--radius-lg); min-width: 0; }
-/* The playground sits on the neutral secondary surface; only the examples get the color backdrop */
-.vx-preview { background-color: var(--secondary); border: 1px solid var(--border); }
-/* Examples backdrop: three equal orbs side by side, each a third of the card wide, so the glass has color behind it
+/* Documentation backdrop: three equal orbs side by side, each a third of the card wide, so the glass has color behind it
    (not a product pattern). The orbs sit on a layer behind the content and scale with the card (container units). */
-.example-frame { position: relative; isolation: isolate; container-type: inline-size; background-color: var(--panel); }
-.example-frame::before {
+.vx-preview, .example-frame { position: relative; isolation: isolate; container-type: inline-size; background-color: var(--panel); }
+.vx-preview::before, .example-frame::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
   --orb: calc(100cqw / 6);
   background-image:
