@@ -259,3 +259,14 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-radio:disabled { opacity: .5; cursor: not-allowed; }
 .uiuiui-radio__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--primary); }
 .uiuiui-radio-group[aria-invalid="true"] .uiuiui-radio { border-color: var(--destructive); }
+
+/* Slider (preview): track in the brand tint, filled part in primary, 20px thumb */
+.uiuiui-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 20px; margin: 0; background: transparent; cursor: pointer; }
+.uiuiui-slider::-webkit-slider-runnable-track { height: 6px; border-radius: var(--radius-full);
+  background: linear-gradient(var(--primary), var(--primary)) 0 / var(--fill) 100% no-repeat, color-mix(in oklab, var(--primary) 20%, transparent); }
+.uiuiui-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border-radius: var(--radius-full);
+  border: 1px solid var(--primary); background: var(--background); box-shadow: var(--glass-shadow); }
+.uiuiui-slider:hover::-webkit-slider-thumb { box-shadow: var(--glass-shadow), 0 0 0 4px color-mix(in oklab, var(--primary) 20%, transparent); }
+.uiuiui-slider:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; border-radius: var(--radius-full); }
+.uiuiui-slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
+.uiuiui-slider:disabled { opacity: .5; cursor: not-allowed; }

@@ -1089,6 +1089,85 @@
       ]
     }
   },
+  "Slider": {
+    "added": "2026-10-30",
+    "description": "Sets a value, or a range with two thumbs, by moving along a track between a minimum and a maximum.",
+    "related": [
+      "Input",
+      "Field",
+      "Progress"
+    ],
+    "anatomy": "<label id=\"budget-label\">Monthly budget</label>\n<Slider\n  defaultValue={[1200]}\n  min={0}\n  max={5000}\n  step={100}\n  aria-labelledby=\"budget-label\"\n  formatValue={(n) => \"$\" + n.toLocaleString(\"en-US\")}\n/>",
+    "parts": {
+      "Slider": [
+        {
+          "name": "defaultValue",
+          "type": "number[]",
+          "description": "Initial value(s): one number per thumb."
+        },
+        {
+          "name": "value",
+          "type": "number[]",
+          "description": "Controlled value(s)."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: number[]) => void",
+          "description": "Runs while the value changes."
+        },
+        {
+          "name": "onValueCommit",
+          "type": "(value: number[]) => void",
+          "description": "Runs when the person lets go or stops pressing keys; save here."
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "default": "0",
+          "description": "Lowest value."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": "100",
+          "description": "Highest value."
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "default": "1",
+          "description": "Arrow keys and dragging move by this much; Page Up/Down by larger steps."
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "description": "Id of the visible label; it names the thumb. Or aria-label."
+        },
+        {
+          "name": "thumbLabels",
+          "type": "string[]",
+          "description": "One name per thumb in a range, e.g. [\"Minimum price\", \"Maximum price\"]."
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number) => string",
+          "description": "Text read for the value, with its unit (aria-valuetext)."
+        },
+        {
+          "name": "minStepsBetweenThumbs",
+          "type": "number",
+          "default": "0",
+          "description": "Keeps the two thumbs of a range apart."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Dimmed and out of the Tab order."
+        }
+      ]
+    }
+  },
   "Spinner": {
     "added": "2026-10-30",
     "description": "A small turning icon for a short wait of unknown length, inside a button, a row or next to a message.",

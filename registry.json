@@ -551,6 +551,24 @@
       ]
     },
     {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "UIUIUI Slider. Docs: https://aline-aroucha.github.io/uiuiui/components/slider.html",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",

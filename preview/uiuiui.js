@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -386,5 +386,14 @@
       onKeyDown: function (e) { if (e.key === ' ') { e.preventDefault(); c.set(p.value); } } }, on ? h('span', { className: 'uiuiui-radio__dot' }) : null);
   }
   Object.assign(api, { RadioGroup: RadioGroup, RadioGroupItem: RadioGroupItem });
+
+  // Slider (preview): a native range input, named, with the value and its unit read out
+  function Slider(p) {
+    var c = useControlled(p.value, p.defaultValue || [p.min || 0], p.onValueChange), v = c[0][0], min = p.min || 0, max = p.max == null ? 100 : p.max;
+    return h('input', { type: 'range', className: cx('uiuiui-slider', p.className), id: p.id, min: min, max: max, step: p.step || 1, value: v, disabled: p.disabled,
+      'aria-label': p['aria-label'], 'aria-labelledby': p['aria-labelledby'], 'aria-valuetext': p.formatValue ? p.formatValue(v) : undefined,
+      style: { '--fill': ((v - min) / (max - min) * 100) + '%' }, onChange: function (e) { c[1]([Number(e.target.value)]); } });
+  }
+  Object.assign(api, { Slider: Slider });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

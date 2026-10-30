@@ -36,6 +36,14 @@
         h(P.AlertDialogFooter, null, h(P.AlertDialogCancel, null, "Cancel"), h(P.AlertDialogAction, { variant: p.actionVariant }, p.action))))
   }
 
+  function SliderDemo(p) {
+    var st = React.useState([40])
+    return h(P.Card, { style: { width: "100%", maxWidth: 360 } }, h(P.CardContent, { style: { display: "grid", gap: 12 } },
+      h("div", { className: "uiuiui-row", style: { justifyContent: "space-between" } }, h("label", { id: "vx-slider-label", htmlFor: "vx-slider", className: "uiuiui-label" }, p.label),
+        h("span", { className: "uiuiui-muted", "aria-hidden": true }, st[0][0] + "%")),
+      h(P.Slider, { id: "vx-slider", value: st[0], onValueChange: st[1], max: 100, step: Number(p.step), disabled: p.disabled, "aria-labelledby": "vx-slider-label", formatValue: function (n) { return n + "%" } })))
+  }
+
   var sizes = ["sm", "default", "lg"]
   var configs = {
     Alert: {
@@ -328,6 +336,19 @@
       code: function (p) {
         var c = { text: "h-4 w-56", avatar: "size-10 rounded-full", card: "h-30 w-72 rounded-xl" }[p.shape]
         return imports("skeleton", ["Skeleton"]) + '<div role="status" className="text-sm text-muted-foreground">Loading orders…</div>\n<Skeleton className="' + c + '" />'
+      }
+    },
+    Slider: {
+      controls: [
+        { name: "label", type: "text", value: "Volume" },
+        { name: "step", type: "select", options: ["1", "5", "10"], value: "5" },
+        { name: "disabled", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        return h(SliderDemo, p)
+      },
+      code: function (p) {
+        return imports("slider", ["Slider"]) + '<label id="volume-label">' + p.label + "</label>\n<Slider\n  defaultValue={[40]}\n  max={100}\n  step={" + p.step + '}\n  aria-labelledby="volume-label"\n  formatValue={(n) => n + "%"}' + (p.disabled ? "\n  disabled" : "") + "\n/>"
       }
     },
     Spinner: {
