@@ -256,6 +256,23 @@
           "    </PopoverHeader>\n    <PopoverClose asChild>\n      <Button size=\"sm\">Done</Button>\n    </PopoverClose>\n  </PopoverContent>\n</Popover>"
       }
     },
+    Progress: {
+      controls: [
+        { name: "label", type: "text", value: "Uploading q3-sales.csv" },
+        { name: "value", type: "select", options: ["0", "25", "64", "100", "indeterminate"], value: "64" }
+      ],
+      render: function (p) {
+        var v = p.value === "indeterminate" ? undefined : Number(p.value)
+        return h(P.Card, { style: { width: "100%", maxWidth: 360 } }, h(P.CardContent, { style: { display: "grid", gap: 8 } },
+          h("div", { className: "uiuiui-row", style: { justifyContent: "space-between" } }, h("span", { id: "vx-progress-label", style: { fontWeight: 500 } }, p.label),
+            v === undefined ? null : h("span", { className: "uiuiui-muted" }, v + "%")),
+          h(P.Progress, { value: v, "aria-labelledby": "vx-progress-label" })))
+      },
+      code: function (p) {
+        var v = p.value === "indeterminate" ? "" : " value={" + p.value + "}"
+        return imports("progress", ["Progress"]) + '<span id="upload-label">' + p.label + "</span>\n<Progress" + v + ' aria-labelledby="upload-label" />'
+      }
+    },
     Select: {
       controls: [
         { name: "placeholder", type: "text", value: "Choose a country" },
@@ -291,6 +308,22 @@
       code: function (p) {
         var c = { text: "h-4 w-56", avatar: "size-10 rounded-full", card: "h-30 w-72 rounded-xl" }[p.shape]
         return imports("skeleton", ["Skeleton"]) + '<div role="status" className="text-sm text-muted-foreground">Loading orders…</div>\n<Skeleton className="' + c + '" />'
+      }
+    },
+    Spinner: {
+      controls: [
+        { name: "label", type: "text", value: "Loading orders" },
+        { name: "inButton", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        return h(P.Card, null, h(P.CardContent, null, p.inButton
+          ? h(P.Button, { disabled: true }, h(P.Spinner, { "aria-hidden": true }), p.label + "…")
+          : h("div", { className: "uiuiui-inline" }, h(P.Spinner, { label: p.label }), h("span", { className: "uiuiui-muted", "aria-hidden": true }, p.label + "…"))))
+      },
+      code: function (p) {
+        return imports("spinner", ["Spinner"]) + (p.inButton
+          ? imports("button", ["Button"]) + "<Button disabled>\n  <Spinner aria-hidden />\n  " + p.label + "…\n</Button>"
+          : '<Spinner label="' + p.label + '" />')
       }
     },
     Switch: {

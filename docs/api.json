@@ -857,6 +857,46 @@
       ]
     }
   },
+  "Progress": {
+    "added": "2026-10-30",
+    "description": "Shows how far an operation has gone, or that it is still running when the total isn't known.",
+    "related": [
+      "Spinner",
+      "Skeleton",
+      "Toast"
+    ],
+    "anatomy": "<span id=\"upload-label\">Uploading q3-sales.csv</span>\n<Progress value={64} aria-labelledby=\"upload-label\" />",
+    "parts": {
+      "Progress": [
+        {
+          "name": "value",
+          "type": "number | null",
+          "description": "From 0 to max. Leave it out (or null) when the total is unknown: the bar becomes indeterminate."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": "100",
+          "description": "The total the value is measured against."
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "description": "Id of the visible label naming the operation. Use this or aria-label."
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "Name of the operation when there is no visible label."
+        },
+        {
+          "name": "getValueLabel",
+          "type": "(value: number, max: number) => string",
+          "description": "Text read for the value; defaults to a percentage."
+        }
+      ]
+    }
+  },
   "Select": {
     "description": "Picks one option from a compact list.",
     "related": [
@@ -967,6 +1007,36 @@
           "name": "className",
           "type": "string",
           "description": "Size and shape, e.g. \"h-4 w-40\" or \"size-10 rounded-full\"."
+        }
+      ]
+    }
+  },
+  "Spinner": {
+    "added": "2026-10-30",
+    "description": "A small turning icon for a short wait of unknown length, inside a button, a row or next to a message.",
+    "related": [
+      "Progress",
+      "Button",
+      "Skeleton"
+    ],
+    "anatomy": "<Spinner label=\"Loading orders\" />\n\n<Button>\n  <Spinner aria-hidden />\n  Saving…\n</Button>",
+    "parts": {
+      "Spinner": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"Loading\"",
+          "description": "Names the wait for screen readers. Say what is loading."
+        },
+        {
+          "name": "aria-hidden",
+          "type": "boolean",
+          "description": "Hide it when visible text next to it already names the wait."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "description": "Size (size-4, size-6) and color (text-muted-foreground) through tokens."
         }
       ]
     }

@@ -48,6 +48,8 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Tabular data | `<Table>` inside a `Card` |
 | Persistent message | `<Alert>` |
 | Feedback after an action | `toast()` from `@/components/ui/toast` (Sonner), never for critical errors |
+| Wait with a known total, or a long one | `<Progress>` named by its label (no `value` = indeterminate) |
+| Short wait in a button or a row | `<Spinner label="…">`, or `aria-hidden` next to visible text |
 | Setting with immediate effect | `<Switch>` |
 | Option saved with the form | `<Checkbox>` |
 | Any form field (label, help, error) | `<Field>` + `FieldLabel`, `FieldControl`, `FieldDescription`, `FieldError` |
