@@ -1598,6 +1598,93 @@
     ],
     "added": "2026-10-30"
   },
+  "Sidebar": {
+    "description": "The app's main navigation: a column of links with the current page marked; on small screens the same links open in a Sheet.",
+    "anatomy": "<SidebarProvider>\n  <Sidebar label>\n    <SidebarHeader />\n    <SidebarGroup label>\n      <SidebarItem href icon active />\n    </SidebarGroup>\n    <SidebarFooter />\n  </Sidebar>\n  <header><SidebarTrigger /></header>\n  <main id=\"content\" />\n</SidebarProvider>",
+    "parts": {
+      "SidebarProvider": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The Sidebar and the content; shares the small-screen open state."
+        }
+      ],
+      "Sidebar": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"Main\"",
+          "description": "Names the navigation landmark and the small-screen sheet."
+        }
+      ],
+      "SidebarGroup": [
+        {
+          "name": "label",
+          "type": "string",
+          "description": "Visible heading of the group; names its list of links."
+        }
+      ],
+      "SidebarItem": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "Address of the page; the text matches its title."
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "default": "false",
+          "description": "The page being shown: secondary (glass) and bold, with aria-current=\"page\"."
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "A Heroicons Outline icon (24/outline), drawn at 20px; decorative."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render your router's link (Next.js Link) with the item styles."
+        }
+      ],
+      "SidebarTrigger": [
+        {
+          "name": "aria-label",
+          "type": "string",
+          "default": "\"Open main navigation\"",
+          "description": "Name of the menu button shown under 768px."
+        }
+      ],
+      "SidebarHeader": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Product or workspace name at the top."
+        }
+      ],
+      "SidebarFooter": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Settings or account at the bottom."
+        }
+      ],
+      "useSidebar": [
+        {
+          "name": "()",
+          "type": "{ open, setOpen, label }",
+          "description": "Reads or sets the small-screen sheet state."
+        }
+      ]
+    },
+    "related": [
+      "Sheet",
+      "Breadcrumb",
+      "Tabs"
+    ],
+    "added": "2026-10-30"
+  },
   "Skeleton": {
     "description": "A placeholder shaped like content that is still loading.",
     "related": [

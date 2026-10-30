@@ -36,6 +36,7 @@
 - [Select](docs/components/select.md)
 - [Separator](docs/components/separator.md)
 - [Sheet](docs/components/sheet.md)
+- [Sidebar](docs/components/sidebar.md)
 - [Skeleton](docs/components/skeleton.md)
 - [Slider](docs/components/slider.md)
 - [Spinner](docs/components/spinner.md)

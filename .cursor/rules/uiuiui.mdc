@@ -52,6 +52,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | More actions on an item | `<DropdownMenu>` on a button named for the item ("More actions for Q3 sales") |
 | Status ok / pending / error | `<Badge variant="success" \| "warning" \| "destructive">` |
 | Tabular data | `<Table>` inside a `Card` |
+| Main navigation of an app with 5+ sections | `<Sidebar>` with `SidebarItem active` on the current page; `SidebarTrigger` opens it in a Sheet on small screens |
 | Where the page sits in the hierarchy | `<Breadcrumb>` with links to the levels above and `BreadcrumbPage` last |
 | Optional sections opened on demand (FAQ, settings groups) | `<Accordion>` with titles at the right heading level |
 | Long list or table split into pages | `<Pagination>` named for what it pages through; links with `href`, buttons for in-place updates |

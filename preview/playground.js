@@ -495,6 +495,28 @@
           "    <SheetFooter>\n      <SheetClose asChild>\n        <Button>Done</Button>\n      </SheetClose>\n    </SheetFooter>\n  </SheetContent>\n</Sheet>"
       }
     },
+    Sidebar: {
+      controls: [
+        { name: "label", type: "text", value: "Admin" },
+        { name: "current", type: "select", options: ["Overview", "Inbox", "Reports"], value: "Overview" },
+        { name: "compact", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        var items = [["Overview", "home"], ["Inbox", "inbox"], ["Reports", "chart-bar"]]
+        return h(P.SidebarProvider, { key: String(p.compact), compact: p.compact, style: { maxWidth: p.compact ? 360 : 560, minHeight: 260 } },
+          h(P.Sidebar, { label: p.label }, h(P.SidebarGroup, { label: "Workspace" }, items.map(function (i) {
+            return h(P.SidebarItem, { key: i[0], href: "#" + i[0].toLowerCase(), active: i[0] === p.current, icon: h(P.Icon, { name: i[1] }), onClick: function (e) { e.preventDefault() } }, i[0])
+          }))),
+          h("div", { style: { flex: 1, minWidth: 0 } }, h("div", { className: "uiuiui-row", style: { padding: "8px 16px", borderBottom: "1px solid var(--border)", gap: 8 } }, h(P.SidebarTrigger), h("span", { style: { fontWeight: 600 } }, p.current))))
+      },
+      code: function (p) {
+        var items = [["Overview", "HomeIcon"], ["Inbox", "InboxIcon"], ["Reports", "ChartBarIcon"]]
+        return 'import { ChartBarIcon, HomeIcon, InboxIcon } from "@heroicons/react/24/outline"\n' + imports("sidebar", ["Sidebar", "SidebarGroup", "SidebarItem", "SidebarProvider", "SidebarTrigger"]) +
+          "<SidebarProvider>\n  <Sidebar" + (p.label !== "Main" ? ' label="' + p.label + '"' : "") + ">\n    <SidebarGroup label=\"Workspace\">\n" +
+          items.map(function (i) { return '      <SidebarItem href="/' + i[0].toLowerCase() + '" icon={<' + i[1] + " />}" + (i[0] === p.current ? " active" : "") + ">" + i[0] + "</SidebarItem>\n" }).join("") +
+          "    </SidebarGroup>\n  </Sidebar>\n  <div className=\"flex-1\">\n    <header>\n      <SidebarTrigger />\n    </header>\n    <main id=\"content\" tabIndex={-1}>{/* page */}</main>\n  </div>\n</SidebarProvider>"
+      }
+    },
     Skeleton: {
       controls: [{ name: "shape", type: "select", options: ["text", "avatar", "card"], value: "text" }],
       render: function (p) {
