@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -195,5 +195,44 @@
   Object.assign(api, { AlertDialog: AlertDialog, AlertDialogTrigger: AlertDialogTrigger, AlertDialogContent: AlertDialogContent, AlertDialogHeader: AlertDialogHeader,
     AlertDialogFooter: AlertDialogFooter, AlertDialogTitle: AlertDialogTitle, AlertDialogDescription: AlertDialogDescription,
     AlertDialogCancel: AlertDialogCancel, AlertDialogAction: AlertDialogAction });
+
+  // Popover: opens on click or Enter/Space (never on hover), focus moves in, Esc / outside click / the trigger close it
+  var PopoverCtx = React.createContext(null);
+  function Popover(p) {
+    var c = useControlled(p.open, !!p.defaultOpen, p.onOpenChange), root = React.useRef(null), trigger = React.useRef(null);
+    var id = 'popover-' + React.useId().replace(/:/g, '');
+    React.useEffect(function () {
+      if (!c[0]) return;
+      var away = function (e) { if (root.current && !root.current.contains(e.target)) c[1](false); };
+      document.addEventListener('mousedown', away); return function () { document.removeEventListener('mousedown', away); };
+    }, [c[0]]);
+    return h(PopoverCtx.Provider, { value: { open: c[0], setOpen: c[1], id: id, trigger: trigger } }, h('span', { ref: root, className: 'uiuiui-popover' }, p.children));
+  }
+  function PopoverTrigger(p) {
+    var c = React.useContext(PopoverCtx), child = React.Children.only(p.children);
+    return h('span', { ref: c.trigger, style: { display: 'contents' } }, React.cloneElement(child, { 'aria-haspopup': 'dialog', 'aria-expanded': c.open, 'aria-controls': c.open ? c.id : undefined,
+      onClick: function () { c.setOpen(!c.open); } }));
+  }
+  function popoverClose(c) { c.setOpen(false); var t = c.trigger.current && c.trigger.current.querySelector('button, a'); if (t) t.focus(); }
+  function PopoverContent(p) {
+    var c = React.useContext(PopoverCtx), ref = React.useRef(null);
+    React.useEffect(function () {
+      if (!c.open || !ref.current) return;
+      var first = ref.current.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      (first || ref.current).focus();
+    }, [c.open]);
+    if (!c.open) return null;
+    return h('div', { ref: ref, id: c.id, role: 'dialog', tabIndex: -1, 'aria-labelledby': c.id + '-title', className: cx('uiuiui-popover__content', p.className),
+      onKeyDown: function (e) { if (e.key === 'Escape') { e.stopPropagation(); popoverClose(c); } } }, p.children);
+  }
+  function PopoverClose(p) {
+    var c = React.useContext(PopoverCtx), child = React.Children.only(p.children);
+    return React.cloneElement(child, { onClick: function () { popoverClose(c); } });
+  }
+  var PopoverHeader = slot('div', 'uiuiui-popover__header');
+  function PopoverTitle(p) { var c = React.useContext(PopoverCtx); return h('div', { id: c.id + '-title', className: cx('uiuiui-popover__title', p.className) }, p.children); }
+  var PopoverDescription = slot('p', 'uiuiui-popover__description');
+  Object.assign(api, { Popover: Popover, PopoverTrigger: PopoverTrigger, PopoverContent: PopoverContent, PopoverClose: PopoverClose,
+    PopoverHeader: PopoverHeader, PopoverTitle: PopoverTitle, PopoverDescription: PopoverDescription });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

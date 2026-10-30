@@ -644,6 +644,90 @@
       ]
     }
   },
+  "Popover": {
+    "description": "Shows extra content or a few quick controls next to the button that opened it, without leaving the page.",
+    "related": [
+      "Tooltip",
+      "Dialog",
+      "DropdownMenu"
+    ],
+    "anatomy": "<Popover>\n  <PopoverTrigger asChild>\n    <Button />\n  </PopoverTrigger>\n  <PopoverContent>\n    <PopoverHeader>\n      <PopoverTitle />\n      <PopoverDescription />\n    </PopoverHeader>\n    {content}\n    <PopoverClose asChild><Button /></PopoverClose>\n  </PopoverContent>\n</Popover>",
+    "parts": {
+      "Popover": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "description": "Controlled open state."
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "default": "false",
+          "description": "Initial state when uncontrolled."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "description": "Runs when it opens or closes (trigger, Esc, outside click, PopoverClose)."
+        }
+      ],
+      "PopoverTrigger": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use your Button as the trigger; it gets aria-haspopup and aria-expanded."
+        }
+      ],
+      "PopoverContent": [
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "default": "\"bottom\"",
+          "description": "Preferred side; it flips when there is no room."
+        },
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "default": "\"center\"",
+          "description": "Alignment with the trigger."
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "default": "4",
+          "description": "Gap to the trigger, in px."
+        },
+        {
+          "name": "onOpenAutoFocus",
+          "type": "(event: Event) => void",
+          "description": "Focus moves into the popover on open; prevent it only to focus a specific field yourself."
+        }
+      ],
+      "PopoverTitle": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Repeats what the trigger said would open."
+        }
+      ],
+      "PopoverDescription": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "One sentence of context."
+        }
+      ],
+      "PopoverClose": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use your Button to close the popover; focus returns to the trigger."
+        }
+      ]
+    }
+  },
   "Select": {
     "description": "Picks one option from a compact list.",
     "related": [

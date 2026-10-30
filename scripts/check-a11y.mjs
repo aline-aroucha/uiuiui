@@ -109,7 +109,9 @@ for (const slug of targets) {
       return Boolean(layer && layer.contains(document.activeElement))
     })
     ok(`${kind}: opens from the keyboard with focus inside`, await inside())
-    if (kind === "dialog") {
+    // Only a modal dialog keeps Tab inside; a popover (also aria-haspopup="dialog") leaves the page available
+    const modal = await overlay.evaluate(() => Boolean(document.querySelector("dialog[open], [role=dialog][aria-modal=true], [role=alertdialog]")))
+    if (kind === "dialog" && modal) {
       let trapped = true
       for (let i = 0; i < 8; i++) { await overlay.keyboard.press("Tab"); if (!(await inside())) trapped = false }
       ok("dialog: Tab stays inside while it is open", trapped)
@@ -119,7 +121,7 @@ for (const slug of targets) {
     }
     await overlay.keyboard.press("Escape")
     await overlay.waitForTimeout(300)
-    const back = await overlay.evaluate(() => ({ open: Boolean(document.querySelector("dialog[open], [role=menu]")), focus: document.activeElement?.getAttribute("aria-haspopup") }))
+    const back = await overlay.evaluate(() => ({ open: Boolean(document.querySelector("dialog[open], [role=menu], .vx-preview [role=dialog]")), focus: document.activeElement?.getAttribute("aria-haspopup") }))
     ok(`${kind}: Esc closes it and focus returns to the trigger`, !back.open && back.focus === kind)
   }
   await overlay.close()

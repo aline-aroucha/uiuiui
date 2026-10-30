@@ -210,6 +210,26 @@
             tag("PasswordInput", { autoComplete: unless(p.autoComplete, "current-password"), showLabel: unless(p.showLabel, "Show password"), hideLabel: unless(p.hideLabel, "Hide password") }, undefined, "    "), "  "))
       }
     },
+    Popover: {
+      controls: [
+        { name: "trigger", type: "text", value: "Share link" },
+        { name: "title", type: "text", value: "Share link" },
+        { name: "description", type: "text", value: "Anyone with the link can view this report." }
+      ],
+      render: function (p) {
+        return h(P.Popover, null,
+          h(P.PopoverTrigger, null, h(P.Button, { variant: "outline" }, p.trigger)),
+          h(P.PopoverContent, null,
+            h(P.PopoverHeader, null, h(P.PopoverTitle, null, p.title), p.description ? h(P.PopoverDescription, null, p.description) : null),
+            h(P.PopoverClose, null, h(P.Button, { size: "sm" }, "Done"))))
+      },
+      code: function (p) {
+        return imports("button", ["Button"]) + imports("popover", ["Popover", "PopoverClose", "PopoverContent", "PopoverDescription", "PopoverHeader", "PopoverTitle", "PopoverTrigger"]) +
+          "<Popover>\n  <PopoverTrigger asChild>\n    <Button variant=\"outline\">" + p.trigger + "</Button>\n  </PopoverTrigger>\n  <PopoverContent>\n    <PopoverHeader>\n      <PopoverTitle>" + p.title + "</PopoverTitle>\n" +
+          (p.description ? "      <PopoverDescription>" + p.description + "</PopoverDescription>\n" : "") +
+          "    </PopoverHeader>\n    <PopoverClose asChild>\n      <Button size=\"sm\">Done</Button>\n    </PopoverClose>\n  </PopoverContent>\n</Popover>"
+      }
+    },
     Select: {
       controls: [
         { name: "placeholder", type: "text", value: "Choose a country" },

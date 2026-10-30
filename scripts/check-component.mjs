@@ -23,7 +23,7 @@ const pascal = (slug) => slug.replace(/(^|-)([a-z])/g, (_, __, c) => c.toUpperCa
 // Content stays solid; only controls and floating layers may use glass
 const CONTENT = ["alert", "avatar", "badge", "card", "field", "input", "label", "separator", "skeleton", "table", "textarea"]
 // Controls that take focus and must show a visible focus ring
-const INTERACTIVE = ["alert-dialog", "button", "checkbox", "dialog", "input", "password-input", "select", "switch", "tabs", "textarea"]
+const INTERACTIVE = ["alert-dialog", "button", "checkbox", "dialog", "input", "password-input", "popover", "select", "switch", "tabs", "textarea"]
 // Form controls validated with the form, so they style the invalid state (a Switch acts at once and is never invalid)
 const FORM = ["checkbox", "input", "select", "textarea"]
 const PALETTE = "slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose"
