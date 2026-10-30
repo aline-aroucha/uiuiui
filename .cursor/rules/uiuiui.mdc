@@ -44,6 +44,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Attention action, not destructive | `<Button variant="emphasis">` (red) |
 | Supporting action | `<Button variant="secondary">` or `"outline"` |
 | Cancel / low emphasis | `<Button variant="ghost">` |
+| Short task that interrupts the flow | `<Dialog>` with a title and Cancel |
 | Irreversible action | `<Button variant="destructive">` inside an `AlertDialog` |
 | Status ok / pending / error | `<Badge variant="success" \| "warning" \| "destructive">` |
 | Tabular data | `<Table>` inside a `Card` |

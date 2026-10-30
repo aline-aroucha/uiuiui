@@ -8,8 +8,6 @@ import { fileURLToPath } from "node:url"
 
 const SHADCN = "shadcn@4.21.3"
 const DEFAULT_REGISTRY = "https://aline-aroucha.github.io/uiuiui/r"
-const COMPONENTS = ["alert", "avatar", "badge", "button", "card", "checkbox", "field", "input", "label",
-  "password-input", "select", "separator", "skeleton", "switch", "table", "tabs", "textarea"]
 const MAGOO_MCP = { command: "npx", args: ["-y", "@acessibilidade/magoo-mcp@1.6.0"] }
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), "..")
 const cwd = process.cwd()
@@ -29,6 +27,18 @@ const overwrite = args.includes("--overwrite") && args.splice(args.indexOf("--ov
 const [command, ...rest] = args
 const url = (name) => `${registry}/${name}.json`
 
+// The component list comes from the registry itself, so new components are available without a new CLI release.
+// Offline (or an older registry without the index), names are passed through and the shadcn CLI reports unknown ones.
+async function components() {
+  try {
+    const res = await fetch(url("registry"))
+    if (!res.ok) return null
+    return (await res.json()).items.filter((i) => i.type === "registry:ui").map((i) => i.name).sort()
+  } catch {
+    return null
+  }
+}
+
 function shadcn(...a) {
   const r = spawnSync("npx", ["--yes", SHADCN, ...a, ...(yes ? ["--yes"] : [])], {
     stdio: "inherit",
@@ -43,7 +53,7 @@ function help() {
 Usage
   uiuiui init              Set up the project: UIUIUI style, cn() helper, AGENTS.md, CLAUDE.md, Magoo MCP
   uiuiui add <name...>     Add components (e.g. uiuiui add button card input)
-  uiuiui add --all         Add all ${COMPONENTS.length} components
+  uiuiui add --all         Add every component
   uiuiui list              List available components
 
 Options
@@ -126,22 +136,33 @@ switch (command) {
     break
   }
   case "add": {
-    const names = rest.includes("--all") ? COMPONENTS : rest
+    const available = await components()
+    if (rest.includes("--all") && !available) {
+      console.error(`Couldn't read the component list from ${url("registry")}. Name the components instead.`)
+      process.exit(1)
+    }
+    const names = rest.includes("--all") ? available : rest
     if (!names.length) {
       console.error("Name at least one component, e.g. uiuiui add button. See uiuiui list.")
       process.exit(1)
     }
-    const unknown = names.filter((n) => !COMPONENTS.includes(n))
+    const unknown = available ? names.filter((n) => !available.includes(n)) : []
     if (unknown.length) {
-      console.error(`Unknown component: ${unknown.join(", ")}. Available: ${COMPONENTS.join(", ")}`)
+      console.error(`Unknown component: ${unknown.join(", ")}. Available: ${available.join(", ")}`)
       process.exit(1)
     }
     shadcn("add", ...names.map(url), ...(overwrite ? ["--overwrite"] : []))
     break
   }
-  case "list":
-    console.log(COMPONENTS.join("\n"))
+  case "list": {
+    const available = await components()
+    if (!available) {
+      console.error(`Couldn't read the component list from ${url("registry")}.`)
+      process.exit(1)
+    }
+    console.log(available.join("\n"))
     break
+  }
   case undefined:
   case "help":
   case "--help":

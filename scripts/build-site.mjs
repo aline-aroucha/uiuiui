@@ -185,7 +185,7 @@ function shell({ path, title, description, intro = "", sections, related = [], s
           </div>
           ${description ? `<p class="page-description">${mdInline(description)}</p>` : ""}
           ${intro}
-          ${body.replace(/<pre>/g, '<pre tabindex="0">')}
+          ${body.replace(/<pre(?![^>]*tabindex)( [^>]*)?>/g, (_, attrs = "") => `<pre${attrs} tabindex="0">`)}
         </article>
         ${tocHtml}
       </div>

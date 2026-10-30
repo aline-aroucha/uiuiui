@@ -120,6 +120,9 @@ svg { flex-shrink: 0; }
 .example-frame { border: 1px solid var(--border); border-radius: var(--radius-2xl); font-size: 14px; line-height: 20px; overflow-x: auto; }
 .example-frame .uiuiui-stage { padding: 32px 24px; }
 .example-frame p, .vx-preview p { margin: 0; }
+/* Overlays render inside the article but must look as they do in a product: the article's text styles stay out */
+.article :is(.uiuiui-dialog) :is(h2, p) { margin: 0; }
+.article .uiuiui-dialog h2 { font: 600 18px/24px var(--font-sans); letter-spacing: -0.01em; }
 details.code { margin-top: 12px; }
 details.code summary { cursor: pointer; color: var(--muted-foreground); font-size: 14px; }
 .anatomy { border: 1px solid var(--border); }

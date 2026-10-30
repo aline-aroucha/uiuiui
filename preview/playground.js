@@ -16,6 +16,17 @@
   function unless(value, fallback) { return value === fallback ? undefined : value }
   function imports(file, names) { return "import { " + names.join(", ") + ' } from "@/components/ui/' + file + '"\n\n' }
 
+  // Overlays keep their open state in a small component of their own
+  function DialogDemo(p) {
+    var st = React.useState(false)
+    return h(P.Dialog, { open: st[0], onOpenChange: st[1] },
+      h(P.DialogTrigger, null, h(P.Button, { variant: "outline" }, p.title)),
+      h(P.DialogContent, { showCloseButton: p.showCloseButton },
+        h(P.DialogHeader, null, h(P.DialogTitle, null, p.title), p.description ? h(P.DialogDescription, null, p.description) : null),
+        h(P.Field, { required: true }, h(P.FieldLabel, null, "Name"), h(P.FieldControl, null, h(P.Input, { defaultValue: "Maya Chen" }))),
+        h(P.DialogFooter, null, h(P.DialogClose, null, h(P.Button, { variant: "ghost" }, "Cancel")), h(P.DialogClose, null, h(P.Button, null, "Save changes")))))
+  }
+
   var sizes = ["sm", "default", "lg"]
   var configs = {
     Alert: {
@@ -96,6 +107,21 @@
         var line = '  <Checkbox id="summary"' + (dc ? " " + dc : "") + (p.disabled ? " disabled" : "") + " />"
         return imports("checkbox", ["Checkbox"]) + 'import { Label } from "@/components/ui/label"\n\n' +
           '<div className="flex items-center gap-2">\n' + line + '\n  <Label htmlFor="summary">' + p.label + "</Label>\n</div>"
+      }
+    },
+    Dialog: {
+      controls: [
+        { name: "title", type: "text", value: "Edit profile" },
+        { name: "description", type: "text", value: "Changes show on your public page." },
+        { name: "showCloseButton", type: "boolean", value: true }
+      ],
+      render: function (p) { return h(DialogDemo, p) },
+      code: function (p) {
+        return imports("button", ["Button"]) + imports("dialog", ["Dialog", "DialogClose", "DialogContent", "DialogDescription", "DialogFooter", "DialogHeader", "DialogTitle", "DialogTrigger"]) +
+          "<Dialog>\n  <DialogTrigger asChild>\n    <Button variant=\"outline\">" + p.title + "</Button>\n  </DialogTrigger>\n" +
+          "  <DialogContent" + (p.showCloseButton ? "" : " showCloseButton={false}") + ">\n    <DialogHeader>\n      <DialogTitle>" + p.title + "</DialogTitle>\n" +
+          (p.description ? "      <DialogDescription>" + p.description + "</DialogDescription>\n" : "") +
+          "    </DialogHeader>\n    {/* fields */}\n    <DialogFooter>\n      <DialogClose asChild>\n        <Button variant=\"ghost\">Cancel</Button>\n      </DialogClose>\n      <Button type=\"submit\">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>"
       }
     },
     Field: {

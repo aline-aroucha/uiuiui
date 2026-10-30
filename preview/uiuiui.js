@@ -1,9 +1,9 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
   var React = window.React, h = React.createElement;
-  var ICONS = {"check": [{"d": "M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "minus": [{"d": "M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z", "fillRule": null, "clipRule": null}], "chevron-down": [{"d": "M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "exclamation-circle": [{"d": "M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye": [{"d": "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z", "fillRule": null, "clipRule": null}, {"d": "M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye-slash": [{"d": "M3.28 2.22a.75.75 0 0 0-1.06 1.06l10.5 10.5a.75.75 0 1 0 1.06-1.06l-1.322-1.323a7.012 7.012 0 0 0 2.16-3.11.87.87 0 0 0 0-.567A7.003 7.003 0 0 0 4.82 3.76l-1.54-1.54Zm3.196 3.195 1.135 1.136A1.502 1.502 0 0 1 9.45 8.389l1.136 1.135a3 3 0 0 0-4.109-4.109Z", "fillRule": "evenodd", "clipRule": "evenodd"}, {"d": "m7.812 10.994 1.816 1.816A7.003 7.003 0 0 1 1.38 8.28a.87.87 0 0 1 0-.566 6.985 6.985 0 0 1 1.113-2.039l2.513 2.513a3 3 0 0 0 2.806 2.806Z", "fillRule": null, "clipRule": null}], "plus": [{"d": "M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z", "fillRule": null, "clipRule": null}], "play": [{"d": "M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z", "fillRule": null, "clipRule": null}]};
+  var ICONS = {"check": [{"d": "M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "minus": [{"d": "M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z", "fillRule": null, "clipRule": null}], "chevron-down": [{"d": "M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "exclamation-circle": [{"d": "M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye": [{"d": "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z", "fillRule": null, "clipRule": null}, {"d": "M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "fillRule": "evenodd", "clipRule": "evenodd"}], "eye-slash": [{"d": "M3.28 2.22a.75.75 0 0 0-1.06 1.06l10.5 10.5a.75.75 0 1 0 1.06-1.06l-1.322-1.323a7.012 7.012 0 0 0 2.16-3.11.87.87 0 0 0 0-.567A7.003 7.003 0 0 0 4.82 3.76l-1.54-1.54Zm3.196 3.195 1.135 1.136A1.502 1.502 0 0 1 9.45 8.389l1.136 1.135a3 3 0 0 0-4.109-4.109Z", "fillRule": "evenodd", "clipRule": "evenodd"}, {"d": "m7.812 10.994 1.816 1.816A7.003 7.003 0 0 1 1.38 8.28a.87.87 0 0 1 0-.566 6.985 6.985 0 0 1 1.113-2.039l2.513 2.513a3 3 0 0 0 2.806 2.806Z", "fillRule": null, "clipRule": null}], "plus": [{"d": "M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z", "fillRule": null, "clipRule": null}], "play": [{"d": "M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z", "fillRule": null, "clipRule": null}], "x-mark": [{"d": "M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z", "fillRule": null, "clipRule": null}]};
   function Icon(p) {
     return h('svg', { viewBox: '0 0 16 16', fill: 'currentColor', 'aria-hidden': true, 'data-slot': 'icon', className: p.className },
       ICONS[p.name].map(function (d, i) { return h('path', { key: i, d: d.d, fillRule: d.fillRule || undefined, clipRule: d.clipRule || undefined }); }));
@@ -139,5 +139,50 @@
     CardFooter: CardFooter, Alert: Alert, AlertTitle: AlertTitle, AlertDescription: AlertDescription, Tabs: Tabs, TabsList: TabsList,
     TabsTrigger: TabsTrigger, TabsContent: TabsContent, Table: Table, TableHeader: TableHeader, TableBody: TableBody, TableRow: TableRow,
     TableHead: TableHead, TableCell: TableCell, TableCaption: TableCaption, Separator: Separator, Skeleton: Skeleton, Avatar: Avatar };
+
+  // Dialog: a native modal <dialog> (top layer, inert page behind, Esc), focus returned to the opener on close
+  var DialogCtx = React.createContext(null), DialogPartsCtx = React.createContext({});
+  function Dialog(p) {
+    var c = useControlled(p.open, !!p.defaultOpen, p.onOpenChange);
+    return h(DialogCtx.Provider, { value: { open: c[0], setOpen: c[1], dismissible: p.dismissible !== false } }, p.children);
+  }
+  function DialogTrigger(p) {
+    var d = React.useContext(DialogCtx), child = React.Children.only(p.children);
+    return React.cloneElement(child, { 'aria-haspopup': 'dialog', 'aria-expanded': d.open, onClick: function () { d.setOpen(true); } });
+  }
+  function DialogClose(p) {
+    var d = React.useContext(DialogCtx), child = React.Children.only(p.children);
+    return React.cloneElement(child, { onClick: function (e) { if (child.props.onClick) child.props.onClick(e); d.setOpen(false); } });
+  }
+  function DialogContent(p) {
+    var d = React.useContext(DialogCtx), ref = React.useRef(null), opener = React.useRef(null);
+    var id = 'dialog-' + React.useId().replace(/:/g, '');
+    React.useEffect(function () {
+      var el = ref.current; if (!el) return;
+      if (d.open && !el.open) { opener.current = document.activeElement; el.showModal(); }
+      if (!d.open && el.open) { el.close(); if (opener.current && opener.current.focus) opener.current.focus(); }
+    }, [d.open]);
+    return h('dialog', { ref: ref, className: cx('uiuiui-dialog', p.className), role: p.role, 'aria-labelledby': id + '-title', 'aria-describedby': id + '-description',
+        onCancel: function (e) { e.preventDefault(); d.setOpen(false); },
+        // Tab and Shift+Tab cycle inside the dialog instead of leaving for the browser's own controls
+        onKeyDown: function (e) {
+          if (e.key !== 'Tab') return;
+          var f = Array.prototype.filter.call(ref.current.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'), function (el) { return !el.disabled && el.offsetParent !== null; });
+          if (!f.length) return;
+          var first = f.at(0), last = f.at(-1);
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        },
+        onClick: function (e) { if (e.target === ref.current && d.dismissible) d.setOpen(false); } },
+      h(DialogPartsCtx.Provider, { value: { id: id } },
+        h('div', { className: 'uiuiui-dialog__body' }, p.children,
+          p.showCloseButton === false ? null : h('button', { type: 'button', className: 'uiuiui-btn uiuiui-btn--ghost uiuiui-btn--size-icon-sm uiuiui-dialog__close', 'aria-label': p.closeLabel || 'Close', onClick: function () { d.setOpen(false); } },
+            h(Icon, { name: 'x-mark' })))));
+  }
+  var DialogHeader = slot('div', 'uiuiui-dialog__header'), DialogFooter = slot('div', 'uiuiui-dialog__footer');
+  function DialogTitle(p) { var c = React.useContext(DialogPartsCtx); return h('h2', { id: c.id + '-title', className: cx('uiuiui-dialog__title', p.className) }, p.children); }
+  function DialogDescription(p) { var c = React.useContext(DialogPartsCtx); return h('p', { id: c.id + '-description', className: cx('uiuiui-dialog__description', p.className) }, p.children); }
+  Object.assign(api, { Dialog: Dialog, DialogTrigger: DialogTrigger, DialogClose: DialogClose, DialogContent: DialogContent, DialogHeader: DialogHeader,
+    DialogFooter: DialogFooter, DialogTitle: DialogTitle, DialogDescription: DialogDescription });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

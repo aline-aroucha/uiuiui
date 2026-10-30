@@ -313,6 +313,26 @@
       ]
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "UIUIUI Dialog. Docs: https://aline-aroucha.github.io/uiuiui/components/dialog.html",
+      "dependencies": [
+        "@heroicons/react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -375,8 +395,8 @@
       ],
       "registryDependencies": [
         "https://aline-aroucha.github.io/uiuiui/r/utils.json",
-        "https://aline-aroucha.github.io/uiuiui/r/input.json",
-        "https://aline-aroucha.github.io/uiuiui/r/button.json"
+        "https://aline-aroucha.github.io/uiuiui/r/button.json",
+        "https://aline-aroucha.github.io/uiuiui/r/input.json"
       ],
       "files": [
         {

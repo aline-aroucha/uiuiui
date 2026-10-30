@@ -94,6 +94,36 @@ for (const slug of targets) {
   ok(`focus ring on every Tab stop in the playground and examples (${own.length} stops)`, own.length && !noRing.length, noRing.join(", "))
   await page.close()
 
+  // 3b. Overlays (Magoo Modal, Menu, Tooltip and Popover): a playground trigger with aria-haspopup opens from the keyboard,
+  // moves focus inside, keeps Tab inside a modal dialog, closes with Esc and returns focus to the trigger
+  const overlay = await browser.newPage({ viewport: { width: 1280, height: 900 } })
+  await overlay.goto(url, { waitUntil: "networkidle" })
+  const trigger = await overlay.$(".vx-preview [aria-haspopup]")
+  if (trigger) {
+    const kind = await trigger.getAttribute("aria-haspopup")
+    await trigger.focus()
+    await overlay.keyboard.press("Enter")
+    await overlay.waitForTimeout(300)
+    const inside = () => overlay.evaluate(() => {
+      const layer = document.querySelector("dialog[open], [role=dialog]:not(dialog), [role=alertdialog]:not(dialog), [role=menu]")
+      return Boolean(layer && layer.contains(document.activeElement))
+    })
+    ok(`${kind}: opens from the keyboard with focus inside`, await inside())
+    if (kind === "dialog") {
+      let trapped = true
+      for (let i = 0; i < 8; i++) { await overlay.keyboard.press("Tab"); if (!(await inside())) trapped = false }
+      ok("dialog: Tab stays inside while it is open", trapped)
+      await overlay.addScriptTag({ content: axeSource })
+      const open = await overlay.evaluate(async () => (await window.axe.run(document.querySelector("dialog[open]") || document, { runOnly: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa", "best-practice"] })).violations.map((v) => v.id))
+      ok("dialog: axe passes while open", !open.length, open.join(", "))
+    }
+    await overlay.keyboard.press("Escape")
+    await overlay.waitForTimeout(300)
+    const back = await overlay.evaluate(() => ({ open: Boolean(document.querySelector("dialog[open], [role=menu]")), focus: document.activeElement?.getAttribute("aria-haspopup") }))
+    ok(`${kind}: Esc closes it and focus returns to the trigger`, !back.open && back.focus === kind)
+  }
+  await overlay.close()
+
   // 4. Reflow at 320px (400% zoom): no horizontal scroll
   const narrow = await browser.newPage({ viewport: { width: 320, height: 640 } })
   await narrow.goto(url, { waitUntil: "networkidle" })

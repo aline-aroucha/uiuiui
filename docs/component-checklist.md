@@ -1,6 +1,6 @@
 # Component merge checklist
 
-Every new or changed UIUIUI component passes this checklist before it is merged. It keeps the 17 components and every new one
+Every new or changed UIUIUI component passes this checklist before it is merged. It keeps every component, existing and new,
 consistent with the tokens, the Liquid Glass material and the Magoo behavior rules. AI agents run it on their own when they finish
 a component (Claude Code through the `component-merge-check` skill and the project hooks); people run the same commands.
 

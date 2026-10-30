@@ -16,6 +16,7 @@
 - [Button](docs/components/button.md)
 - [Card](docs/components/card.md)
 - [Checkbox](docs/components/checkbox.md)
+- [Dialog](docs/components/dialog.md)
 - [Field](docs/components/field.md)
 - [Input](docs/components/input.md)
 - [Label](docs/components/label.md)
