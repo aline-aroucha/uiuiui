@@ -1051,6 +1051,85 @@
       ]
     }
   },
+  "Pagination": {
+    "description": "Splits a long list or table into pages: links when each page has an address, buttons when the content updates in place.",
+    "anatomy": "<Pagination aria-label>\n  <PaginationContent>\n    <PaginationItem><PaginationPrevious /></PaginationItem>\n    <PaginationItem><PaginationLink isActive /></PaginationItem>\n    <PaginationItem><PaginationEllipsis /></PaginationItem>\n    <PaginationItem><PaginationNext /></PaginationItem>\n  </PaginationContent>\n</Pagination>",
+    "parts": {
+      "Pagination": [
+        {
+          "name": "aria-label",
+          "type": "string",
+          "default": "\"Pagination\"",
+          "description": "Name of the navigation landmark; say what it pages through (\"Search results pages\")."
+        }
+      ],
+      "PaginationLink": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "Address of the page: the control is a link. Leave it out for a button that updates the content in place."
+        },
+        {
+          "name": "onClick",
+          "type": "(event) => void",
+          "description": "Shows the page when the content updates in place."
+        },
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "default": "false",
+          "description": "The page being shown: outlined, bold and announced as the current page (aria-current=\"page\")."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Unavailable: looks disabled, does nothing and takes no focus."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The page number; a bare number is named \"Page 3\"."
+        }
+      ],
+      "PaginationPrevious": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "default": "\"Previous\"",
+          "description": "The word, shown next to the chevron from 640px and kept as the name below it. Takes the PaginationLink props."
+        }
+      ],
+      "PaginationNext": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "default": "\"Next\"",
+          "description": "The word, shown next to the chevron from 640px and kept as the name below it. Takes the PaginationLink props."
+        }
+      ],
+      "PaginationEllipsis": [
+        {
+          "name": "className",
+          "type": "string",
+          "description": "Draws a gap of left-out pages; hidden from screen readers and never focusable."
+        }
+      ],
+      "paginationRange": [
+        {
+          "name": "(page, total, siblings = 1)",
+          "type": "(number | \"ellipsis\")[]",
+          "description": "The page numbers to show: first, last and siblings around the current page, with \"ellipsis\" for gaps."
+        }
+      ]
+    },
+    "related": [
+      "Table",
+      "Card",
+      "Button"
+    ],
+    "added": "2026-10-30"
+  },
   "PasswordInput": {
     "description": "Password field with a button that shows or hides the characters.",
     "related": [

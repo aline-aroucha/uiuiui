@@ -519,6 +519,25 @@
       ]
     },
     {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "UIUIUI Pagination. Docs: https://aline-aroucha.github.io/uiuiui/components/pagination.html",
+      "dependencies": [
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json",
+        "https://aline-aroucha.github.io/uiuiui/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "password-input",
       "type": "registry:ui",
       "title": "Password input",

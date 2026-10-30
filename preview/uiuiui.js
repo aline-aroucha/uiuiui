@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"},{"name":"Breadcrumb"},{"name":"Accordion"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"},{"name":"Breadcrumb"},{"name":"Accordion"},{"name":"Pagination"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -657,5 +657,31 @@
       h('div', { className: cx('uiuiui-accordion__body', p.className) }, p.children));
   }
   Object.assign(api, { Accordion: Accordion, AccordionItem: AccordionItem, AccordionTrigger: AccordionTrigger, AccordionContent: AccordionContent });
+
+  // Pagination: a named nav with a list; href = link, no href = button; the current page has aria-current; Previous/Next can be unavailable
+  function Pagination(p) { return h('nav', Object.assign({ 'aria-label': 'Pagination' }, omit(p, ['className']), { className: cx('uiuiui-pagination', p.className) })); }
+  var PaginationContent = slot('ul', 'uiuiui-pagination__list');
+  var PaginationItem = slot('li', 'uiuiui-pagination__item');
+  function PaginationLink(p) {
+    var num = typeof p.children === 'number' || /^\d+$/.test(String(p.children));
+    var props = Object.assign(omit(p, ['isActive', 'disabled', 'size', 'className', 'href', 'onClick']), {
+      'aria-current': p.isActive ? 'page' : undefined, 'aria-label': p['aria-label'] || (num ? 'Page ' + p.children : undefined),
+      className: cx('uiuiui-btn', 'uiuiui-btn--' + (p.isActive ? 'outline' : 'ghost'), p.size === 'default' ? 'uiuiui-pagination__step' : 'uiuiui-pagination__page', p.isActive && 'uiuiui-pagination__current', p.className) });
+    if (p.href !== undefined) return h('a', Object.assign(props, { href: p.disabled ? undefined : p.href, 'aria-disabled': p.disabled || undefined, onClick: p.disabled ? undefined : p.onClick }));
+    return h('button', Object.assign(props, { type: 'button', disabled: p.disabled, onClick: p.onClick }));
+  }
+  function PaginationPrevious(p) { return h(PaginationLink, Object.assign({}, p, { size: 'default' }), h(Icon, { name: 'chevron-left' }), h('span', { className: 'uiuiui-pagination__word' }, p.children || 'Previous')); }
+  function PaginationNext(p) { return h(PaginationLink, Object.assign({}, p, { size: 'default' }), h('span', { className: 'uiuiui-pagination__word' }, p.children || 'Next'), h(Icon, { name: 'chevron-right' })); }
+  function PaginationEllipsis() { return h('span', { 'aria-hidden': true, className: 'uiuiui-pagination__ellipsis' }, h(Icon, { name: 'ellipsis-horizontal' })); }
+  function paginationRange(page, total, siblings) {
+    var s = siblings == null ? 1 : siblings, start = Math.max(2, page - s), end = Math.min(total - 1, page + s), out = [1];
+    if (start > 2) out.push(start === 3 ? 2 : 'ellipsis');
+    for (var n = start; n <= end; n++) out.push(n);
+    if (end < total - 1) out.push(end === total - 2 ? total - 1 : 'ellipsis');
+    if (total > 1) out.push(total);
+    return out;
+  }
+  Object.assign(api, { Pagination: Pagination, PaginationContent: PaginationContent, PaginationItem: PaginationItem, PaginationLink: PaginationLink,
+    PaginationPrevious: PaginationPrevious, PaginationNext: PaginationNext, PaginationEllipsis: PaginationEllipsis, paginationRange: paginationRange });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();

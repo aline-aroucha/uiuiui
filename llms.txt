@@ -27,6 +27,7 @@
 - [FileUpload](docs/components/file-upload.md)
 - [Input](docs/components/input.md)
 - [Label](docs/components/label.md)
+- [Pagination](docs/components/pagination.md)
 - [PasswordInput](docs/components/password-input.md)
 - [Popover](docs/components/popover.md)
 - [Progress](docs/components/progress.md)

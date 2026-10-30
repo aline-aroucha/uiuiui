@@ -44,6 +44,19 @@
       h(P.Slider, { id: "vx-slider", value: st[0], onValueChange: st[1], max: 100, step: Number(p.step), disabled: p.disabled, "aria-labelledby": "vx-slider-label", formatValue: function (n) { return n + "%" } })))
   }
 
+  function PaginationDemo(p) {
+    var st = React.useState(4), page = Math.min(st[0], p.total)
+    var ctl = function (n) {
+      return p.links ? { href: "#page-" + n, onClick: function (e) { e.preventDefault(); st[1](n) } } : { onClick: function () { st[1](n) } }
+    }
+    return h(P.Pagination, { "aria-label": p.label }, h(P.PaginationContent, null,
+      h(P.PaginationItem, null, h(P.PaginationPrevious, Object.assign({ disabled: page === 1 }, ctl(page - 1)))),
+      P.paginationRange(page, p.total).map(function (n, i) {
+        return h(P.PaginationItem, { key: n === "ellipsis" ? "e" + i : n }, n === "ellipsis" ? h(P.PaginationEllipsis) : h(P.PaginationLink, Object.assign({ isActive: n === page }, ctl(n)), n))
+      }),
+      h(P.PaginationItem, null, h(P.PaginationNext, Object.assign({ disabled: page === p.total }, ctl(page + 1))))))
+  }
+
   var sizes = ["sm", "default", "lg"]
   var configs = {
     Accordion: {
@@ -319,6 +332,21 @@
       code: function (p) {
         return imports("label", ["Label"]) + 'import { Checkbox } from "@/components/ui/checkbox"\n\n' +
           '<div className="flex items-center gap-2">\n  <Checkbox id="terms" defaultChecked />\n  <Label htmlFor="terms">' + p.children + "</Label>\n</div>"
+      }
+    },
+    Pagination: {
+      controls: [
+        { name: "total", type: "select", options: ["5", "10", "24"], value: "10" },
+        { name: "label", type: "text", value: "Search results pages" },
+        { name: "links", type: "boolean", value: true }
+      ],
+      render: function (p) { return h(PaginationDemo, { key: p.total + p.links, total: Number(p.total), label: p.label, links: p.links }) },
+      code: function (p) {
+        var ctl = p.links ? 'href={`?page=${n}`}' : "onClick={() => setPage(n)}"
+        return imports("pagination", ["Pagination", "PaginationContent", "PaginationEllipsis", "PaginationItem", "PaginationLink", "PaginationNext", "PaginationPrevious", "paginationRange"]) +
+          '<Pagination aria-label="' + p.label + '">\n  <PaginationContent>\n    <PaginationItem>\n      <PaginationPrevious ' + (p.links ? 'href={`?page=${page - 1}`}' : "onClick={() => setPage(page - 1)}") + " disabled={page === 1} />\n    </PaginationItem>\n" +
+          "    {paginationRange(page, " + p.total + ").map((n, i) =>\n      <PaginationItem key={i}>\n        {n === \"ellipsis\" ? <PaginationEllipsis /> : <PaginationLink " + ctl + " isActive={n === page}>{n}</PaginationLink>}\n      </PaginationItem>\n    )}\n" +
+          "    <PaginationItem>\n      <PaginationNext " + (p.links ? 'href={`?page=${page + 1}`}' : "onClick={() => setPage(page + 1)}") + " disabled={page === " + p.total + "} />\n    </PaginationItem>\n  </PaginationContent>\n</Pagination>"
       }
     },
     PasswordInput: {
