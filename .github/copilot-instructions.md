@@ -62,6 +62,13 @@ For components UIUIUI doesn't ship yet (modal, toasts, menu, tooltip, radio butt
 - Don't disable a submit button as the only way to signal errors. Disabled buttons don't take focus.
 - Respect `prefers-reduced-motion`; a loader always ends in content, an error with "Try again", or an empty state.
 
+## Before you merge a component (UIUIUI repository)
+
+In the UIUIUI repository itself, every time you finish creating or changing a component, run the merge checklist without being asked
+(`docs/component-checklist.md`; in Claude Code, the `component-merge-check` skill):
+`npm run check:component -- <name>`, `npm run build`, `npm run check:a11y -- <name>`, then the review items for Magoo behavior,
+visual consistency and copy. Fix every failure before you commit, push or report the component as done, and list the results.
+
 ## When changing tokens
 
 `tokens/tokens.json` is the source of truth. Update `src/styles/globals.css` and `registry.json` with the same values

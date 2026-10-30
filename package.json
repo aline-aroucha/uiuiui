@@ -23,10 +23,14 @@
     "registry:build": "shadcn build",
     "site:build": "node scripts/build-site.mjs",
     "build": "npm run registry:build && npm run site:build",
-    "dev": "npm run build && npx serve _site"
+    "dev": "npm run build && npx serve _site",
+    "check:component": "node scripts/check-component.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check": "node scripts/check-component.mjs --all && npm run build && node scripts/check-a11y.mjs --all"
   },
   "devDependencies": {
     "@heroicons/react": "^2.2.0",
+    "axe-core": "4.10.3",
     "heroicons": "^2.2.0",
     "marked": "15.0.12",
     "react": "18.3.1",

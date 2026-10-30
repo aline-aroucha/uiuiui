@@ -17,6 +17,7 @@ npx @aline-aroucha/uiuiui add password-input
 ## Accessibility
 - The password starts hidden and the button says the next action: "Show password", then "Hide password". The icon follows the text and is hidden from screen readers.
 - The button is `type="button"`: it never submits the form, keeps focus after activation and keeps the value. It has no `aria-pressed`, because its name already changes.
+- Keyboard: `Tab` moves from the field to the button; `Enter` or `Space` shows or hides the password; `Shift+Tab` returns to the field with its value intact.
 - Showing the password doesn't announce it in any extra message.
 
 _Adapted from Magoo 1.6.0 by Marcelo Sales: [Input "password"](https://magoo.cc/en/components/forms/input-password.html) (`input-password`). Magoo is educational guidance; test the behavior in your implementation._

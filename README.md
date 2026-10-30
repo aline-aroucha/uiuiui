@@ -35,6 +35,21 @@ Fonts (Next.js): `import { Inter, Geist_Mono } from "next/font/google"` (Inter w
 
 The CLI is published on npm as [`@aline-aroucha/uiuiui`](https://www.npmjs.com/package/@aline-aroucha/uiuiui). To release a new version: bump `version` in `package.json`, then `npm publish`.
 
+## Component merge checklist
+
+Every new or changed component passes `docs/component-checklist.md` before it is merged:
+
+```bash
+npm run check:component -- <name>   # files, registry, docs, tokens, icons, material, accessibility rules
+npm run build
+npm run check:a11y -- <name>        # axe in both themes, keyboard focus, reflow at 320px, reduced motion
+npm run check                       # all of the above, for every component
+```
+
+Claude Code runs it on its own: the `component-merge-check` skill (`.claude/skills/`) tells it to, and the hooks in
+`.claude/settings.json` block `git commit`, `git push` and the end of a turn while a static check fails. On GitHub, the
+"Component checks" workflow runs the whole checklist on every pull request.
+
 ## Behavior and accessibility
 
 Component behavior follows [Magoo](https://magoo.cc/en) 1.6.0 by Marcelo Sales (MIT). Each page in `docs/components/` has an
