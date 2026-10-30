@@ -11,7 +11,7 @@ A design system on top of [shadcn/ui](https://ui.shadcn.com), ready to be used b
 | `tokens/tokens.json` | Source of truth: colors (light/dark), typography, spacing, radius, shadow. |
 | `src/styles/globals.css` | The tokens as shadcn CSS variables + the Tailwind v4 `@theme`. |
 | `components.json` | shadcn CLI config (new-york style). Icons are Heroicons; the shadcn CLI has no Heroicons option, so `iconLibrary` stays at its default. |
-| `registry.json` + `registry/` | The UIUIUI registry: style, `cn()` and the source of the 27 components. |
+| `registry.json` + `registry/` | The UIUIUI registry: style, `cn()` and the source of the 29 components. |
 | `.mcp.json` | Adds the Magoo MCP (behavior and accessibility guidance) to Claude Code. |
 | `cli/uiuiui.mjs` | The `uiuiui` command: `init`, `add`, `list`. |
 | `AGENTS.md` / `CLAUDE.md` | Rules that Claude Code, Codex and other agents read automatically. |
@@ -26,7 +26,7 @@ In a React project with Tailwind v4 (Next.js or Vite):
 
 ```bash
 npx @aline-aroucha/uiuiui init                 # style, cn(), AGENTS.md, CLAUDE.md, Magoo MCP
-npx @aline-aroucha/uiuiui add button card input # any of the 27 components
+npx @aline-aroucha/uiuiui add button card input # any of the 29 components
 npx @aline-aroucha/uiuiui list
 ```
 
@@ -69,7 +69,7 @@ Run it locally: `npm install && npm run dev`.
 
 ## Registry
 
-`registry.json` lists the style, `utils` and the 27 components; their source lives in `registry/uiuiui/`. `npm run build` turns it into
+`registry.json` lists the style, `utils` and the 29 components; their source lives in `registry/uiuiui/`. `npm run build` turns it into
 `/r/<name>.json` on the site, which is what the `uiuiui` CLI installs from. Any shadcn-compatible tool can use it too: add
 `"registries": { "@uiuiui": "https://aline-aroucha.github.io/uiuiui/r/{name}.json" }` to `components.json`, and the shadcn MCP lets AI agents browse and install UIUIUI components from chat.
 

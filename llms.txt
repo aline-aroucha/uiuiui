@@ -36,4 +36,6 @@
 - [Tabs](docs/components/tabs.md)
 - [Textarea](docs/components/textarea.md)
 - [Toast](docs/components/toast.md)
+- [Toggle](docs/components/toggle.md)
+- [ToggleGroup](docs/components/toggle-group.md)
 - [Tooltip](docs/components/tooltip.md)

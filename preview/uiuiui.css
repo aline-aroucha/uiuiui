@@ -270,3 +270,20 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-slider:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; border-radius: var(--radius-full); }
 .uiuiui-slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
 .uiuiui-slider:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Toggle and ToggleGroup: capsules; pressed takes the brand highlight; the group is a glass track */
+.uiuiui-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 36px; height: 36px; padding: 0 12px; box-sizing: border-box;
+  border: 1px solid transparent; border-radius: var(--radius-full); background: transparent; color: var(--foreground); font: 500 14px/20px var(--font-sans); cursor: pointer; }
+.uiuiui-toggle svg { width: 16px; height: 16px; fill: currentColor; }
+.uiuiui-toggle:hover { background: var(--accent); color: var(--accent-foreground); }
+.uiuiui-toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.uiuiui-toggle[data-state="on"] { background: var(--primary); color: var(--primary-foreground); box-shadow: var(--glass-shadow); }
+.uiuiui-toggle:disabled { opacity: .5; pointer-events: none; }
+.uiuiui-toggle--outline { border-color: var(--input); background-color: var(--glass); box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%); backdrop-filter: blur(var(--glass-blur)) saturate(200%); }
+.uiuiui-toggle-group { display: inline-flex; gap: 4px; padding: 4px; border-radius: var(--radius-full); background-color: var(--glass); box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%); backdrop-filter: blur(var(--glass-blur)) saturate(200%); }
+.uiuiui-toggle-group .uiuiui-toggle { height: 32px; min-width: 32px; padding: 0 10px; }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .uiuiui-toggle-group, .uiuiui-toggle--outline { background-color: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}

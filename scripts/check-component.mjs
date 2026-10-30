@@ -23,7 +23,7 @@ const pascal = (slug) => slug.replace(/(^|-)([a-z])/g, (_, __, c) => c.toUpperCa
 // Content stays solid; only controls and floating layers may use glass
 const CONTENT = ["alert", "avatar", "badge", "card", "field", "input", "label", "separator", "skeleton", "table", "textarea"]
 // Controls that take focus and must show a visible focus ring
-const INTERACTIVE = ["alert-dialog", "button", "checkbox", "dialog", "dropdown-menu", "input", "password-input", "popover", "radio-group", "select", "slider", "switch", "tabs", "textarea"]
+const INTERACTIVE = ["alert-dialog", "button", "checkbox", "dialog", "dropdown-menu", "input", "password-input", "popover", "radio-group", "select", "slider", "switch", "tabs", "textarea", "toggle", "toggle-group"]
 // Form controls validated with the form, so they style the invalid state (a Switch acts at once and is never invalid)
 const FORM = ["checkbox", "input", "radio-group", "select", "textarea"]
 // The 17 components of the first release; every later one needs an "added" date
@@ -148,8 +148,8 @@ function check(slug) {
   if (slug === "button") ok("Material", "buttons are capsules (rounded-full)", /\brounded-full\b/.test(classes))
 
   // 7. Accessibility (static part; the rendered checks run in scripts/check-a11y.mjs)
-  // A component built from Button or Input inherits their focus ring
-  const composed = /from "@\/components\/ui\/(button|input)"/.test(src)
+  // A component built from Button, Input or Toggle inherits their focus ring
+  const composed = /from "@\/components\/ui\/(button|input|toggle)"/.test(src)
   // Menu items show focus with the brand highlight instead of a ring (roving focus inside a composite widget)
   const highlight = /\bfocus:bg-primary\b/.test(classes) && /\bfocus:text-primary-foreground\b/.test(classes)
   if (INTERACTIVE.includes(slug)) ok("Accessibility", "visible focus (focus-visible:ring-2 + ring-ring, or the menu highlight)", composed || highlight || (/focus-visible:ring-2\b/.test(classes) && /focus-visible:ring-ring\b/.test(classes)))

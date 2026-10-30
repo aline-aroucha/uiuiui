@@ -450,6 +450,36 @@
           (opts.length ? ", {\n  " + opts.join(",\n  ") + ",\n}" : "") + ")"
       }
     },
+    Toggle: {
+      controls: [
+        { name: "label", type: "text", value: "Bold" },
+        { name: "variant", type: "select", options: ["default", "outline"], value: "default" },
+        { name: "defaultPressed", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        return h(P.Toggle, { key: String(p.defaultPressed), "aria-label": p.label, variant: p.variant, defaultPressed: p.defaultPressed }, h(P.Icon, { name: "bold" }))
+      },
+      code: function (p) {
+        return 'import { BoldIcon } from "@heroicons/react/16/solid"\n' + imports("toggle", ["Toggle"]) +
+          tag("Toggle", { "aria-label": p.label, variant: unless(p.variant, "default"), defaultPressed: p.defaultPressed }, "  <BoldIcon />")
+      }
+    },
+    ToggleGroup: {
+      controls: [
+        { name: "type", type: "select", options: ["single", "multiple"], value: "single" },
+        { name: "label", type: "text", value: "View" }
+      ],
+      render: function (p) {
+        return h(P.ToggleGroup, { key: p.type, type: p.type, defaultValue: p.type === "single" ? "list" : ["list"], "aria-label": p.label },
+          h(P.ToggleGroupItem, { value: "list" }, h(P.Icon, { name: "list-bullet" }), "List"),
+          h(P.ToggleGroupItem, { value: "grid" }, h(P.Icon, { name: "squares-2x2" }), "Grid"))
+      },
+      code: function (p) {
+        return 'import { ListBulletIcon, Squares2X2Icon } from "@heroicons/react/16/solid"\n' + imports("toggle-group", ["ToggleGroup", "ToggleGroupItem"]) +
+          '<ToggleGroup type="' + p.type + '" defaultValue=' + (p.type === "single" ? '"list"' : '{["list"]}') + ' aria-label="' + p.label + '">\n' +
+          '  <ToggleGroupItem value="list">\n    <ListBulletIcon />\n    List\n  </ToggleGroupItem>\n  <ToggleGroupItem value="grid">\n    <Squares2X2Icon />\n    Grid\n  </ToggleGroupItem>\n</ToggleGroup>'
+      }
+    },
     Tooltip: {
       controls: [
         { name: "label", type: "text", value: "Download CSV" },

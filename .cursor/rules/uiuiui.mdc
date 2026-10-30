@@ -56,6 +56,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Wait with a known total, or a long one | `<Progress>` named by its label (no `value` = indeterminate) |
 | Short wait in a button or a row | `<Spinner label="…">`, or `aria-hidden` next to visible text |
 | Setting with immediate effect | `<Switch>` |
+| Formatting or view option applied at once | `<Toggle>`, or `<ToggleGroup>` for a set (single = segmented control) |
 | Option saved with the form | `<Checkbox>` |
 | One choice among 2–5 visible options | `<RadioGroup>` named by its question |
 | Approximate value or range | `<Slider>` with the value shown and `formatValue`; a number `Input` too when precision matters |

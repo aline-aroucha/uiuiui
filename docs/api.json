@@ -1473,6 +1473,137 @@
       ]
     }
   },
+  "Toggle": {
+    "added": "2026-10-30",
+    "description": "A button that stays pressed or not, for an option that takes effect at once, such as bold text.",
+    "related": [
+      "ToggleGroup",
+      "Switch",
+      "Button"
+    ],
+    "anatomy": "<Toggle aria-label=\"Bold\">\n  <BoldIcon />\n</Toggle>",
+    "parts": {
+      "Toggle": [
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "description": "Controlled pressed state."
+        },
+        {
+          "name": "defaultPressed",
+          "type": "boolean",
+          "default": "false",
+          "description": "Initial state when uncontrolled."
+        },
+        {
+          "name": "onPressedChange",
+          "type": "(pressed: boolean) => void",
+          "description": "Runs when it is pressed or released."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\"",
+          "default": "\"default\"",
+          "description": "No border, or glass with a border."
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"default\" | \"lg\"",
+          "default": "\"default\"",
+          "description": "32, 36 or 40px."
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "Required for icon-only toggles: the option's name, which doesn't change with the state."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Dimmed and out of the Tab order."
+        }
+      ]
+    }
+  },
+  "ToggleGroup": {
+    "added": "2026-10-30",
+    "description": "A set of toggles in a glass track: one choice (a segmented control) or several, applied at once.",
+    "related": [
+      "Toggle",
+      "Tabs",
+      "RadioGroup"
+    ],
+    "anatomy": "<ToggleGroup type=\"single\" aria-label=\"View\">\n  <ToggleGroupItem value=\"list\" />\n  <ToggleGroupItem value=\"grid\" />\n</ToggleGroup>",
+    "parts": {
+      "ToggleGroup": [
+        {
+          "name": "type",
+          "type": "\"single\" | \"multiple\"",
+          "required": true,
+          "description": "One choice (items act as radios) or several (items act as toggles)."
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "description": "Controlled value: a string for single, an array for multiple."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | string[]",
+          "description": "Initial value when uncontrolled."
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value) => void",
+          "description": "Runs when the selection changes."
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": true,
+          "description": "Names the group (or aria-labelledby)."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\"",
+          "default": "\"default\"",
+          "description": "Applied to every item."
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"default\" | \"lg\"",
+          "default": "\"default\"",
+          "description": "Applied to every item."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "default": "true",
+          "description": "Arrow keys wrap from the last item to the first."
+        }
+      ],
+      "ToggleGroupItem": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "The value this item adds or selects."
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "Required when the item shows only an icon."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Skipped by the arrow keys."
+        }
+      ]
+    }
+  },
   "Tooltip": {
     "added": "2026-10-30",
     "description": "Shows the name of a control, usually an icon-only button, while the pointer rests on it or it has keyboard focus.",
