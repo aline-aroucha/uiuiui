@@ -143,6 +143,20 @@ function shell({ path, title, description, intro = "", sections, related = [], s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title === "UIUIUI" ? "UIUIUI" : `${esc(title)} | UIUIUI`}</title>
 <meta name="description" content="${esc(description)}">
+<link rel="icon" href="${base}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${base}favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="${base}apple-touch-icon.png">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UIUIUI">
+<meta property="og:title" content="${title === "UIUIUI" ? "UIUIUI" : `${esc(title)} | UIUIUI`}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:image" content="${abs("og.jpg")}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="UIUIUI: a design system on top of shadcn/ui, ready to be used by people and AI agents.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="text/markdown" title="LLM-friendly version" href="${base}${mdPath}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Geist+Mono:wght@400;600&display=swap">
@@ -440,6 +454,8 @@ for (const f of ["uiuiui.css", "uiuiui.js", "playground.js"]) cpSync(join(root, 
 cpSync(join(root, "preview/examples"), join(out, "assets/examples"), { recursive: true })
 cpSync(join(root, "site/site.css"), join(out, "assets/site.css"))
 cpSync(join(root, "site/site.js"), join(out, "assets/site.js"))
+// Favicons and the link preview image, at the site root where browsers and crawlers look for them
+for (const f of readdirSync(join(root, "site/brand"))) cpSync(join(root, "site/brand", f), join(out, f))
 mkdirSync(join(out, "assets/vendor"), { recursive: true })
 cpSync(join(root, "node_modules/react/umd/react.production.min.js"), join(out, "assets/vendor/react.production.min.js"))
 cpSync(join(root, "node_modules/react-dom/umd/react-dom.production.min.js"), join(out, "assets/vendor/react-dom.production.min.js"))
