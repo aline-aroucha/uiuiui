@@ -12,7 +12,7 @@ const emptyStateVariants = cva("flex min-w-0 flex-col items-center justify-cente
       // inside a Card or a page section
       default: "",
       // straight on the page background: a dashed outline marks the area that will fill up
-      outline: "rounded-2xl border border-dashed border-border",
+      outline: "rounded-2xl border border-dashed border-border bg-background",
     },
   },
   defaultVariants: { variant: "default" },

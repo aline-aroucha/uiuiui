@@ -509,6 +509,21 @@
           : '<Spinner label="' + p.label + '" />')
       }
     },
+    Stepper: {
+      controls: [
+        { name: "current", type: "select", options: ["0", "1", "2", "3"], value: "1" },
+        { name: "label", type: "text", value: "Checkout progress" },
+        { name: "linkBack", type: "boolean", value: false }
+      ],
+      render: function (p) {
+        var steps = ["Cart", "Shipping", "Payment", "Review"].map(function (l) { return p.linkBack ? { label: l, href: "#" + l.toLowerCase() } : { label: l } })
+        return h("div", { style: { width: "100%", maxWidth: 520 } }, h(P.Stepper, { steps: steps, current: Number(p.current), label: p.label }))
+      },
+      code: function (p) {
+        var steps = ["Cart", "Shipping", "Payment", "Review"].map(function (l) { return "  { label: \"" + l + "\"" + (p.linkBack ? ', href: "/checkout/' + l.toLowerCase() + '"' : "") + " }," }).join("\n")
+        return imports("stepper", ["Stepper"]) + "const steps = [\n" + steps + "\n]\n\n<Stepper steps={steps} current={" + p.current + "}" + (p.label !== "Progress" ? ' label="' + p.label + '"' : "") + " />"
+      }
+    },
     Switch: {
       controls: [
         { name: "label", type: "text", value: "Email notifications" },

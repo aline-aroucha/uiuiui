@@ -49,6 +49,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Where the page sits in the hierarchy | `<Breadcrumb>` with links to the levels above and `BreadcrumbPage` last |
 | Optional sections opened on demand (FAQ, settings groups) | `<Accordion>` with titles at the right heading level |
 | Long list or table split into pages | `<Pagination>` named for what it pages through; links with `href`, buttons for in-place updates |
+| Position in a task split into steps (checkout, onboarding) | `<Stepper>` with Back and Continue buttons under the form |
 | Persistent message | `<Alert>` |
 | Feedback after an action | `toast()` from `@/components/ui/toast` (Sonner), never for critical errors |
 | Wait with a known total, or a long one | `<Progress>` named by its label (no `value` = indeterminate) |

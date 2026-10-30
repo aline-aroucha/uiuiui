@@ -1653,6 +1653,36 @@
       ]
     }
   },
+  "Stepper": {
+    "description": "Shows where people are in a task split into steps: completed, current and upcoming, plus \"Step 2 of 4\".",
+    "anatomy": "<Stepper steps current label />",
+    "parts": {
+      "Stepper": [
+        {
+          "name": "steps",
+          "type": "{ label: string; href?: string }[]",
+          "description": "The steps in order. href only on completed steps people may jump back to."
+        },
+        {
+          "name": "current",
+          "type": "number",
+          "description": "Index of the current step, from 0. Steps before it are completed; steps after it are upcoming."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"Progress\"",
+          "description": "Name of the list of steps for screen readers (\"Checkout progress\")."
+        }
+      ]
+    },
+    "related": [
+      "Button",
+      "Field",
+      "Progress"
+    ],
+    "added": "2026-10-30"
+  },
   "Switch": {
     "description": "Turns a setting on or off immediately.",
     "related": [

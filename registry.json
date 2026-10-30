@@ -719,6 +719,24 @@
       ]
     },
     {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "UIUIUI Stepper. Docs: https://aline-aroucha.github.io/uiuiui/components/stepper.html",
+      "dependencies": [
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/stepper.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",

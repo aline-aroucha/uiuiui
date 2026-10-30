@@ -38,6 +38,7 @@
 - [Skeleton](docs/components/skeleton.md)
 - [Slider](docs/components/slider.md)
 - [Spinner](docs/components/spinner.md)
+- [Stepper](docs/components/stepper.md)
 - [Switch](docs/components/switch.md)
 - [Table](docs/components/table.md)
 - [Tabs](docs/components/tabs.md)

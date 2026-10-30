@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"},{"name":"Breadcrumb"},{"name":"Accordion"},{"name":"Pagination"},{"name":"EmptyState"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UIUIUI","components":[{"name":"Button"},{"name":"Badge"},{"name":"Field"},{"name":"Input"},{"name":"PasswordInput"},{"name":"Textarea"},{"name":"Label"},{"name":"Select"},{"name":"Checkbox"},{"name":"Switch"},{"name":"Card"},{"name":"Alert"},{"name":"Tabs"},{"name":"Table"},{"name":"Separator"},{"name":"Skeleton"},{"name":"Avatar"},{"name":"Dialog"},{"name":"AlertDialog"},{"name":"Popover"},{"name":"Tooltip"},{"name":"DropdownMenu"},{"name":"Toast"},{"name":"Progress"},{"name":"Spinner"},{"name":"RadioGroup"},{"name":"Slider"},{"name":"Toggle"},{"name":"ToggleGroup"},{"name":"Combobox"},{"name":"DatePicker"},{"name":"FileUpload"},{"name":"Breadcrumb"},{"name":"Accordion"},{"name":"Pagination"},{"name":"EmptyState"},{"name":"Stepper"}]} */
 /* UIUIUI: lightweight reference implementation used only by the documentation previews.
    In products, install the real components with `npx @aline-aroucha/uiuiui add <name>`. */
 (function () {
@@ -692,5 +692,22 @@
   var EmptyStateDescription = slot('p', 'uiuiui-empty__description');
   var EmptyStateActions = slot('div', 'uiuiui-empty__actions');
   Object.assign(api, { EmptyState: EmptyState, EmptyStateMedia: EmptyStateMedia, EmptyStateHeader: EmptyStateHeader, EmptyStateTitle: EmptyStateTitle, EmptyStateDescription: EmptyStateDescription, EmptyStateActions: EmptyStateActions });
+
+  // Stepper: an ordered list of steps; the current one has aria-current="step"; completed and upcoming say so in words; a summary says "Step 2 of 4"
+  function Stepper(p) {
+    var steps = p.steps || [], at = Math.min(Math.max(p.current || 0, 0), steps.length - 1);
+    return h('div', { id: p.id, className: cx('uiuiui-stepper', p.className) },
+      h('ol', { 'aria-label': p.label || 'Progress', className: 'uiuiui-stepper__list' }, steps.map(function (s, i) {
+        var state = i < at ? 'complete' : i === at ? 'current' : 'upcoming';
+        var text = [s.label, state !== 'current' ? h('span', { key: 'sr', className: 'uiuiui-sr-only' }, state === 'complete' ? ', completed' : ', not completed') : null];
+        return h('li', { key: s.label, 'data-state': state, 'aria-current': state === 'current' ? 'step' : undefined, className: 'uiuiui-stepper__step' },
+          h('span', { 'aria-hidden': true, className: 'uiuiui-stepper__bar' }),
+          h('span', { className: 'uiuiui-stepper__row' },
+            h('span', { 'aria-hidden': true, className: 'uiuiui-stepper__marker' }, state === 'complete' ? h(Icon, { name: 'check' }) : i + 1),
+            h('span', { className: 'uiuiui-stepper__label' }, state === 'complete' && s.href ? h('a', { href: s.href, className: 'uiuiui-stepper__link' }, text) : text)));
+      })),
+      h('p', { className: 'uiuiui-stepper__summary' }, h('strong', null, 'Step ' + (at + 1) + ' of ' + steps.length), ': ' + (steps[at] ? steps[at].label : '')));
+  }
+  Object.assign(api, { Stepper: Stepper });
   window.UIUIUI = Object.assign(window.UIUIUI || {}, api);
 })();
