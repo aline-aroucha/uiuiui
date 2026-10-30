@@ -35,6 +35,7 @@
 - [RadioGroup](docs/components/radio-group.md)
 - [Select](docs/components/select.md)
 - [Separator](docs/components/separator.md)
+- [Sheet](docs/components/sheet.md)
 - [Skeleton](docs/components/skeleton.md)
 - [Slider](docs/components/slider.md)
 - [Spinner](docs/components/spinner.md)

@@ -426,3 +426,18 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .uiuiui-stepper__summary { margin: 0; color: var(--muted-foreground); font-size: 14px; line-height: 20px; }
 .uiuiui-stepper__summary strong { color: var(--foreground); }
 @media (max-width: 639px) { .uiuiui-stepper__marker { display: none; } .uiuiui-stepper__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
+
+/* Sheet: the Dialog docked to an edge */
+.uiuiui-dialog.uiuiui-sheet { position: fixed; margin: 0; border-radius: 0; max-width: none; max-height: none; overflow-y: auto; }
+.uiuiui-sheet--right, .uiuiui-sheet--left { top: 0; bottom: 0; width: min(384px, 75%); height: 100%; }
+.uiuiui-sheet--right { left: auto; right: 0; border-left: 1px solid var(--border); animation-name: uiuiui-sheet-right !important; }
+.uiuiui-sheet--left { left: 0; right: auto; border-right: 1px solid var(--border); animation-name: uiuiui-sheet-left !important; }
+.uiuiui-sheet--top, .uiuiui-sheet--bottom { left: 0; right: 0; width: 100%; }
+.uiuiui-sheet--top { top: 0; bottom: auto; border-bottom: 1px solid var(--border); }
+.uiuiui-sheet--bottom { top: auto; bottom: 0; border-top: 1px solid var(--border); }
+.uiuiui-sheet .uiuiui-dialog__body { display: flex; flex-direction: column; min-height: 100%; box-sizing: border-box; padding: 16px; }
+.uiuiui-sheet__header { padding-right: 40px; }
+.uiuiui-sheet__footer { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+@keyframes uiuiui-sheet-right { from { transform: translateX(100%); } }
+@keyframes uiuiui-sheet-left { from { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .uiuiui-dialog.uiuiui-sheet[open] { animation: none !important; } }

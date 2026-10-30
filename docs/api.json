@@ -1527,6 +1527,77 @@
       ]
     }
   },
+  "Sheet": {
+    "description": "A modal panel that slides in from an edge, for filters, item details or the navigation on small screens.",
+    "anatomy": "<Sheet>\n  <SheetTrigger asChild><Button /></SheetTrigger>\n  <SheetContent side>\n    <SheetHeader>\n      <SheetTitle />\n      <SheetDescription />\n    </SheetHeader>\n    {body}\n    <SheetFooter />\n  </SheetContent>\n</Sheet>",
+    "parts": {
+      "Sheet": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "description": "Whether it is open, when you control the state."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "description": "Called when it opens or closes (trigger, Esc, close button, outside click)."
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "default": "false",
+          "description": "Open at first, when it manages its own state."
+        }
+      ],
+      "SheetContent": [
+        {
+          "name": "side",
+          "type": "\"right\" | \"left\" | \"top\" | \"bottom\"",
+          "default": "\"right\"",
+          "description": "The edge it slides in from."
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "default": "true",
+          "description": "Shows the close button in the corner."
+        },
+        {
+          "name": "closeLabel",
+          "type": "string",
+          "default": "\"Close\"",
+          "description": "Accessible name of the close button; translate it with the UI."
+        }
+      ],
+      "SheetTitle": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "Names the panel; matches the trigger's label."
+        }
+      ],
+      "SheetDescription": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "One line of context, read after the title."
+        }
+      ],
+      "SheetFooter": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "The actions, at the bottom: main action first."
+        }
+      ]
+    },
+    "related": [
+      "Dialog",
+      "Popover",
+      "Sidebar"
+    ],
+    "added": "2026-10-30"
+  },
   "Skeleton": {
     "description": "A placeholder shaped like content that is still loading.",
     "related": [

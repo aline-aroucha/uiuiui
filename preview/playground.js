@@ -36,6 +36,18 @@
         h(P.AlertDialogFooter, null, h(P.AlertDialogCancel, null, "Cancel"), h(P.AlertDialogAction, { variant: p.actionVariant }, p.action))))
   }
 
+  function SheetDemo(p) {
+    var st = React.useState(false)
+    return h(P.Sheet, { open: st[0], onOpenChange: st[1] },
+      h(P.SheetTrigger, null, h(P.Button, { variant: "outline" }, p.title)),
+      h(P.SheetContent, { side: p.side, showCloseButton: p.showCloseButton },
+        h(P.SheetHeader, null, h(P.SheetTitle, null, p.title), h(P.SheetDescription, null, "Order #4821, placed Oct 21, 2026.")),
+        h("dl", { style: { display: "grid", gridTemplateColumns: "auto 1fr", gap: "8px 16px", margin: 0 } },
+          h("dt", { className: "uiuiui-muted" }, "Customer"), h("dd", { style: { margin: 0 } }, "Maya Chen"),
+          h("dt", { className: "uiuiui-muted" }, "Total"), h("dd", { style: { margin: 0 } }, "$1,280.00")),
+        h(P.SheetFooter, null, h(P.SheetClose, null, h(P.Button, null, "Done")))))
+  }
+
   function SliderDemo(p) {
     var st = React.useState([40])
     return h(P.Card, { style: { width: "100%", maxWidth: 360 } }, h(P.CardContent, { style: { display: "grid", gap: 12 } },
@@ -468,6 +480,20 @@
           : h("div", { style: { width: "100%", maxWidth: 360 } }, h("div", { style: { fontWeight: 600 } }, "Account settings"), h(P.Separator, { style: { margin: "12px 0" } }), h("div", { className: "uiuiui-muted" }, "Profile, security and notifications."))
       },
       code: function (p) { return imports("separator", ["Separator"]) + tag("Separator", { orientation: unless(p.orientation, "horizontal") }) }
+    },
+    Sheet: {
+      controls: [
+        { name: "title", type: "text", value: "Order details" },
+        { name: "side", type: "select", options: ["right", "left", "top", "bottom"], value: "right" },
+        { name: "showCloseButton", type: "boolean", value: true }
+      ],
+      render: function (p) { return h(SheetDemo, p) },
+      code: function (p) {
+        return imports("sheet", ["Sheet", "SheetClose", "SheetContent", "SheetDescription", "SheetFooter", "SheetHeader", "SheetTitle", "SheetTrigger"]) + 'import { Button } from "@/components/ui/button"\n\n' +
+          "<Sheet>\n  <SheetTrigger asChild>\n    <Button variant=\"outline\">" + p.title + "</Button>\n  </SheetTrigger>\n  <SheetContent" + (p.side !== "right" ? ' side="' + p.side + '"' : "") + (p.showCloseButton ? "" : " showCloseButton={false}") + ">\n" +
+          "    <SheetHeader>\n      <SheetTitle>" + p.title + "</SheetTitle>\n      <SheetDescription>Order #4821, placed Oct 21, 2026.</SheetDescription>\n    </SheetHeader>\n    {/* details */}\n" +
+          "    <SheetFooter>\n      <SheetClose asChild>\n        <Button>Done</Button>\n      </SheetClose>\n    </SheetFooter>\n  </SheetContent>\n</Sheet>"
+      }
     },
     Skeleton: {
       controls: [{ name: "shape", type: "select", options: ["text", "avatar", "card"], value: "text" }],

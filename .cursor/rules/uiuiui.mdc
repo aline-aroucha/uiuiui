@@ -45,6 +45,7 @@ Local copy: `docs/guidelines.md`, `docs/components/*.md`, `tokens/tokens.json`.
 | Supporting action | `<Button variant="secondary">` or `"outline"` |
 | Cancel / low emphasis | `<Button variant="ghost">` |
 | Short task that interrupts the flow | `<Dialog>` with a title and Cancel |
+| Filters, item details or the mobile navigation in a panel from an edge | `<Sheet>` with a title matching its trigger |
 | Irreversible action | `<Button variant="destructive">` inside an `AlertDialog` |
 | Extra content or quick controls next to a button | `<Popover>` (opens on click, never on hover) |
 | Name of an icon-only button | `<Tooltip>` with the same words as its `aria-label` |
