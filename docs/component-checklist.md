@@ -24,7 +24,7 @@ steps for every component. Both scripts exit with an error when a check fails.
 | Preview | an example in `preview/examples/`, the component exported by `preview/uiuiui.js`, a playground in `preview/playground.js` |
 | Tokens | no hex, `rgb()`, `hsl()` or `oklch()`; no Tailwind palette colors or `bg-white`/`text-black`; no `dark:` overrides; no arbitrary spacing or radius; radius from the scale |
 | Icons | Heroicons only: Micro `16/solid`, Mini `20/solid` or Outline `24/outline`; never `lucide-react` |
-| Material | content components (Alert, Avatar, Badge, Card, Field, Input, Label, Separator, Skeleton, Table, Textarea) stay solid; glass always with `shadow-glass`; no raw `backdrop-blur`, white overlays or gradients; Card `rounded-2xl`, Button `rounded-full` |
+| Material | content components (Alert, Avatar, Badge, Card, EmptyState, Field, Input, Label, Separator, Skeleton, Table, Textarea) stay solid; glass always with `shadow-glass`; no raw `backdrop-blur`, white overlays or gradients; Card `rounded-2xl`, Button `rounded-full` |
 | Accessibility | interactive components show a solid 2px focus ring; form controls style `aria-invalid` and `disabled`; animations stop with `motion-reduce:`; no positive `tabIndex`; no `outline-none` without a `focus-visible` replacement; `role="alert"` only for critical messages |
 | Rules | the "Variants by intent" table in `AGENTS.md` names only components UIUIUI has (or the documented `AlertDialog` and `toast()`) |
 

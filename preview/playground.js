@@ -271,6 +271,27 @@
           "  </DropdownMenuContent>\n</DropdownMenu>"
       }
     },
+    EmptyState: {
+      controls: [
+        { name: "title", type: "text", value: "No invoices yet" },
+        { name: "description", type: "text", value: "Invoices you send show up here, with their status and due date." },
+        { name: "action", type: "text", value: "Create invoice" },
+        { name: "variant", type: "select", options: ["default", "outline"], value: "outline" }
+      ],
+      render: function (p) {
+        return h("div", { style: { width: "100%", maxWidth: 480 } }, h(P.EmptyState, { variant: p.variant },
+          h(P.EmptyStateMedia, null, h(P.Icon, { name: "document-text" })),
+          h(P.EmptyStateHeader, null, h(P.EmptyStateTitle, null, p.title), p.description ? h(P.EmptyStateDescription, null, p.description) : null),
+          p.action ? h(P.EmptyStateActions, null, h(P.Button, null, p.action)) : null))
+      },
+      code: function (p) {
+        return 'import { DocumentTextIcon } from "@heroicons/react/24/outline"\n' + 'import { Button } from "@/components/ui/button"\n' +
+          imports("empty-state", ["EmptyState", "EmptyStateActions", "EmptyStateDescription", "EmptyStateHeader", "EmptyStateMedia", "EmptyStateTitle"]) +
+          "<EmptyState" + (p.variant !== "default" ? ' variant="' + p.variant + '"' : "") + ">\n  <EmptyStateMedia>\n    <DocumentTextIcon />\n  </EmptyStateMedia>\n  <EmptyStateHeader>\n    <EmptyStateTitle>" + p.title + "</EmptyStateTitle>\n" +
+          (p.description ? "    <EmptyStateDescription>" + p.description + "</EmptyStateDescription>\n" : "") + "  </EmptyStateHeader>\n" +
+          (p.action ? "  <EmptyStateActions>\n    <Button>" + p.action + "</Button>\n  </EmptyStateActions>\n" : "") + "</EmptyState>"
+      }
+    },
     Field: {
       controls: [
         { name: "label", type: "text", value: "Email" },

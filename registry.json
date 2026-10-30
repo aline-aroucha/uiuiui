@@ -446,6 +446,24 @@
       ]
     },
     {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty state",
+      "description": "UIUIUI Empty-state. Docs: https://aline-aroucha.github.io/uiuiui/components/empty-state.html",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://aline-aroucha.github.io/uiuiui/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/uiuiui/ui/empty-state.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "field",
       "type": "registry:ui",
       "title": "Field",

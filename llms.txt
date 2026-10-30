@@ -23,6 +23,7 @@
 - [DatePicker](docs/components/date-picker.md)
 - [Dialog](docs/components/dialog.md)
 - [DropdownMenu](docs/components/dropdown-menu.md)
+- [EmptyState](docs/components/empty-state.md)
 - [Field](docs/components/field.md)
 - [FileUpload](docs/components/file-upload.md)
 - [Input](docs/components/input.md)

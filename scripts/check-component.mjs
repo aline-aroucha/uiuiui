@@ -21,7 +21,7 @@ const all = readdirSync(join(root, UI)).filter((f) => f.endsWith(".tsx")).map((f
 const pascal = (slug) => slug.replace(/(^|-)([a-z])/g, (_, __, c) => c.toUpperCase())
 
 // Content stays solid; only controls and floating layers may use glass
-const CONTENT = ["alert", "avatar", "badge", "card", "field", "input", "label", "separator", "skeleton", "table", "textarea"]
+const CONTENT = ["alert", "avatar", "badge", "card", "empty-state", "field", "input", "label", "separator", "skeleton", "table", "textarea"]
 // Controls that take focus and must show a visible focus ring
 const INTERACTIVE = ["accordion", "alert-dialog", "breadcrumb", "button", "checkbox", "combobox", "date-picker", "file-upload", "dialog", "dropdown-menu", "input", "pagination", "password-input", "popover", "radio-group", "select", "slider", "switch", "tabs", "textarea", "toggle", "toggle-group"]
 // Form controls validated with the form, so they style the invalid state (a Switch acts at once and is never invalid)
